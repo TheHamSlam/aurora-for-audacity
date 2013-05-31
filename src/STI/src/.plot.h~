@@ -1,0 +1,135 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Speech Transmission Index evaluator
+  
+  plot.h
+
+  Simone Campanini
+
+**********************************************************************/
+
+#ifndef __AURORA_STI_PLOT_H__
+#define __AURORA_STI_PLOT_H__
+
+#include <string.h>
+
+#include <afplot.h>
+#include "sti.h"
+
+//----------------------------------------------------------------------------
+// Storage classes
+//----------------------------------------------------------------------------
+#include <wx/dynarray.h>
+
+//----------------------------------------------------------------------------
+// OctaveBandsDataSerie
+//----------------------------------------------------------------------------
+class OctaveBandsDataSerie : public AFDataSerie
+{
+   // 31.5 63 125 250 500 1k 2k 4k 8k 16k A lin
+   public:
+	OctaveBandsDataSerie()
+	 : AFDataSerie(12)
+    { }
+
+	OctaveBandsDataSerie(const double* pdbSerie)
+	  : AFDataSerie(12, pdbSerie)
+	{ SetData(pdbSerie); }
+
+	OctaveBandsDataSerie(const float* pflSerie)
+	  : AFDataSerie(12, pflSerie)
+	{ SetData(pflSerie); }
+};
+
+WX_DECLARE_OBJARRAY(OctaveBandsDataSerie, TArrayOfOctaveBandsDataSerie);
+
+WX_DECLARE_OBJARRAY(AFDataSerie, TArrayOfAFDataSerie);
+
+//----------------------------------------------------------------------------
+// OctaveBandsPlot
+//----------------------------------------------------------------------------
+
+class OctaveBandsPlot : public AFPlot
+{
+  private:
+    TArrayOfOctaveBandsDataSerie  m_awxDataSeries;
+    wxArrayString                 m_awxszBandLabels;
+
+ protected:
+    void UpdateHorizontalAxis();
+    void UpdateVerticalAxis();
+    
+    void Sketch(wxDC &dc);
+
+  public:
+    void AddSerie(OctaveBandsDataSerie* pSerie,
+                  wxColour& wxcolLine = wxNullColour, wxColour& wxcolBrush = wxNullColour);
+    void AddSerie(const double* adbData, const size_t unLength,
+                  wxColour& wxcolLine = wxNullColour, wxColour& wxcolBrush = wxNullColour);
+    void DeleteSerie(const size_t nIdx);
+    
+    bool IsSerieShown(const int nIdx) const { return m_awxDataSeries[nIdx].IsShown(); }
+    void ShowSerie(const int nIdx, const bool bValue = true) { m_awxDataSeries[nIdx].Show(bValue); }
+    void ToggleSerieVisibility(const int nIdx) { m_awxDataSeries[nIdx].ToggleVisibility(); }
+    
+    OctaveBandsPlot(wxWindow* pParent, wxWindowID id, 
+                    const wxPoint& pos = wxDefaultPosition,
+                    const wxSize& size = wxDefaultSize);
+//    ~OctaveBandsPlot();
+};
+
+//----------------------------------------------------------------------------
+// STIPlot
+//----------------------------------------------------------------------------
+
+class STIPlot : public AFPlot
+{
+ private:
+   // Attributes
+   TArrayOfAFDataSerie  m_aDataSeries [2];
+   wxArrayString         m_awxszBandLabels;
+   int                   m_nCurrentChnl; 
+    
+ protected:
+   void Autorange(const double* pdbSerie, const size_t unLength,
+                  double& dbMin, double& dbMax);
+
+   void UpdateHorizontalAxis();
+   void UpdateVerticalAxis();
+   void Sketch(wxDC &dc);
+
+  public:      
+      
+   void AddSerie(AFDataSerie* pSerie, const int nCh,
+                 wxColour& wxcolLine = wxNullColour, wxColour& wxcolBrush = wxNullColour);
+   void AddSerie(const double* adbData, const size_t unLength, const int nCh,
+                 wxColour& wxcolLine = wxNullColour, wxColour& wxcolBrush = wxNullColour);
+   void DeleteSerie(const size_t nIdx, const int nCh);
+
+   int GetCurrentChannel() const { return m_nCurrentChnl; }
+   void SetCurrentChannel(const int nValue) { m_nCurrentChnl = nValue; }  
+    
+   STIPlot(wxWindow *pParent, wxWindowID id, const int nCurrentChnl = CH_LEFT,
+           const wxPoint& pos = wxDefaultPosition,
+           const wxSize& size = wxDefaultSize);
+// ~STIPlot();
+
+};
+
+#endif  //__AURORA_STI_PLOT_H__
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283
+
+

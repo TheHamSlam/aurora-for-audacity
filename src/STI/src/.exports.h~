@@ -1,0 +1,68 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Speech Transmission Index evaluator
+
+  exports.h
+
+  Angelo Farina - Simone Campanini
+
+************************************************************************/
+#ifndef __AURORA_STI_EXPORTS_H__
+#define __AURORA_STI_EXPORTS_H__
+
+#include <afexports.h>
+
+#include <wx/textfile.h>
+
+#ifndef __STAND_ALONE__
+   #include "acpar.h"
+#else
+   #include "acparsa.h"
+#endif
+
+class STIExports : public AFExports 
+{
+    public:
+       enum FileType { FT_PARAMETER_TXT,
+                       FT_PARAMETER_CSV,
+                       FT_RAMSETE_ECHOGRAM_PRN };
+
+    private:
+        wxWindow *m_pParent;
+
+       AuroraSTI* m_pAs;
+       
+       wxString m_wxszIrName;
+       wxArrayString m_awxszChannelLabel;  // remove it
+       wxArrayString m_awxszFrequencyLabel;
+       wxArrayString m_awxszParamFileLabel;
+
+       void StoreParametersTable(wxTextFile& fo, const int nFileType = FF_TXT);
+       void StoreEchogram(wxTextFile& fo);
+    
+    protected:
+       bool BuildParametersTable(wxString &wxszDataBuffer, const int nFileType = FF_TXT);
+
+    public:
+      bool SaveToFile();
+
+      STIExports(wxWindow* pParent, AuroraSTI* pAs;);
+};
+       
+       
+
+#endif // __AURORA_STI_EXPORTS_H__
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283

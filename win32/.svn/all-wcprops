@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/repos/aurora/!svn/ver/1/win32
+END
+Aurora.sln
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/repos/aurora/!svn/ver/1/win32/Aurora.sln
+END
+InstallModule.rules
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/win32/InstallModule.rules
+END
+Aurora.suo
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/repos/aurora/!svn/ver/1/win32/Aurora.suo
+END

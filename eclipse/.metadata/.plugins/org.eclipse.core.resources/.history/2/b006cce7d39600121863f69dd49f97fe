@@ -1,0 +1,1151 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Acoustical Parameters
+
+  gui.cpp
+
+  Simone Campanini
+
+*******************************************************************//**
+
+\class AcParametersDialog
+\brief Dialog used with EffectAcParameters.
+
+*//****************************************************************//**
+
+\class AcParametersShowDialog
+\brief Window that shows the acoustical parameter.
+
+*//****************************************************************//**
+
+\class StoreGValueDialog
+\brief The dialog showed when Store G-value button is pressed
+
+*//*******************************************************************/
+
+#include <wx/colour.h>
+#include <wx/filename.h>
+#include <wx/progdlg.h>
+
+// From Audacity source tree
+#include <Audacity.h>
+#include <LoadModules.h>
+#include <Prefs.h>
+
+#include <WaveTrack.h>
+#include <effects/Effect.h>
+#include <effects/EffectManager.h>
+
+#include <widgets/ProgressDialog.h>
+
+#include <commdefs.h>
+#include <afart.h>
+#include <afconfig.h>
+#include <afexports.h>
+#include <gpfuncts.h>
+
+
+#include "afacpar.h"
+
+#ifndef __STAND_ALONE__
+   #include "acpar.h"
+#else
+   #include "acparsa.h"
+#endif
+
+#include "dialogs.h"
+#include "exports.h"
+#include "plot.h"
+#include "module.h"
+
+#include "gui.h"
+#include "version.h"
+
+//----------------------------------------------------------------------------
+// AcParametersDialog
+//----------------------------------------------------------------------------
+void AcParametersDialog::OnCloseDialog(wxCloseEvent& event)
+{
+	EndModal(false);
+}
+
+// --- Checkbox events ---
+void AcParametersDialog::OnNoiseCorrCheck(wxCommandEvent &event) 
+{
+   m_pAp->SetNoiseCorrection(event.IsChecked());
+}
+
+void AcParametersDialog::OnEDTCheck(wxCommandEvent &event) 
+{
+   m_pAp->SetEDT(event.IsChecked());
+}
+
+void AcParametersDialog::OnComputeStageParamCheck(wxCommandEvent &event) 
+{
+   m_pAp->SetStageMode(event.IsChecked());
+}
+
+void AcParametersDialog::OnAvgModeCheck(wxCommandEvent &event) 
+{
+   m_pAp->SetAverageMode(event.IsChecked());
+}
+
+void AcParametersDialog::OnAppendResultsToFile(wxCommandEvent &event) 
+{
+   if(event.IsChecked())
+   {
+       mFileNameText->Enable();
+       mOpenFileBtn->Enable();
+       m_pEap->SetAppendDataToFile(true);
+   }
+   else
+   {
+       mFileNameText->Disable();
+       mOpenFileBtn->Disable();
+       m_pEap->SetAppendDataToFile(false);
+   }
+}
+
+// --- TextCtrl events ---
+void AcParametersDialog::OnEditRevTimeMinExtreme(wxCommandEvent &event) 
+{
+   double d = 0.0;
+   d = ::TextPtrToDouble(mUserMinLevelText);
+   m_pAp->SetUserMinLevel(d);
+
+}
+
+void AcParametersDialog::OnEditRevTimeMaxExtreme(wxCommandEvent &event) 
+{
+   double d = ::TextPtrToDouble(mUserMaxLevelText);
+   m_pAp->SetUserMaxLevel(d);
+}
+
+void AcParametersDialog::OnEditDirSoundTrigValue(wxCommandEvent &event) 
+{
+   double d = ::TextPtrToDouble(m_pwxtcDST);
+   m_pAp->SetDirectSoundTrigValue(d);
+}
+
+void AcParametersDialog::OnEditPeakSPLValue(wxCommandEvent &event) 
+{
+   double d = ::TextPtrToDouble(m_pwxtcFullScale);
+   m_pAp->SetFullScale(d);
+}
+
+void AcParametersDialog::OnEditProbeMicDist(wxCommandEvent &event) 
+{
+   double d = ::TextPtrToDouble(m_pwxtcProbeMicsDist);
+   m_pAp->SetProbeMicsDistance(d / 1000.0); // converted from mm to m.
+}
+
+void AcParametersDialog::OnEditCValue(wxCommandEvent &event) 
+{
+   double d = ::TextPtrToDouble(m_pwxtcSoundSpeed);
+   m_pAp->SetSoundSpeedValue(d);
+}
+
+void AcParametersDialog::OnEditAppendFileName(wxCommandEvent &event) 
+{
+   wxString wxszFn = mFileNameText->GetLineText(0);
+   m_pExportData->SetAppendToFileName(wxszFn);
+}
+
+// --- Radiobuttons events ---
+
+void AcParametersDialog::StereoModeCtl(int mode)
+{   
+   switch(mode) 
+   {    
+       case ID_2CH_MODE_INTENSITY_PROBE_RADIO:
+          m_pwxstProbeMicsDist->Enable();
+          m_pwxtcProbeMicsDist->Enable();
+          m_pwxstMm->Enable();
+          m_pwxstSoundSpeed->Enable();
+          m_pwxtcSoundSpeed->Enable();
+          m_pwxstMs->Enable();
+          mIACCStext->Disable();
+          mIACCChoice->Disable();
+          break;
+          
+       case ID_2CH_MODE_BINAURAL_RADIO:
+          m_pwxstProbeMicsDist->Disable();
+          m_pwxtcProbeMicsDist->Disable();
+          m_pwxstMm->Disable();
+          m_pwxstSoundSpeed->Disable();
+          m_pwxtcSoundSpeed->Disable();
+          m_pwxstMs->Disable();
+          mIACCStext->Enable();
+          mIACCChoice->Enable();
+          break;
+          
+       default:
+           m_pwxstProbeMicsDist->Disable();
+           m_pwxtcProbeMicsDist->Disable();
+           m_pwxstMm->Disable();
+           m_pwxstSoundSpeed->Disable();
+           m_pwxtcSoundSpeed->Disable();
+           m_pwxstMs->Disable();
+          mIACCStext->Disable();
+          mIACCChoice->Disable();
+          break;
+   };
+    
+}
+
+void AcParametersDialog::OnOctaveBandsRadio( wxCommandEvent& event )
+{
+    m_pAp->SetAnalysisType(AcParameters::AP_OCTAVE_BANDS);
+}
+
+void AcParametersDialog::OnThirdOctaveBandsRadio( wxCommandEvent& event )
+{
+	m_pAp->SetAnalysisType(AcParameters::AP_ONE_THIRD_OCTAVE_BANDS);
+}
+
+void AcParametersDialog::OnOmniMicClick(wxCommandEvent &event) 
+{
+   m_pAp->SetMode(AcParameters::APM_TWO_OMNI_MICS);
+   StereoModeCtl(ID_2CH_MODE_OMNI_RADIO);
+}
+
+void AcParametersDialog::OnSoundfieldClick(wxCommandEvent &event) 
+{
+   m_pAp->SetMode(AcParameters::APM_SOUNDFIELD_WY);
+   StereoModeCtl(ID_2CH_MODE_SOUNDFIELD_RADIO);
+}
+
+void AcParametersDialog::OnPUProbeClick(wxCommandEvent &event) 
+{
+   m_pAp->SetMode(AcParameters::APM_PU_PROBE);
+   StereoModeCtl(ID_2CH_MODE_PU_PROBE_RADIO);
+}
+
+void AcParametersDialog::OnIntensityProbeClick(wxCommandEvent &event) 
+{
+   m_pAp->SetMode(AcParameters::APM_INTENSITY_PROBE);
+   StereoModeCtl(ID_2CH_MODE_INTENSITY_PROBE_RADIO);
+}
+
+void AcParametersDialog::OnBinauralClick(wxCommandEvent &event) 
+{
+   m_pAp->SetMode(AcParameters::APM_BINAURAL);
+   StereoModeCtl(ID_2CH_MODE_BINAURAL_RADIO);
+}
+
+void AcParametersDialog::On4ChModeOmniRadio( wxCommandEvent& event )
+{
+   if(mFourOmniRadio->GetValue()) 
+        m_pAp->SetMode(AcParameters::APM_FOUR_OMNI_MICS);
+}
+
+void AcParametersDialog::On4ChModeSoundfieldWXYZRadio( wxCommandEvent& event )
+{
+   // Quando selezionato, devono essere mostrati LE LF LG calcolati a partire
+   // da W e Y
+   if(mSoundfieldWXYZRadio->GetValue()) 
+        m_pAp->SetMode(AcParameters::APM_SOUNDFIELD_WXYZ);
+}
+
+void AcParametersDialog::On4ChModeSoundfieldWYXZRadio( wxCommandEvent& event )
+{
+   // Idem c.s.
+   if(mSoundfieldWYXZRadio->GetValue()) 
+       m_pAp->SetMode(AcParameters::APM_SOUNDFIELD_WYXZ);
+}
+      
+// --- Choice events ---
+void AcParametersDialog::OnIACCChoice(wxCommandEvent &event) 
+{
+   switch(event.GetSelection()) 
+   {
+      case 0: m_pAp->SetIACCSpan(AcParameters::IS_EARLY); break;
+      case 1: m_pAp->SetIACCSpan(AcParameters::IS_LATE);  break;
+      case 2: m_pAp->SetIACCSpan(AcParameters::IS_ALL);   break;
+   }
+}
+
+// --- Buttons events ---
+void AcParametersDialog::OnOpenFile(wxCommandEvent &event)
+{
+   wxString wxszFn = m_pExportData->GetAppendToFileName();
+
+   wxFileDialog openFileDialog(this, wxT("Append results to file"),
+                               wxT(""), wxszFn,
+                               wxT("*.*"), wxFD_SAVE);
+
+   if (openFileDialog.ShowModal() == wxID_OK)
+   {
+      wxszFn = openFileDialog.GetPath();
+      mFileNameText->SetValue(wxszFn);
+
+      m_pExportData->SetAppendToFileName(wxszFn);
+   }
+}
+
+void AcParametersDialog::OnOk(wxCommandEvent &event)
+{
+   EndModal(true);
+}
+
+void AcParametersDialog::OnCancel(wxCommandEvent &event)
+{
+   EndModal(false);
+}
+
+// --- Ctors ---
+
+AcParametersDialog::AcParametersDialog(wxWindow* pParent,
+                                       EffectAcParameters* pEap,
+		                               AcParameters* pAp,
+                                       AcParametersExports* pExportData)
+  : AcParDlg(pParent),
+    m_pEap(pEap),
+    m_pAp(pAp),
+    m_pExportData(pExportData)
+{
+	// Set caption
+	wxString wxszTitle(wxT("Aurora for Audacity - ISO 3382 Acoustical Parameters Setup - (v."));
+	wxszTitle << ::AuroraModuleVersionNumber(AP_VERSION_TYPE, AP_RELEASE_CANDIDATE) << wxT(")");
+    SetTitle(wxszTitle);
+
+	// Draw logo
+	wxBoxSizer* pLogoSizer;
+	pLogoSizer = new wxBoxSizer( wxHORIZONTAL );
+
+	m_pwxbmpAuroraLogo = new wxStaticBitmap( m_pwxpnlLogo, wxID_ANY,
+			                                 AFArtProvider::GetBitmap(wxT("Aurora_logo")),
+			                                 wxDefaultPosition, wxDefaultSize, 0 );
+	pLogoSizer->Add( m_pwxbmpAuroraLogo, 0, wxALL, 5 );
+
+	pLogoSizer->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_pwxbmpLogo = new wxStaticBitmap( m_pwxpnlLogo, wxID_ANY,
+			                           AFArtProvider::GetBitmap( wxT("ap_logo")),
+			                           wxDefaultPosition, wxDefaultSize, 0 );
+	pLogoSizer->Add( m_pwxbmpLogo, 0, wxALL, 5 );
+
+	m_pwxpnlLogo->SetSizer( pLogoSizer );
+	m_pwxpnlLogo->Layout();
+
+   // Init widgets
+   wxString wxszStr;
+   
+   wxszStr.Printf(wxT("%.1f"), m_pAp->GetUserMinLevel());
+   mUserMinLevelText->SetValue(wxszStr);
+   
+   wxszStr.Printf(wxT("%.1f"), m_pAp->GetUserMaxLevel());
+   mUserMaxLevelText->SetValue(wxszStr);
+   
+   mNoiseCorrectionCheck->SetValue(m_pAp->IsNoiseCorrectionMode());
+   mEDTCheck->SetValue(m_pAp->IsEDTMode());
+   mStageCheck->SetValue(m_pAp->IsStageMode());
+   mAvgModeCheck->SetValue(m_pAp->IsAvgMode());
+
+   // Direct Sound Trigger text control
+   wxszStr.Printf(wxT("%.1f"), m_pAp->GetDirectSoundTrigValue());
+   m_pwxtcDST->SetValue(wxszStr);
+   
+   // Peak SPL value text control
+   wxszStr.Printf(wxT("%.1f"), m_pAp->GetFullScale());
+   m_pwxtcFullScale->SetValue(wxszStr);
+   
+   // Stereo mode panel   
+   wxszStr.Printf(wxT("%.1f"), 1000.0 * m_pAp->GetProbeMicsDistance()); //conversion from m to mm.
+   m_pwxtcProbeMicsDist->SetValue(wxszStr);
+   
+   wxszStr.Printf(wxT("%.1f"), m_pAp->GetSoundSpeedValue());
+   m_pwxtcSoundSpeed->SetValue(wxszStr);
+   
+
+   int nCh = m_pAp->GetChannelsCount();
+   if(nCh == 2)
+   {
+      mTwoOmniRadio->Enable();
+      mSoundfieldWYRadio->Enable();
+      mPUProbeRadio->Enable();
+      mIntensityProbeRadio->Enable();
+      mBinauralRadio->Enable();
+   }
+   else if(nCh == 4)
+   {
+      mFourOmniRadio->Enable();
+      mFourSoundfieldStext->Enable();
+      mSoundfieldWXYZRadio->Enable();
+      mSoundfieldWYXZRadio->Enable();
+   }
+}
+
+
+
+//----------------------------------------------------------------------------
+// AcParametersShowDialog
+//----------------------------------------------------------------------------
+// --- Useful methods ---
+void AcParametersShowDialog::UpdateCellValue(const int nPar, const int nRow, const int nBand, const bool bInit)
+{
+	 wxString wxszStr;
+	 if(m_paResults[m_nCurrentChannel].IsParameterValid(nPar, nBand))
+		wxszStr.Printf(wxT("%f"), m_paResults[m_nCurrentChannel].GetParameter(nPar, nBand));
+	 else
+		wxszStr.Printf(wxT("-.-"));
+
+	 if(bInit)
+     {
+		mGrid->SetCellRenderer(nRow, nBand, new wxGridCellFloatRenderer(-1, 3));
+        mGrid->SetCellBackgroundColour(nRow, nBand, *wxWHITE);
+     }
+	 mGrid->SetCellValue(nRow, nBand, wxszStr);
+}
+
+void AcParametersShowDialog::UpdateParametersValues(const bool bInit)
+{
+   int nRow, nCol, nPar;
+//   wxString wxszStr;
+   for(nCol = 0; nCol < int(m_pAp->GetBandsCount()); nCol++)
+   {
+		// Cycle through common parameters
+		for(nRow = 0, nPar = 0; nRow < 11; nRow++, nPar++)
+		{
+			 UpdateCellValue(nPar, nRow, nCol, bInit);
+		}
+
+		if(m_pAp->IsStageMode())
+		{
+			nPar = AcParameters::AP_ST1;
+
+			while(nPar < AcParameters::AP_IACC)
+			{
+				UpdateCellValue(nPar, nRow, nCol, bInit);
+				nRow++; nPar++;
+			}
+		}
+
+		// Spatial parameters
+		if(m_pAp->IsStereo() || m_pAp->IsTetra())
+		{
+			switch(m_pAp->GetMode())
+			{
+				case AcParameters::APM_SOUNDFIELD_WY:
+				case AcParameters::APM_PU_PROBE:
+				case AcParameters::APM_INTENSITY_PROBE:
+				case AcParameters::APM_SOUNDFIELD_WXYZ:
+				case AcParameters::APM_SOUNDFIELD_WYXZ:
+					nPar = AcParameters::AP_JLF;
+					break;
+
+				case AcParameters::APM_BINAURAL:
+					nPar = AcParameters::AP_IACC;
+					break;
+			}
+
+			while(nRow < mGrid->GetNumberRows())
+			{
+				UpdateCellValue(nPar, nRow, nCol, bInit);
+				nPar++; nRow++;
+			}
+		}
+   }
+}
+
+void AcParametersShowDialog::UpdatePlot(const bool bReplaceData)
+{
+   wxString wxszMsg;
+   if( m_bIsScopeOn )
+   {
+	    if(bReplaceData)
+	    {
+			m_pDecayPlot->ReplaceSerie(0,
+					                   m_paAudioTracks->Item(m_nCurrentChannel).GetFilteredData(),
+					                   m_paAudioTracks->Item(m_nCurrentChannel).GetLength());
+			m_pDecayPlot->ReplaceSerie(1,
+					                   m_paDecay[m_nCurrentChannel].GetVector(),
+					                   m_paDecay[m_nCurrentChannel].GetLength());
+	    }
+        if(m_nCurrentBand != AcParameters::BD_Lin)
+        {
+     	   wxszMsg = ::AuroraGetBandLabel(m_nCurrentBand);
+           if(m_nCurrentBand < AcParameters::BD_A)
+              wxszMsg << wxT(" Hz band");
+
+           wxszMsg << wxT(" filtered ");
+        }
+        else
+        {
+        	wxszMsg = wxT("Unfiltered ");
+        }
+        wxszMsg << wxT("Impulse Response");
+   }
+   else
+   {
+	  //Setup plot for bar chart drawing
+	   wxszMsg = wxT("Chart of ");
+	   wxszMsg << m_pAp->GetParamLabel(m_nCurrentParameter);
+      
+      switch(m_nCurrentParameter)
+      {    
+         case AcParameters::AP_SIGNAL :
+         case AcParameters::AP_NOISE :
+         case AcParameters::AP_G :             
+         case AcParameters::AP_C50 :
+         case AcParameters::AP_C80 :
+         case AcParameters::AP_PEAKINESS :
+         case AcParameters::AP_MILLISECS :
+         case AcParameters::AP_IMPULSIVS :
+         case AcParameters::AP_ST1 :
+         case AcParameters::AP_ST2 :
+         case AcParameters::AP_STL :
+         case AcParameters::AP_LJ :
+        	 m_pBarPlot->GetLevelAxis()->SetTitle(wxT("dB"));
+        	 m_pBarPlot->GetLevelAxis()->SetMeasureUnit(wxT("dB"));
+             break;
+
+         case AcParameters::AP_D50 :
+        	 m_pBarPlot->GetLevelAxis()->SetTitle(wxT("%"));
+        	 m_pBarPlot->GetLevelAxis()->SetMeasureUnit(wxT("%"));
+             break;
+
+         case AcParameters::AP_EDT :
+         case AcParameters::AP_Tuser :
+         case AcParameters::AP_T20 :
+         case AcParameters::AP_T30 :
+        	  m_pBarPlot->GetLevelAxis()->SetTitle(wxT("Time [s]"));
+        	  m_pBarPlot->GetLevelAxis()->SetMeasureUnit(wxT("s"));
+              break;
+
+         case AcParameters::AP_Ts :
+         case AcParameters::AP_T_IACC :
+         case AcParameters::AP_W_IACC :
+        	 m_pBarPlot->GetLevelAxis()->SetTitle(wxT("Time [ms]"));
+        	 m_pBarPlot->GetLevelAxis()->SetMeasureUnit(wxT("ms"));
+             break;
+      }
+
+   }
+
+   wxWindow*    pWnd = FindWindowById(ID_PLOT_SBOX, this);
+   wxStaticBox* pSb  = wxDynamicCast(pWnd, wxStaticBox);
+   pSb->SetLabel(wxszMsg);
+
+   m_pPlot->Refresh();
+}
+void AcParametersShowDialog::CreateDecayPlot()
+{
+	int nWidth, nHeight;
+	m_pPlot->GetSize(&nWidth, &nHeight);
+    m_pBarPlot->Destroy(); m_pBarPlot = 0;
+
+	wxBoxSizer* bPlotSizer;
+	bPlotSizer = new wxBoxSizer( wxVERTICAL );
+
+	m_pPlot = new APDecayPlot(m_pwxpnlPlotDesk, ID_PLOT,wxDefaultPosition, wxSize(nWidth, nHeight));
+
+
+	bPlotSizer->Add( m_pPlot, 1, wxEXPAND|wxALIGN_CENTER_VERTICAL|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+
+	m_pwxpnlPlotDesk->SetSizer( bPlotSizer );
+	m_pwxpnlPlotDesk->Layout();
+
+	m_pDecayPlot = static_cast<APDecayPlot*>(m_pPlot);
+}
+
+void AcParametersShowDialog::CreateBarPlot()
+{
+	int nWidth, nHeight;
+	m_pPlot->GetSize(&nWidth, &nHeight);
+	m_pDecayPlot->Destroy(); m_pDecayPlot = 0;
+
+	wxBoxSizer* bPlotSizer;
+	bPlotSizer = new wxBoxSizer( wxVERTICAL );
+
+	printf("[barplot] setting new size to %d %d\n",nWidth, nHeight); fflush(stdout);
+	m_pPlot = new APBarPlot(m_pwxpnlPlotDesk, ID_PLOT,wxDefaultPosition, wxSize(nWidth, nHeight));
+
+	bPlotSizer->Add( m_pPlot, 1, wxEXPAND|wxALIGN_CENTER_VERTICAL|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+
+	m_pwxpnlPlotDesk->SetSizer( bPlotSizer );
+	m_pwxpnlPlotDesk->Layout();
+
+	m_pBarPlot = static_cast<APBarPlot*>(m_pPlot);
+}
+
+void AcParametersShowDialog::SetupDecayPlot()
+{
+	if(m_pBarPlot)
+	{
+		CreateDecayPlot();
+	}
+
+	m_pDecayPlot->GetTimeAxis()->SetTitle(wxT("Time [s]"));
+	m_pDecayPlot->GetTimeAxis()->ShowTitle(true);
+	m_pDecayPlot->GetTimeAxis()->ShowGrid(true);
+	m_pDecayPlot->GetTimeAxis()->SetFormat(AFAxis::RF_REAL);
+	m_pDecayPlot->GetTimeAxis()->SetMeasureUnit(wxT("s"));
+
+	m_pDecayPlot->GetLevelAxis()->SetTitle(wxT("Level [dB]"));
+	m_pDecayPlot->GetLevelAxis()->ShowTitle(true);
+	m_pDecayPlot->GetLevelAxis()->ShowGrid(true);
+//	m_pDecayPlot->GetLevelAxis()->SetRange(-m_pAp->GetdBRange(), 0.0, AFAxis::RF_LINEARdB); // TODO remove GetdBRange
+    m_pDecayPlot->GetLevelAxis()->SetRange(-90.0, 0.0, AFAxis::RF_LINEARdB);
+	m_pDecayPlot->GetLevelAxis()->SetMeasureUnit(wxT("dB"));
+
+	m_pDecayPlot->SetHorzAxisAutorange(true);
+	m_pDecayPlot->SetVertAxisAutorange(false);
+
+	m_pDecayPlot->GetLegend()->Show(true);
+
+	AFTimeDataSerie* pTds;
+	pTds = new AFTimeDataSerie(m_paAudioTracks->Item(m_nCurrentChannel).GetLength(),
+			                   m_paAudioTracks->Item(m_nCurrentChannel).GetFilteredData(),
+                               m_paAudioTracks->Item(m_nCurrentChannel).GetRate(),
+						       AFTimeDataSerie::HT_RMS);
+	pTds->SetLabel(wxT("RMS"));
+	pTds->SetLineColour(0,0,255);
+	m_pDecayPlot->AddSerie(pTds);
+
+	pTds = new AFTimeDataSerie(m_paDecay[m_nCurrentChannel].GetLength(),
+			                   m_paDecay[m_nCurrentChannel].GetVector(),
+			                   m_paAudioTracks->Item(m_nCurrentChannel).GetRate(),
+                               AFTimeDataSerie::HT_DECIMATE);
+	pTds->SetLabel(wxT("Schroeder decay"));
+	pTds->SetLineColour(255,0,0);
+	m_pDecayPlot->AddSerie(pTds);
+}
+
+void AcParametersShowDialog::SetupBarPlot()
+{
+	if(m_pDecayPlot)
+	{
+		CreateBarPlot();
+	}
+
+	// ---> Bar plot
+	m_pBarPlot->GetBandsAxis()->AddCategories(g_awxpchBandLabels, 12);
+
+	int nBd;
+	double adbSerie [12];
+	wxColour col(wxT("DARK SLATE GREY")); // Should be MEDIUM_GRAY...
+
+	for(int nParam = 0; nParam < AcParameters::N_PARAMETERS; nParam++)
+	{
+	   for(nBd = 0; nBd < 12; nBd++)
+		   adbSerie[nBd] = m_paResults[m_nCurrentChannel].GetParameter(nParam, nBd);
+
+	   m_pBarPlot->AddSerie(adbSerie, 12, col, col);
+	   m_pBarPlot->ShowSerie(nParam, false); // Defaults to false
+	}
+	m_pBarPlot->ShowSerie(m_nCurrentParameter);
+
+    m_pBarPlot->GetBandsAxis()->SetTitle(wxT("Octave band [Fc/Hz]"));
+    m_pBarPlot->GetBandsAxis()->ShowTitle(true);
+    m_pBarPlot->GetBandsAxis()->ShowGrid(false);
+
+    m_pBarPlot->GetLevelAxis()->SetTitle(wxT("dB"));
+    m_pBarPlot->GetLevelAxis()->ShowTitle(true);
+    m_pBarPlot->GetLevelAxis()->ShowGrid(true);
+    m_pBarPlot->GetLevelAxis()->SetFormat(AFAxisBase::RF_REAL);
+    m_pBarPlot->GetLevelAxis()->SetMeasureUnit(wxT("dB"));
+
+ 	m_pBarPlot->SetVertAxisAutorange(true);
+}
+
+void AcParametersShowDialog::OnCloseDialog(wxCloseEvent& event)
+{
+	StoreGeometry();
+	EndModal(false);
+}
+
+// --- Buttons Methods ---
+void AcParametersShowDialog::OnHelp(wxCommandEvent &event)
+{
+    wxString path = wxT("");
+    path << wxT("Docs") << TRAILING_SLASH << wxT("ac_par.html");
+    wxFileName help_path(path);
+    help_path.MakeAbsolute();
+
+    ::wxLaunchDefaultBrowser(help_path.GetFullPath());
+}
+
+void AcParametersShowDialog::OnSetupButton(wxCommandEvent& event)
+{
+	PromptSetupDialog();
+}
+
+void AcParametersShowDialog::OnSaveResults(wxCommandEvent &event) 
+{
+   m_pExportData->SaveToFile();
+}
+
+void AcParametersShowDialog::OnCopyResults(wxCommandEvent &event) 
+{
+   m_pExportData->CopyEntireTableToClipboard();
+}
+
+void AcParametersShowDialog::OnCopySelection(wxCommandEvent &event) 
+{
+    m_pExportData->CopyGridSelectionToClipboard(mGrid);
+}
+
+void AcParametersShowDialog::OnStoreGRefSig(wxCommandEvent &event) {
+   
+   StoreGValueDialog* pDlg = new StoreGValueDialog(m_pAp, this);
+   pDlg->CenterOnParent();
+   if(pDlg->ShowModal())
+   {
+	    pDlg->Destroy();
+	    if(!m_pAp->CalculateAcousticParameters())
+	    {
+	        ::wxMessageBox(wxT("Some errors has been occourred during parameters calculation."),
+	                       wxT("Info"),
+	                       wxOK | wxICON_INFORMATION);
+	        return;
+	    }
+       UpdateParametersValues();
+   }
+   else
+   {
+       pDlg->Destroy();
+   }
+}
+
+void AcParametersShowDialog::OnOk(wxCommandEvent &event)
+{
+    wxString wxszName;
+	for(int nChnl = 0; nChnl < int(m_pAp->GetChannelsCount()); nChnl++)
+	{
+		m_paAudioTracks->Item(nChnl).ApplyFilter(m_nCurrentBand);
+
+		wxszName = m_paAudioTracks->Item(nChnl).GetName();
+		if(m_nCurrentBand != BD_Lin)
+		    wxszName << wxT("_") << g_awxpchBandLabels[m_nCurrentBand];
+		else
+		    wxszName << wxT("_not");
+
+		wxszName << wxT("_filtered_[") << (nChnl+1) << wxT("]");
+
+		m_paAudioTracks->Item(nChnl).SetName(wxszName);
+	}
+	StoreGeometry();
+	EndModal(true);
+}
+
+void AcParametersShowDialog::OnClose(wxCommandEvent &event)
+{
+    StoreGeometry();
+    EndModal(false);
+}
+
+void  AcParametersShowDialog::OnChannelListSelect( wxCommandEvent& event )
+{
+   m_nCurrentChannel = event.GetSelection();
+   m_pAp->UpdateFilteredTrack(m_nCurrentChannel, m_nCurrentBand);
+   UpdatePlot();
+   UpdateParametersValues();
+}
+
+void AcParametersShowDialog::OnGridCellRightClick( wxGridEvent& event )
+{
+   PopupMenu(mContextMenu);
+}
+
+void  AcParametersShowDialog::OnGraphChange( wxGridEvent& event )
+{
+   if(event.GetRow() < 0)
+   {
+	  m_nCurrentBand = event.GetCol();
+	  m_pAp->UpdateFilteredTrack(m_nCurrentChannel, m_nCurrentBand);
+	  if(!m_bIsScopeOn)
+	  {
+		  SetupDecayPlot();
+	      m_bIsScopeOn = true;
+	      UpdatePlot(false);
+	      return;
+	  }
+   }
+   else if (event.GetCol() < 0)
+   {
+	   wxString wxszLabel = mGrid->GetRowLabelValue(event.GetRow());
+	   if(m_bIsScopeOn)
+	   {
+		   m_nCurrentParameter = m_pAp->GetParameterFromString(wxszLabel);
+		   SetupBarPlot();
+	       m_bIsScopeOn = false;
+	   }
+	   else
+	   {
+	       m_pBarPlot->ShowSerie(m_nCurrentParameter, false);
+	       m_nCurrentParameter = m_pAp->GetParameterFromString(wxszLabel);
+	       m_pBarPlot->ShowSerie(m_nCurrentParameter);
+	   }
+   }
+   UpdatePlot();
+}
+
+
+void AcParametersShowDialog::OnGridLabelDoubleClick( wxGridEvent& event )
+{
+	int nRow = event.GetRow(),
+	    nCol = event.GetCol();
+
+	if((nCol < 0) && (nRow < 0))
+		mGrid->SelectAll();
+	else if(nCol < 0)
+		mGrid->SelectRow(nRow);
+	else if(nRow < 0)
+		mGrid->SelectCol(nCol);
+}
+
+void AcParametersShowDialog::OnChar(wxKeyEvent &event)
+{
+#ifndef __WXMAC__
+    if( (event.GetModifiers() == 3) )              // Ctrl+C  ascii translated code.
+#else
+    if( (event.GetModifiers() == wxMOD_CMD) &&    // Command+C  on Apple machines
+    	 event.GetKeyCode() == 'c' )
+#endif
+    {
+	   wxCommandEvent cmd(wxEVT_COMMAND_MENU_SELECTED, ID_COPY_SELECTION_MENU);
+	   OnCopySelection(cmd);
+	}
+}
+
+void AcParametersShowDialog::PromptSetupDialog()
+{
+	AcParametersDialog* pDlg = new AcParametersDialog(this, m_pEap, m_pAp, m_pExportData);
+	pDlg->CenterOnParent();
+	if(!pDlg->ShowModal())
+	{
+		pDlg->Destroy();
+		return;
+	}
+
+	m_pAp->StoreConfigurationValues();
+	pDlg->Destroy();
+
+    if(!m_pAp->CalculateAcousticParameters())
+    {
+        ::wxMessageBox(wxT("Some errors has been occourred during parameters calculation."),
+                       wxT("Info"),
+                       wxOK | wxICON_INFORMATION);
+        return;
+    }
+    Init();
+}
+
+void AcParametersShowDialog::StoreGeometry()
+{
+	int nWidth, nHeight;
+	this->GetSize(&nWidth, &nHeight);
+
+	int nHorzSplitPos = m_pHorzSplitter->GetSashPosition();
+
+	m_pCfg->Write(wxT("/Aurora/AcParameters/ShowDialogWidth"), nWidth);
+	m_pCfg->Write(wxT("/Aurora/AcParameters/ShowDialogHeight"), nHeight);
+	m_pCfg->Write(wxT("/Aurora/AcParameters/HorzSplitterPosition"), nHorzSplitPos);
+}
+
+void AcParametersShowDialog::RestoreGeometry()
+{
+	int nPos;
+	if(m_pCfg->Read(wxT("/Aurora/AcParameters/HorzSplitterPosition"), &nPos))
+	    m_pHorzSplitter->SetSashPosition(nPos);
+
+	int nWidth, nHeight;
+    if(m_pCfg->Read(wxT("/Aurora/AcParameters/ShowDialogWidth"), &nWidth) &&
+       m_pCfg->Read(wxT("/Aurora/AcParameters/ShowDialogHeight"), &nHeight))
+    {
+        this->SetSize(nWidth, nHeight);
+    }
+}
+
+
+void AcParametersShowDialog::Init()
+{
+	wxWindow     *pWnd;
+	wxStaticText *pSt;
+	wxListBox    *pLb;
+	wxGrid       *pGrd;
+
+	wxString wxszStr;
+
+	// Setup Tuser values
+	pWnd = FindWindowById(ID_LOW_TUSER_LIMIT_STEXT, this);
+	pSt  = wxDynamicCast(pWnd, wxStaticText);
+	wxszStr.Printf(wxT("%.1f"), m_pAp->GetUserMinLevel());
+	pSt->SetLabel(wxszStr);
+	pWnd = FindWindowById(ID_UP_TUSER_LIMIT_STEXT, this);
+	wxszStr.Printf(wxT("%.1f"), m_pAp->GetUserMaxLevel());
+	pSt  = wxDynamicCast(pWnd, wxStaticText);
+	pSt->SetLabel(wxszStr);
+
+	// Set mic/probe type
+	switch(m_pAp->GetMode())
+	{
+	    case AcParameters::APM_SOUNDFIELD_WY:   wxszStr = wxT("Soundfield (WY)");         break;
+	    case AcParameters::APM_PU_PROBE:        wxszStr = wxT("Pressure/Velocity probe"); break;
+	    case AcParameters::APM_INTENSITY_PROBE: wxszStr = wxT("Intensimetric probe");     break;
+	    case AcParameters::APM_SOUNDFIELD_WXYZ: wxszStr = wxT("Soundfield (WXYZ)");       break;
+	    case AcParameters::APM_SOUNDFIELD_WYXZ: wxszStr = wxT("Soundfield (WYXZ)");       break;
+        case AcParameters::APM_BINAURAL:        wxszStr = wxT("Binaural pair");           break;
+        default:                                wxszStr = wxT("Omnidirectional mic(s)");  break;
+	}
+	m_pwxstSelectedMic->SetLabel(wxszStr);
+
+	// Setup Channels listbox
+	pWnd = FindWindowById(ID_CHANNELS_LIST, this);
+	pLb  = wxDynamicCast(pWnd, wxListBox);
+
+	for(int nCh = 0; nCh < int(m_paAudioTracks->GetCount()); nCh++)
+	{
+		wxszStr = m_paAudioTracks->Item(nCh).GetName();
+		if(m_pAp->IsStereo())
+		{
+			switch(nCh)
+			{
+			  case CH_LEFT:  wxszStr << wxT(" [L]"); break;
+			  case CH_RIGHT: wxszStr << wxT(" [R]"); break;
+			}
+		}
+		else if(m_pAp->IsSoundfieldWXYZ())
+		{
+			switch(nCh)
+			{
+			  case 0:  wxszStr << wxT(" [W]"); break;
+			  case 1:  wxszStr << wxT(" [X]"); break;
+			  case 2:  wxszStr << wxT(" [Y]"); break;
+			  case 3:  wxszStr << wxT(" [Z]"); break;
+			}
+		}
+		else if(m_pAp->IsSoundfieldWYXZ())
+		{
+			switch(nCh)
+			{
+			  case 0:  wxszStr << wxT(" [W]"); break;
+			  case 1:  wxszStr << wxT(" [Y]"); break;
+			  case 2:  wxszStr << wxT(" [X]"); break;
+			  case 3:  wxszStr << wxT(" [Z]"); break;
+			}
+		}
+		else if(m_paAudioTracks->GetCount() > 1)
+		{
+			wxszStr << wxT(" [") << (nCh+1) << wxT("]");
+		}
+
+		if(nCh > int(pLb->GetCount()) - 1 )
+		    pLb->Append(wxszStr);
+		else
+			pLb->SetString(nCh, wxszStr);
+	}
+	pLb->SetSelection(m_nCurrentChannel);
+
+	//--------- Labels generation -------------
+	pWnd = FindWindowById(ID_PARAM_GRID, this);
+	pGrd = wxDynamicCast(pWnd, wxGrid);
+
+	int nLastRow = 11;
+
+	if(m_pAp->IsStageMode())
+	{
+		int nNeededRows = 17 - pGrd->GetRows();
+		if(nNeededRows > 0)
+		   pGrd->AppendRows(nNeededRows);
+
+		pGrd->SetRowLabelValue(nLastRow++, wxT("St1 [dB]"));
+		pGrd->SetRowLabelValue(nLastRow++, wxT("St2 [dB]"));
+		pGrd->SetRowLabelValue(nLastRow++, wxT("StLate [dB]"));
+	}
+
+	switch(m_pAp->GetMode())
+	{
+		case AcParameters::APM_SOUNDFIELD_WY:
+		case AcParameters::APM_PU_PROBE:
+		case AcParameters::APM_INTENSITY_PROBE:
+		case AcParameters::APM_SOUNDFIELD_WXYZ:
+		case AcParameters::APM_SOUNDFIELD_WYXZ:
+
+			pGrd->SetRowLabelValue(nLastRow++, wxT("JLF"));
+			pGrd->SetRowLabelValue(nLastRow++, wxT("JLFC"));
+			pGrd->SetRowLabelValue(nLastRow++, wxT("LJ [dB]"));
+			break;
+
+		case AcParameters::APM_BINAURAL:
+
+			switch(m_pAp->GetIACCSpan())
+			{
+				case AcParameters::IS_EARLY:
+				  pGrd->SetRowLabelValue(nLastRow++, wxT("IACC (Early)"));
+				  break;
+				case AcParameters::IS_LATE:
+				  pGrd->SetRowLabelValue(nLastRow++, wxT("IACC (Late)"));
+				  break;
+				case AcParameters::IS_ALL:
+				  pGrd->SetRowLabelValue(nLastRow++, wxT("IACC (All)"));
+				  break;
+			}
+			pGrd->SetRowLabelValue(nLastRow++, wxT("t IACC [ms]"));
+			pGrd->SetRowLabelValue(nLastRow++, wxT("W IACC [ms]"));
+			break;
+
+		 default:
+			pGrd->SetRowLabelValue(nLastRow++, wxT("Peakiness [dB]"));
+			pGrd->SetRowLabelValue(nLastRow++, wxT("Millisecs [dB]"));
+			pGrd->SetRowLabelValue(nLastRow++, wxT("Impulsivs [dB]"));
+			break;
+
+	}
+	UpdateParametersValues(true);
+
+	// Remove unnecessaries grid rows
+	if(pGrd->GetNumberRows() > nLastRow)
+		pGrd->DeleteRows(nLastRow, pGrd->GetNumberRows() - nLastRow);
+
+	m_pAp->UpdateFilteredTrack(m_nCurrentChannel, m_nCurrentBand);
+
+	// Plot initialization
+
+	// ---> Echo & Decay plot
+	if(m_pDecayPlot || m_pBarPlot)
+		UpdatePlot();
+}
+
+AcParametersShowDialog::AcParametersShowDialog(wxWindow* pParent,
+		                                       EffectAcParameters* pEap,
+		                                       AcParameters* pAp,
+                                               AcParametersExports* pExportData,
+                     		                   AFConfig* pCfg)
+  : AcParShowDlg(pParent),
+    mParent(pParent),
+    mContextMenu(0),
+    m_pDecayPlot(0),
+    m_pBarPlot(0),
+    m_pEap(pEap),
+    m_pAp(pAp),
+    m_pExportData(pExportData),
+    m_pCfg(pCfg),
+    m_nCurrentChannel(CH_LEFT),
+    m_nCurrentBand(AFAcousticalParameters::BD_Lin),
+    m_nCurrentParameter(AFAcousticalParameters::AP_SIGNAL),
+    m_bIsScopeOn(true)
+{
+	// Set caption
+	wxString wxszTitle(wxT("Aurora for Audacity - ISO 3382 Acoustical Parameters Calculation Module - (v."));
+	wxszTitle << ::AuroraModuleVersionNumber(AP_VERSION_TYPE, AP_RELEASE_CANDIDATE) << wxT(")");
+    SetTitle(wxszTitle);
+
+	// Draw logo
+	wxBoxSizer* pLogoSizer;
+	pLogoSizer = new wxBoxSizer( wxHORIZONTAL );
+
+	m_pwxbmpAuroraLogo = new wxStaticBitmap( m_pwxpnlLogo, wxID_ANY,
+			                                 AFArtProvider::GetBitmap(wxT("Aurora_logo")),
+			                                 wxDefaultPosition, wxDefaultSize, 0 );
+	pLogoSizer->Add( m_pwxbmpAuroraLogo, 0, wxALL, 5 );
+
+	pLogoSizer->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_pwxbmpLogo = new wxStaticBitmap( m_pwxpnlLogo, wxID_ANY,
+			                           AFArtProvider::GetBitmap( wxT("ap_logo")),
+			                           wxDefaultPosition, wxDefaultSize, 0 );
+	pLogoSizer->Add( m_pwxbmpLogo, 0, wxALL, 5 );
+
+	m_pwxpnlLogo->SetSizer( pLogoSizer );
+	m_pwxpnlLogo->Layout();
+
+	//Set data sources
+	m_paAudioTracks = m_pEap->GetTracksArray();
+	m_paDecay       = m_pAp->GetDecaysArray();
+	m_paResults     = m_pAp->GetResultsArray();
+    
+    mGrid->SetDefaultCellBackgroundColour(::AuroraGetCanvasColour());
+
+    Init();
+   
+   RestoreGeometry();
+
+   m_pDecayPlot = static_cast<APDecayPlot*>(m_pPlot);
+   SetupDecayPlot();
+
+   m_pDecayPlot->Refresh();
+   
+   // init contextual menu event
+   mContextMenu = new wxMenu;   
+   mContextMenu->Append(ID_COPY_SELECTION_MENU, wxT("&Copy\tCtrl+C"));
+   mContextMenu->Connect(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(AcParametersShowDialog::OnCopySelection), NULL, this );
+   mGrid->Connect(wxEVT_CHAR, wxCharEventHandler(AcParametersShowDialog::OnChar), NULL, this);
+}
+
+AcParametersShowDialog::~AcParametersShowDialog()
+{
+   mContextMenu->Disconnect(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(AcParametersShowDialog::OnCopySelection), NULL, this );
+   mGrid->Disconnect(wxEVT_CHAR, wxCharEventHandler(AcParametersShowDialog::OnChar), NULL, this);
+}
+
+//----------------------------------------------------------------------------
+// StoreGValueDialog
+//----------------------------------------------------------------------------
+void StoreGValueDialog::OnCloseDialog(wxCloseEvent& event)
+{
+	EndModal(false);
+}
+
+// --- TextCtl events --
+void StoreGValueDialog::OnEditDistanceField(wxCommandEvent &event) 
+{
+   wxWindow   *pWnd = FindWindowById(ID_G_DIST_TEXT, this);
+   wxTextCtrl  *tc = wxDynamicCast(pWnd, wxTextCtrl);
+   wxString str = tc->GetLineText(0);
+   str.ToDouble(&mDist);
+}
+
+// --- Buttons events
+void StoreGValueDialog::OnRestoreDefaults ( wxCommandEvent& event )
+{
+	m_pAp->RestoreDefaultReferenceLevels();
+	EndModal(true);
+}
+
+void StoreGValueDialog::OnCancel(wxCommandEvent &event)
+{
+   EndModal(false);
+}
+void StoreGValueDialog::OnOK(wxCommandEvent &event)
+{
+   m_pAp->SetGSoundSourceDistance(float(mDist));
+   m_pAp->ReplaceGReferenceValues();
+   m_pAp->StoreConfigurationGReferenceLevels();
+   EndModal(true);
+}
+
+// --- Ctors
+StoreGValueDialog::StoreGValueDialog(AcParameters *ap, wxWindow * parent)
+  : GStoreDlg(parent),
+    m_pAp(ap)
+{
+   mDist =  m_pAp->GetGSoundSourceDistance();
+
+   wxString wxszStr;
+   wxszStr.Printf(wxT("%4.1f"), mDist);
+   wxWindow   *pWnd = FindWindowById(ID_G_DIST_TEXT, this);
+   wxTextCtrl  *tc = wxDynamicCast(pWnd, wxTextCtrl);
+   tc->SetValue(wxszStr);
+   // To be added in parent class:wxTextValidator(wxFILTER_NUMERIC));
+
+   // To prevent data destroy due to a uncontrolled
+   // EVT_TEXT on wxTextCtrl creation (Windows).
+   mDist =  m_pAp->GetGSoundSourceDistance();
+}
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283
+

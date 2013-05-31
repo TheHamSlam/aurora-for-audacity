@@ -1,0 +1,418 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Speech Transmission Index evaluator
+
+  plot.cpp
+
+  Simone Campanini
+
+*******************************************************************//**
+
+\class OctaveBandsPlot
+\brief The octave band bars graphic chart
+
+*//*******************************************************************/
+
+#include <gpfuncts.h>
+
+#include "plot.h"
+
+//----------------------------------------------------------------------------
+// Implementations of data holders
+//----------------------------------------------------------------------------
+#include <wx/arrimpl.cpp> // This is a magic incantation which must be done!
+WX_DEFINE_OBJARRAY(TArrayOfOctaveBandsDataSerie);
+
+#include <wx/arrimpl.cpp> // This is a magic incantation which must be done!
+WX_DEFINE_OBJARRAY(TArrayOfAFDataSerie);
+
+
+//----------------------------------------------------------------------------
+// OctaveBandsPlot implementation
+//----------------------------------------------------------------------------
+void OctaveBandsPlot::UpdateHorizontalAxis()
+{
+    // Nothing to do here.
+}
+
+void OctaveBandsPlot::UpdateVerticalAxis()
+{
+	if(m_awxDataSeries.GetCount() == 0) return;
+
+	if(m_bIsVertAutorangeOn)
+	{
+		double dbYMin, dbYMax;
+		Autorange(m_awxDataSeries[0].GetData(),
+				  m_awxDataSeries[0].GetLength(),
+				  m_dbYmin, m_dbYmax);
+
+		for(size_t unSerie = 1; unSerie < m_awxDataSeries.GetCount(); unSerie++)
+		{
+			Autorange(m_awxDataSeries[unSerie].GetData(),
+					  m_awxDataSeries[unSerie].GetLength(),
+					  dbYMin, dbYMax);
+
+            m_dbYmin = (dbYMin < m_dbYmin) ? dbYMin : m_dbYmin;
+            m_dbYmax = (dbYMax > m_dbYmax) ? dbYMax : m_dbYmax;
+		}
+	}
+//  printf("Set vert range: %f, %f\n",m_dbYmin, m_dbYmax);
+	m_pVerticalRuler->SetRange(m_dbYmax, m_dbYmin);
+}
+
+void OctaveBandsPlot::Sketch(wxDC& dc)
+{
+
+    int nPlotWidth  = GetClientAreaWidth();
+    int nPlotHeight = GetClientAreaHeight();
+    int nYofs = GetClientAreaVertOffset();
+
+    int nSeriesCount  = int(m_awxDataSeries.GetCount());
+    
+    int nBarHeight = 0;
+    int nBarWidth = int(ceil(0.67*(nPlotWidth/(nSeriesCount*m_nCategoriesCount))));
+    if(nBarWidth < 10) nBarWidth = 10; // 10 pixel is the minimum size
+
+    int nBarSpace = 6; // px    
+    int nBarsWidth = (nBarWidth*nSeriesCount + nBarSpace*(nSeriesCount-1));
+    int nBarsSpace = int(ceil(double(nPlotWidth/m_nCategoriesCount))) - nBarsWidth;
+
+    while(nBarsSpace < nBarSpace)
+    {
+        nBarSpace--;
+        if(nBarWidth > 10) nBarWidth--;
+        nBarsWidth = (nBarWidth*nSeriesCount + nBarSpace*(nSeriesCount-1));
+        nBarsSpace = int(ceil(double(nPlotWidth/m_nCategoriesCount))) - nBarsWidth;
+    }
+    
+    int nXOffset  = GetClientAreaHorzOffset() + nBarSpace/2;
+
+    // dB range: 30 -> 130
+    double dbYRange = m_dbYmax - m_dbYmin;
+    double dbYscale = nPlotHeight/dbYRange; 
+    
+
+    int nZeroPos = int(m_dbYmax*nPlotHeight/dbYRange);
+    wxRect graphBar(0,             // x
+	                nYofs + 1 + ( (nZeroPos > nPlotHeight) ? nPlotHeight
+	        		                                       : ((nZeroPos < 0) ? 0 : nZeroPos) ),     // y
+	                nBarWidth,     // width
+	                nPlotHeight);  // height
+
+    wxBrush brush;
+    wxPen   pen;
+    dc.SetPen(*wxBLACK_PEN); // Bars borders are always black
+
+    size_t unLabel, unSerie;
+    for(unLabel = 0; unLabel < size_t(m_nCategoriesCount); unLabel++)
+    {         
+        for(unSerie = 0; unSerie < size_t(nSeriesCount); unSerie++)  
+        {
+            if(m_awxDataSeries[unSerie].IsShown())
+            {
+                brush.SetColour(m_awxDataSeries[unSerie].GetFillColour());
+                dc.SetBrush(brush);
+
+                graphBar.SetX(nXOffset + unLabel*(nBarsWidth + nBarsSpace) + unSerie*(nBarWidth + nBarSpace));
+                // It must be subtract from the band level the start level scale value
+//                nBarHeight = int(ceil(dbYscale * (m_awxDataSeries[unSerie].GetData(unLabel) - m_dbYmin)));
+//
+//                if(nBarHeight < 0) nBarHeight = 0;
+//                graphBar.SetHeight( (nBarHeight < nPlotHeight) ? -nBarHeight
+//                                                               : -nPlotHeight );
+
+                nBarHeight = int(ceil(dbYscale * (m_awxDataSeries[unSerie].GetData(unLabel))) );
+                if(nZeroPos > nPlotHeight)
+                {
+                	if(nBarHeight > 0)
+                		nBarHeight -= nZeroPos - nPlotHeight;
+                	else
+                		nBarHeight += nZeroPos - nPlotHeight;
+                }
+                else if(nZeroPos < 0)
+                {
+                	if(nBarHeight > 0)
+                		nBarHeight += nZeroPos;
+                	else
+                		nBarHeight -= nZeroPos;
+                }
+
+                // Bar clipping
+                if((nBarHeight > 0) && (graphBar.GetY() - nBarHeight) < nYofs)
+                	nBarHeight = graphBar.GetY() - nYofs;
+                else if((nBarHeight < 0) && (graphBar.GetY() - nBarHeight) > (nYofs + nPlotHeight))
+                	nBarHeight = -(nYofs + nPlotHeight - graphBar.GetY());
+
+                graphBar.SetHeight(-nBarHeight);
+
+                dc.DrawRectangle(graphBar);
+            }
+        }
+    } 
+}
+
+void OctaveBandsPlot::AddSerie(OctaveBandsDataSerie* pSerie,
+                               wxColour& wxcolLine, wxColour& wxcolBrush)
+{
+    int nIdx = int(m_awxDataSeries.GetCount());
+    m_awxDataSeries.Add(pSerie);
+    if(int(m_awxDataSeries.GetCount()) > nIdx)
+    {
+		wxColour wxcolAuto;
+		if(wxcolLine != wxNullColour)
+		{
+			m_awxDataSeries[nIdx].SetLineColour(wxcolLine);
+		}
+		else
+		{   // Choose color automatically
+			::AuroraChooseColour(wxcolAuto, nIdx);
+			m_awxDataSeries[nIdx].SetLineColour(wxcolAuto);
+		}
+
+		if(wxcolBrush != wxNullColour)
+		{
+			m_awxDataSeries[nIdx].SetFillColour(wxcolBrush);
+		}
+		else
+		{
+			::AuroraChooseColour(wxcolAuto, nIdx);
+			m_awxDataSeries[nIdx].SetFillColour(wxcolAuto);
+		}
+    }
+}
+
+void OctaveBandsPlot::AddSerie(const double* adbData, const size_t unLength,
+                               wxColour& wxcolLine, wxColour& wxcolBrush)
+{
+    wxASSERT_MSG(unLength == 12, wxT("OctaveBandsPlot: wrong array size"));
+    int nIdx = int(m_awxDataSeries.GetCount());
+    m_awxDataSeries.Add(new OctaveBandsDataSerie(adbData));
+    if(int(m_awxDataSeries.GetCount()) > nIdx)
+    {
+		wxColour wxcolAuto;
+		if(wxcolLine != wxNullColour)
+		{
+			m_awxDataSeries[nIdx].SetLineColour(wxcolLine);
+		}
+		else
+		{   // Choose color automatically
+			::AuroraChooseColour(wxcolAuto, nIdx);
+			m_awxDataSeries[nIdx].SetLineColour(wxcolAuto);
+		}
+
+		if(wxcolBrush != wxNullColour)
+		{
+			m_awxDataSeries[nIdx].SetFillColour(wxcolBrush);
+		}
+		else
+		{
+			::AuroraChooseColour(wxcolAuto, nIdx);
+			m_awxDataSeries[nIdx].SetFillColour(wxcolAuto);
+		}
+    }    
+}
+    
+void OctaveBandsPlot::DeleteSerie(const size_t nIdx)
+{
+    m_awxDataSeries.RemoveAt(nIdx);
+}
+
+OctaveBandsPlot::OctaveBandsPlot(wxWindow* pParent, wxWindowID id,
+                                 const wxPoint& pos, const wxSize& size)
+  : AFPlot(pParent, id, pos, size)
+{
+}
+
+
+//----------------------------------------------------------------------------
+// STIPlot implementation
+//----------------------------------------------------------------------------
+void STIPlot::Autorange(const double* pdbSerie, const size_t unLength, double& dbMin, double& dbMax)
+{
+   // Identical to AFPlot version, but here the values are multiplied by 100.
+   dbMax = -1.0e-12, dbMin = 1.0e+12;
+   for(size_t un = 0; un < unLength; un++)
+   {
+	   dbMax = (100*pdbSerie[un] < dbMax) ? dbMax : 100*pdbSerie[un];
+	   dbMin = (100*pdbSerie[un] > dbMin) ? dbMin : 100*pdbSerie[un];
+   }
+
+   double dbRange = dbMax - dbMin;
+   double dbDiv   = 0.000001;
+
+   while(dbRange * dbDiv < 1) dbDiv *= 10;
+
+   double dbStep  = 0.5 / dbDiv;
+   dbMax = dbStep * ceil( dbMax/ dbStep );
+
+   if(dbMin < 0)
+       dbMin = dbStep * floor( dbMin/ dbStep );
+}
+
+void STIPlot::UpdateHorizontalAxis()
+{
+    // Nothing to do here
+}
+
+void STIPlot::UpdateVerticalAxis()
+{
+	if(m_aDataSeries[m_nCurrentChnl].GetCount() == 0) return;
+
+	if(m_bIsVertAutorangeOn)
+	{
+		double dbYMin, dbYMax;
+		Autorange(m_aDataSeries[m_nCurrentChnl][0].GetData(),
+				  m_aDataSeries[m_nCurrentChnl][0].GetLength(),
+				  m_dbYmin, m_dbYmax);
+
+		for(size_t unSerie = 1; unSerie < m_aDataSeries[m_nCurrentChnl].GetCount(); unSerie++)
+		{
+			Autorange(m_aDataSeries[m_nCurrentChnl][unSerie].GetData(),
+					  m_aDataSeries[m_nCurrentChnl][unSerie].GetLength(),
+					  dbYMin, dbYMax);
+
+            m_dbYmin = (dbYMin < m_dbYmin) ? dbYMin : m_dbYmin;
+            m_dbYmax = (dbYMax > m_dbYmax) ? dbYMax : m_dbYmax;
+		}
+	}
+//  printf("Set vert range: %f, %f\n",m_dbYmin, m_dbYmax);
+	m_pVerticalRuler->SetRange(m_dbYmax, m_dbYmin);
+}
+
+void STIPlot::Sketch(wxDC &dc)
+{
+    int nPlotHeight = GetClientAreaHeight();
+    int nSeriesCount  = int(m_aDataSeries[m_nCurrentChnl].GetCount());
+        
+    int nXofs = GetClientAreaHorzOffset() + m_nCategoriesStart;
+    int nYofs = GetClientAreaVertOffset();
+
+    double dbYRange = m_dbYmax - m_dbYmin;
+    double dbYScale = nPlotHeight/dbYRange;
+
+    wxPen pen;
+    
+    int x0, y0;
+    int x1, y1;
+    size_t unLabel, unSerie;
+
+    const double* pdbSerie;
+    
+    for(unSerie = 0; unSerie < size_t(nSeriesCount); unSerie++)  
+    {
+        if(m_aDataSeries[m_nCurrentChnl][unSerie].IsShown())
+        {
+            pen.SetColour(m_aDataSeries[m_nCurrentChnl][unSerie].GetLineColour());
+            dc.SetPen(pen);
+
+            pdbSerie = m_aDataSeries[m_nCurrentChnl][unSerie].GetData();
+
+  		    y0 = (int) ceil( dbYScale * (dbYRange - (100.0*pdbSerie[0]  - m_dbYmin)) );
+
+  		    if(y0 < 0) y0 = 0;
+  		    if(y0 > nPlotHeight) y0 = nPlotHeight - 1;
+
+            for(unLabel = 1; unLabel < size_t(m_nCategoriesCount-1); unLabel++, y0 = y1)
+            {         
+                x0 = nXofs + unLabel*m_nCategoriesStep;
+                x1 = x0 + m_nCategoriesStep;
+                // STI range is 0 -> 1.0, mapped to 0 -> 100%
+//                y1 = int( ceil(nPlotHeight*(1.0 - m_aDataSeries[m_nCurrentChnl][unSerie].GetData(unLabel))) );
+                y1 = (int) ceil( dbYScale * (dbYRange - (100.0*pdbSerie[unLabel]  - m_dbYmin)) );
+
+                dc.DrawLine( x0,
+                             nYofs + ((y0 < nPlotHeight) ? y0 : nPlotHeight),
+                             x1,
+                             nYofs + ((y1 < nPlotHeight) ? y1 :nPlotHeight) );
+            }
+        }
+    }
+}
+
+void STIPlot::AddSerie(AFDataSerie* pSerie, const int nCh,
+                       wxColour& wxcolLine, wxColour& wxcolBrush)
+{
+    wxASSERT_MSG(pSerie->GetLength() == 14, wxT("STIPlot: Data serie length mismatch."));
+    int nIdx = int(m_aDataSeries[nCh].GetCount());
+    m_aDataSeries[nCh].Add(pSerie);
+    if(int(m_aDataSeries[nCh].GetCount()) > nIdx)
+    {
+		wxColour wxcolAuto;
+		if(wxcolLine != wxNullColour)
+		{
+			m_aDataSeries[nCh][nIdx].SetLineColour(wxcolLine);
+		}
+		else
+		{   // Choose color automatically
+			::AuroraChooseColour(wxcolAuto, nIdx);
+			m_aDataSeries[nCh][nIdx].SetLineColour(wxcolAuto);
+		}
+
+		if(wxcolBrush != wxNullColour)
+		{
+			m_aDataSeries[nCh][nIdx].SetFillColour(wxcolBrush);
+		}
+		else
+		{
+			::AuroraChooseColour(wxcolAuto, nIdx);
+			m_aDataSeries[nCh][nIdx].SetLineColour(wxcolAuto);
+		}
+    }    
+}
+
+void STIPlot::AddSerie(const double* adbData, const size_t unLength, const int nCh,
+                       wxColour& wxcolLine, wxColour& wxcolBrush)
+{
+    wxASSERT_MSG(unLength == 14, wxT("STIPlot: Data serie length mismatch.")); 
+    int nIdx = int(m_aDataSeries[nCh].GetCount());
+    m_aDataSeries[nCh].Add(new AFDataSerie(14, adbData));
+    if(int(m_aDataSeries[nCh].GetCount()) > nIdx)
+    {
+		wxColour wxcolAuto;
+		if(wxcolLine != wxNullColour)
+		{
+			m_aDataSeries[nCh][nIdx].SetLineColour(wxcolLine);
+		}
+		else
+		{   // Choose color automatically
+			::AuroraChooseColour(wxcolAuto, nIdx);
+			m_aDataSeries[nCh][nIdx].SetLineColour(wxcolAuto);
+		}
+
+		if(wxcolBrush != wxNullColour)
+		{
+			m_aDataSeries[nCh][nIdx].SetFillColour(wxcolBrush);
+		}
+		else
+		{
+           ::AuroraChooseColour(wxcolAuto, nIdx);
+           m_aDataSeries[nCh][nIdx].SetLineColour(wxcolAuto);
+		}
+    }    
+}
+
+void STIPlot::DeleteSerie(const size_t nIdx, const int nCh)
+{
+	if( nIdx < int(m_aDataSeries[nCh].GetCount()) )
+        m_aDataSeries[nCh].RemoveAt(nIdx);
+}
+
+STIPlot::STIPlot(wxWindow* pParent, wxWindowID id, const int nCurrentChnl,
+                 const wxPoint& pos, const wxSize& size)
+ : AFPlot(pParent, id, pos, size),
+   m_nCurrentChnl(nCurrentChnl)
+{}
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283

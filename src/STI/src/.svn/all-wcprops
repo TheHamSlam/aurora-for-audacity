@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/repos/aurora/!svn/ver/1/src/STI/src
+END
+sti.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/repos/aurora/!svn/ver/1/src/STI/src/sti.cpp
+END
+spectrum.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/STI/src/spectrum.cpp
+END
+spframe.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/aurora/!svn/ver/1/src/STI/src/spframe.h
+END
+exports.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/STI/src/exports.cpp
+END
+sti.h
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/repos/aurora/!svn/ver/1/src/STI/src/sti.h
+END
+track.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/aurora/!svn/ver/1/src/STI/src/track.cpp
+END
+SConscript
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/aurora/!svn/ver/1/src/STI/src/SConscript
+END
+spectrum.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/aurora/!svn/ver/1/src/STI/src/spectrum.h
+END
+exports.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/aurora/!svn/ver/1/src/STI/src/exports.h
+END
+data.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/repos/aurora/!svn/ver/1/src/STI/src/data.cpp
+END
+track.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/repos/aurora/!svn/ver/1/src/STI/src/track.h
+END
+plot.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/repos/aurora/!svn/ver/1/src/STI/src/plot.cpp
+END
+data.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/repos/aurora/!svn/ver/1/src/STI/src/data.h
+END
+dialogs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/STI/src/dialogs.cpp
+END
+plot.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/repos/aurora/!svn/ver/1/src/STI/src/plot.h
+END
+gui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/repos/aurora/!svn/ver/1/src/STI/src/gui.cpp
+END
+module.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/aurora/!svn/ver/1/src/STI/src/module.cpp
+END
+dialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/aurora/!svn/ver/1/src/STI/src/dialogs.h
+END
+gui.h
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/repos/aurora/!svn/ver/1/src/STI/src/gui.h
+END
+module.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/repos/aurora/!svn/ver/1/src/STI/src/module.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/aurora/!svn/ver/1/src/STI/src/version.h
+END
+spframe.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/STI/src/spframe.cpp
+END

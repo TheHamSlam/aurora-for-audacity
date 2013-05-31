@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//AcParameters/SConscript=utf-8
+encoding//Common/src/SConscript=utf-8
+encoding//Convolver/SConscript=utf-8
+encoding//Kirkeby/SConscript=utf-8
+encoding//PeakVue/SConscript=utf-8
+encoding//STI/SConscript=utf-8
+encoding//SineSweepGenerator/SConscript=utf-8
+encoding//TimeHistoryAnalyzer/SConscript=utf-8
+encoding//XFunctions/SConscript=utf-8
+encoding/SConstruct=utf-8

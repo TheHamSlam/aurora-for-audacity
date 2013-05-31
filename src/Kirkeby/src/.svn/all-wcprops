@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/repos/aurora/!svn/ver/1/src/Kirkeby/src
+END
+kirk.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/kirk.cpp
+END
+kirk.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/kirk.h
+END
+SConscript
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/SConscript
+END
+afkirk.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/afkirk.cpp
+END
+afkirk.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/afkirk.h
+END
+afmatrix.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/afmatrix.h
+END
+dialogs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/dialogs.cpp
+END
+gui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/gui.cpp
+END
+module.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/module.cpp
+END
+afktrack.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/afktrack.cpp
+END
+dialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/dialogs.h
+END
+gui.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/gui.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/version.h
+END
+module.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/module.h
+END
+afktrack.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/afktrack.h
+END
+afcpxmatrix.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/Kirkeby/src/afcpxmatrix.h
+END

@@ -1,0 +1,114 @@
+///////////////////////////////////////////////////////////////////////////
+// C++ code generated with wxFormBuilder (version Apr 17 2008)
+// http://www.wxformbuilder.org/
+//
+// PLEASE DO "NOT" EDIT THIS FILE!
+///////////////////////////////////////////////////////////////////////////
+
+#include "spframe.h"
+
+///////////////////////////////////////////////////////////////////////////
+
+STISpectrumFrm::STISpectrumFrm( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	
+	wxBoxSizer* bSizer17;
+	bSizer17 = new wxBoxSizer( wxVERTICAL );
+	
+	m_pwxpnlMain = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer4;
+	bSizer4 = new wxBoxSizer( wxVERTICAL );
+	
+	m_pwxnbSpectrumPlot = new wxNotebook( m_pwxpnlMain, ID_PLOT_NB, wxDefaultPosition, wxDefaultSize, 0 );
+	m_pwxpnlLeftPage = new wxPanel( m_pwxnbSpectrumPlot, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), wxTAB_TRAVERSAL );
+	wxBoxSizer* bPlotSizer;
+	bPlotSizer = new wxBoxSizer( wxVERTICAL );
+	
+	m_pSpectrumPlot[0] = new OctaveBandsPlot(m_pwxpnlLeftSpectrum, ID_LEFT_PLOT);
+	bPlotSizer->Add( m_pSpectrumPlot, 1, wxALL|wxEXPAND, 5 );
+	
+	m_pwxpnlLeftPage->SetSizer( bPlotSizer );
+	m_pwxpnlLeftPage->Layout();
+	bPlotSizer->Fit( m_pwxpnlLeftPage );
+	m_pwxnbSpectrumPlot->AddPage( m_pwxpnlLeftPage, wxT("Left Channel"), false );
+	
+	bSizer4->Add( m_pwxnbSpectrumPlot, 1, wxEXPAND | wxALL, 5 );
+	
+	m_pwxgridSpectrumTable = new wxGrid( m_pwxpnlMain, ID_SPECTRUM_GRID, wxDefaultPosition, wxDefaultSize, 0 );
+	
+	// Grid
+	m_pwxgridSpectrumTable->CreateGrid( 3, 13 );
+	m_pwxgridSpectrumTable->EnableEditing( true );
+	m_pwxgridSpectrumTable->EnableGridLines( true );
+	m_pwxgridSpectrumTable->EnableDragGridSize( false );
+	m_pwxgridSpectrumTable->SetMargins( 0, 0 );
+	
+	// Columns
+	m_pwxgridSpectrumTable->SetColSize( 0, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 1, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 2, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 3, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 4, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 5, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 6, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 7, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 8, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 9, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 10, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 11, 50 );
+	m_pwxgridSpectrumTable->SetColSize( 12, 50 );
+	m_pwxgridSpectrumTable->EnableDragColMove( false );
+	m_pwxgridSpectrumTable->EnableDragColSize( true );
+	m_pwxgridSpectrumTable->SetColLabelSize( 30 );
+	m_pwxgridSpectrumTable->SetColLabelValue( 0, wxT(" ") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 1, wxT("31.5") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 2, wxT("63") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 3, wxT("125") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 4, wxT("250") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 5, wxT("500") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 6, wxT("1k") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 7, wxT("2k") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 8, wxT("4k") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 9, wxT("8k") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 10, wxT("16k") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 11, wxT("A") );
+	m_pwxgridSpectrumTable->SetColLabelValue( 12, wxT("Lin") );
+	m_pwxgridSpectrumTable->SetColLabelAlignment( wxALIGN_CENTRE, wxALIGN_CENTRE );
+	
+	// Rows
+	m_pwxgridSpectrumTable->EnableDragRowSize( true );
+	m_pwxgridSpectrumTable->SetRowLabelSize( 120 );
+	m_pwxgridSpectrumTable->SetRowLabelValue( 0, wxT("Background Noise") );
+	m_pwxgridSpectrumTable->SetRowLabelValue( 1, wxT("Signal") );
+	m_pwxgridSpectrumTable->SetRowLabelValue( 2, wxT("Signal + Noise") );
+	m_pwxgridSpectrumTable->SetRowLabelAlignment( wxALIGN_LEFT, wxALIGN_CENTRE );
+	
+	// Label Appearance
+	
+	// Cell Defaults
+	m_pwxgridSpectrumTable->SetDefaultCellAlignment( wxALIGN_RIGHT, wxALIGN_TOP );
+	bSizer4->Add( m_pwxgridSpectrumTable, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
+	
+	m_pwxpnlMain->SetSizer( bSizer4 );
+	m_pwxpnlMain->Layout();
+	bSizer4->Fit( m_pwxpnlMain );
+	bSizer17->Add( m_pwxpnlMain, 1, wxEXPAND|wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	
+	this->SetSizer( bSizer17 );
+	this->Layout();
+	bSizer17->Fit( this );
+	
+	// Connect Events
+	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( STISpectrumFrm::OnFrameClose ) );
+	m_pwxnbSpectrumPlot->Connect( wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED, wxNotebookEventHandler( STISpectrumFrm::OnPageChange ), NULL, this );
+	m_pwxgridSpectrumTable->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( STISpectrumFrm::OnLevelTableLabelClick ), NULL, this );
+}
+
+STISpectrumFrm::~STISpectrumFrm()
+{
+	// Disconnect Events
+	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( STISpectrumFrm::OnFrameClose ) );
+	m_pwxnbSpectrumPlot->Disconnect( wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED, wxNotebookEventHandler( STISpectrumFrm::OnPageChange ), NULL, this );
+	m_pwxgridSpectrumTable->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( STISpectrumFrm::OnLevelTableLabelClick ), NULL, this );
+}

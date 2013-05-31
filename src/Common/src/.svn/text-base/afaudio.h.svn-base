@@ -1,0 +1,203 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Common libraries
+
+  afaudio.h
+
+  Angelo Farina - Simone Campanini
+
+**********************************************************************/
+#ifndef __AURORA_AFAUDIO_H__
+#define __AURORA_AFAUDIO_H__
+
+#include <audtypes.h>
+#include <commdefs.h>
+
+//----------------------------------------------------------------------------
+// AFAudioTrackBase
+//----------------------------------------------------------------------------
+
+class AFAudioTrackBase
+{
+  public:
+    enum Mode { AFM_MONO = 1, AFM_STEREO = 2, AFM_TETRA = 4 };
+
+  protected:
+    int     m_nMode;     // is stereo|tetra
+    double  m_dbRate;    //samplerate
+    int     m_nChannels;
+    double  m_dbFullScale;
+
+    AFSample** m_apsmpTrack;          // audio track(s)
+
+    AFSampleCount m_smpcLen;   // lenghts of the tracks.
+
+    double *m_pdbMin,          // minimum of the tracks.
+           *m_pdbMax;          // maximum of the tracks.
+
+    AFSampleCount* m_psmpcFAT; // First Arrival Time
+
+  protected:
+    // If a track length is set, initialize channel 'ch' track
+    virtual bool Init(const int nCh);
+    virtual void Destroy(const int nCh);
+
+    void Copy(AFSample *src, AFSample *dest, const AFSampleCount len, const double gain);
+
+    // Find min/max for nChannel 'nCh' track
+    virtual double FindMin(const int nCh);
+    virtual double FindMax(const int nCh);
+
+  public:   // TODO: Some reordering has to be done...
+    virtual bool FindFirstArrivalTime(const double dbThreshold, const int nCh);
+
+  public:
+    virtual double RMS(const int nCh = 0);
+    double Leq(const int nCh = 0) { return dB(RMS(nCh)); }
+
+    // --- Checkers
+    bool IsStereo() const { return (m_nMode == AFM_STEREO); }
+    bool IsTetra()  const { return (m_nMode == AFM_TETRA); }
+
+    //--- Get/Setters
+    double  GetRate()           const { return m_dbRate; }
+    double  GetSamplerate()     const { return m_dbRate; }
+    int     GetChannelsNumber() const { return m_nChannels; }
+    double  GetFullScale()      const { return m_dbFullScale; } // dB
+
+    AFSample* GetData  (const int nCh = 0) const { return m_apsmpTrack[nCh]; }
+    AFSample* GetTrack (const int nCh = 0) const { return m_apsmpTrack[nCh]; }
+
+    AFSample  GetTrackSample (const int nCh, const AFSampleCount smpl)         const { return m_apsmpTrack[nCh][smpl]; }
+    AFSample  GetTrackSquaredSample (const int nCh, const AFSampleCount smpl)  const { return m_apsmpTrack[nCh][smpl] * m_apsmpTrack[nCh][smpl]; }
+
+    AFSample  GetSample        (const AFSampleCount smpl, const int nCh = 0)  const { return m_apsmpTrack[nCh][smpl]; }
+    AFSample  GetSquaredSample (const AFSampleCount smpl, const int nCh = 0)  const { return m_apsmpTrack[nCh][smpl] * m_apsmpTrack[nCh][smpl]; }
+
+    AFSampleCount GetLength() const { return m_smpcLen; }
+    AFSampleCount GetTrackLength() const { return m_smpcLen; }
+
+    double  GetTrackMin(const int nCh = 0) const { return m_pdbMin[nCh]; }
+    double  GetTrackMax(const int nCh = 0) const { return m_pdbMax[nCh]; }
+    double  GetMin     (const int nCh = 0) const { return m_pdbMin[nCh]; }
+    double  GetMax     (const int nCh = 0) const { return m_pdbMax[nCh]; }
+
+    void SetMode(const int nChnls)    { m_nChannels = (m_nMode = nChnls); }
+    void SetSamplerate(const double dbValue) { m_dbRate = dbValue; }
+    void SetFullScale(const double dbValue)  { m_dbFullScale = dbValue; }
+
+    virtual void SetTrack(const int nCh, AFSample *src, const bool bInitTrack = false);
+    virtual void SetTrack(const int nCh, double *pdbSrc, const bool bInitTrack = false);
+    virtual void SetTrack(const int nCh, AFSample *psmpSrc, const AFSampleCount smpcLen, const bool bInitTrack = false);
+    virtual void SetTrack(const int nCh, double *pdbSrc, const AFSampleCount smpcLen, const bool bInitTrack = false);
+
+    virtual void SetLength(const AFSampleCount smpcLen, const bool bInitTrack = false)
+    { SetTrackLength(smpcLen, bInitTrack); }
+
+    virtual void SetTrackLength(const AFSampleCount smpcLen, const bool bInitTrack = false, int nCh = 0);
+
+    void SetTrackMin(const int nCh, const double dbMin) { m_pdbMin[nCh] = dbMin; }
+    void SetTrackMax(const int nCh, const double dbMax) { m_pdbMax[nCh] = dbMax; }
+    void SetMin(const double dbMin, const int nCh = 0)  { m_pdbMin[nCh] = dbMin; }
+    void SetMax(const double dbMax, const int nCh = 0)  { m_pdbMax[nCh] = dbMax; }
+
+    void SetTrackSample(const int nCh, const AFSampleCount smpcPos, const AFSample smpValue)  { m_apsmpTrack[nCh][smpcPos] = smpValue; }
+
+    // --- Ctors
+    AFAudioTrackBase(const double dbRate = 48000.0, const int nChannels = 1);
+    ~AFAudioTrackBase();
+};
+
+//----------------------------------------------------------------------------
+// AFAudioTrack
+//----------------------------------------------------------------------------
+
+class AFAudioTrack : public AFAudioTrackBase
+{
+   public:
+       enum FilterType
+       {
+    	   BPF = 0, LPF, HPF, NotchF,
+
+           FLT_LIN,     // not implemented??
+           FLT_ITU,     // Band-pass (160-5500 Hz)
+           FLT_IEC,     // A-weighting filter
+           FLT_ISO,     // 2631 whole combined (???)
+           FLT_UNI,
+           FLT_NONE      // Useful for selections...
+       };
+
+
+   protected:
+      AFSample** m_apsmpFilteredTrack;
+
+      double     m_dbNoiseCorrFactor;
+
+      int        m_nSelectedFilter;
+
+      // If a track length is set, initialize channel 'ch' track
+      virtual bool Init(const int nCh);
+      virtual void Destroy(const int nCh);
+      
+   public:   // TODO: Some reordering has to be done...
+   
+      // --- Utils
+    
+      /// Reset backup track to original 'nCh' track
+      void ResetFilteredTrack(const int nCh = 0, const double gain = 1.0);
+      
+      /// Set track to filtered version for 'nCh' track (loosing backup)
+      void ReplaceTrackWithFiltered(const int nCh = 0, const double gain = 1.0);
+    
+    
+    // --- Filtering
+   private:
+       void IIR(const int nCh, 
+                const double alpha, const double beta, const double gamma, 
+                const double mu, const double sigma);
+
+   public:
+      void Gain(const int nCh, const double G); // G [dB]
+      
+      void Filter           (const int type, const int nCh, const double f0, const double fQ);
+      void AFilter          (const int nCh = 0); //... bool preserve = true);
+      void LFilter          (const int nCh = 0);
+      void ISO_8041_Filter  (const int nCh = 0);
+      void ITU_P56_Filter   (const int nCh = 0);
+      void UNI_9916_Filter  (const int nCh = 0);
+      void OctaveFilter     (const int nCh, const double dbFc);
+      void RemoveMean       (const int nCh = 0);
+      void NoiseCorrection  (const int nCh = 0);
+      
+      virtual double RMS(const int nCh = 0);
+
+      AFSample* GetFilteredTrack              (const int nCh = 0) const { return m_apsmpFilteredTrack[nCh]; }
+      AFSample* GetFilteredData               (const int nCh = 0) const { return m_apsmpFilteredTrack[nCh]; }
+      AFSample  GetFilteredTrackSample        (const int nCh, const AFSampleCount smpl) const { return m_apsmpFilteredTrack[nCh][smpl]; }
+      AFSample  GetFilteredTrackSquaredSample (const int nCh, const AFSampleCount smpl) const { return m_apsmpFilteredTrack[nCh][smpl] * m_apsmpFilteredTrack[nCh][smpl]; }
+      AFSample  GetFilteredSample             (const AFSampleCount smpl, const int nCh = 0) const { return m_apsmpFilteredTrack[nCh][smpl]; }
+      AFSample  GetFilteredSquaredSample      (const AFSampleCount smpl, const int nCh = 0) const { return m_apsmpFilteredTrack[nCh][smpl] * m_apsmpFilteredTrack[nCh][smpl]; }
+
+
+      virtual void SetTrack(const int nCh, AFSample *src,     const bool bInitTrack = false);
+      virtual void SetTrack(const int nCh, double   *pdbSrc,  const bool bInitTrack = false);
+      virtual void SetTrack(const int nCh, AFSample *psmpSrc, const AFSampleCount smpcLen, const bool bInitTrack = false);
+      virtual void SetTrack(const int nCh, double   *pdbSrc,  const AFSampleCount smpcLen, const bool bInitTrack = false);
+      
+      void SetFilteredTrackSample(const int nCh, const AFSampleCount smpcPos, const AFSample smpValue) { m_apsmpFilteredTrack[nCh][smpcPos] = smpValue; }
+   
+      int  GetSelectedFilter() const { return m_nSelectedFilter; }
+      void SetFilter    (const int nType) { m_nSelectedFilter = nType; }
+      void SetFilterType(const int nType) { m_nSelectedFilter = nType; }
+
+      double& GetNoiseCorrFactor() { return m_dbNoiseCorrFactor; }
+
+    // --- Ctors
+      AFAudioTrack(const double dbRate = 48000.0, const int nChannels = 1);
+      ~AFAudioTrack();
+};
+
+#endif // __AURORA_IR_H__

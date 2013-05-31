@@ -1,0 +1,362 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Speech Transmission Index evaluator
+
+  exports.cpp
+
+  Simone Campanini
+
+*******************************************************************//**
+
+\class STIExports
+\brief Data exports manager
+
+  This class manages all Acoustics Parameters exports to/from
+  files and clipboard.
+
+*//*******************************************************************/
+
+#include "exports.h"
+
+#include <commdefs.h>
+
+
+void STIExports::StoreParametersTable(wxTextFile& fo, const int nFileType)
+{
+    const wxChar *awxpchChnlName[] = { wxT("Left Channel STI"), 
+                                       wxT("Right Channel STI") };
+                                        
+    const wxChar* awxpchBands[] = { wxT(" 125"), wxT(" 250"), wxT(" 500"), wxT("1000"),
+                                    wxT("2000"), wxT("4000"), wxT("8000")};
+                                    
+    const wxChar* awxpchPars[]  = { wxT("0.63 "), wxT("0.8  "), wxT("1    "), wxT("1.25 "),
+                                    wxT("1.6  "), wxT("2    "), wxT("2.5  "), wxT("3.15 "),
+                                    wxT("4    "), wxT("5    "), wxT("6.3  "), wxT("8    "),
+                                    wxT("10   "), wxT("12.5 ") };
+                                    
+    wxString wxszStr, wxszLine, wxszCaption;
+
+    //Title generation
+    wxszStr << wxT("Aurora ") << wxAURORA_VERSION << wxT(" - Speech Transmission Index calculation results");
+    fo.AddLine(wxszStr,wxTextFileType_Dos); 
+    wxszStr = wxT("MTF and STI\n");
+    fo.AddLine(wxszStr,wxTextFileType_Dos); 
+
+    int n, nPar;
+    wxString wxszValue;
+    for(int nChnl = 0; nChnl < (m_bIsStereo ? 2 : 1); nChnl++)
+    {
+        // nome canale
+        if(m_bIsStereo) 
+            wxszStr = awxpchChnlName[nCh] + wxT("\n"));
+        else             
+            wxszStr = wxT("Parameters\n"));
+        
+        fo.AddLine(wxszStr,wxTextFileType_Dos); 
+        
+        // parametri canale
+        // scrivo la prima riga, quella con le bande
+        wxszStr = wxT("F [Hz]");
+        for(n = 0; n < 7; n++) 
+        {
+            wxszStr += wxT("\t");
+            wxszStr += awxpchBands[n];
+        }
+        wxszStr += wxT("\n");
+        
+        // scrivo i parametri
+        // parametri: nome + parametro banda per banda
+        for(nPar = 0; nPar < 14; nPar++)
+        {
+            wxszStr += awxpchPars[nPar];
+            for(n = 0; n < 7; n++)
+            {
+                wxszStr += wxT("\t");
+                wxszValue.Printf(wxT("%.3f"), m_pAs->GetMtfTableValue(nPar, n, nCh));
+                wxszStr += wxszValue;
+            }
+            wxszStr += wxT("\n");
+        }
+        fo.AddLine(wxszStr,wxTextFileType_Dos); 
+        
+        // Scrivo i valori di STI di Banda
+        wxszStr = wxT("OCTAVE BAND STI values\n");
+        
+        // scrivo la prima riga, quella con le bande
+        wxszStr += wxT("F [Hz]");
+        {
+            wxszStr += wxT("\t");
+            wxszStr += awxpchBands[n];
+        }
+        wxszStr += wxT("\n");
+        
+        wxszStr += wxT("MTI");
+        for(n = 0; n < 7; n++)
+        {
+            wxszStr += wxT("\t");
+            //tmp=MTI[i2*2+Chan];                                      TODO: Check MTI versus STIValue
+            wxszValue.Printf(wxT("%.3f"), m_pAs->GetSTIValue(n, nCh))
+            wxszStr += wxszValue;
+        }
+        wxszStr += wxT("\n");
+        fo.AddLine(wxszStr,wxTextFileType_Dos); 
+
+        // Scrivo i valori di STI Complessivo
+        wxszStr = wxT("TOTAL STI values\t");        
+        if(m_pAs->IsSNCorrection()) 
+            wxszStr += wxT("Noise Corrected\t");
+        else
+            wxszStr += wxT("No Noise Corr.\t");
+        
+        if(m_pAs->IsMaskingCorrection()) 
+            wxszStr += wxT("Mask Corrected\n");
+        else
+            wxszStr += wxT("No Mask Corr.\n");
+        
+        wxszValue.Printf(wxT("%.3f\t",m_pAs->GetSTIMale(nCh));
+        wxszStr += wxT("STI Male =\t") + wxszValue;
+        
+        wxszValue.Printf(wxT("%.3f\t",m_pAs->GetSTIFemale(nCh));
+        wxszStr += wxT("STI Female =\t") + wxszValue;
+
+        wxszValue.Printf(wxT("%.3f\t",m_pAs->GetRaSTI(nCh));
+        wxszStr += wxT("RaSTI =\t") + wxszValue;
+
+        wxszValue.Printf(wxT("%.3f\t",m_pAs->GetSTItel(nCh));
+        wxszStr += wxT("STItel =\t") + wxszValue;
+
+        wxszValue.Printf(wxT("%.3f\t",m_pAs->GetSTIpa(nCh));
+        wxszStr += wxT("STIpa =\t") + wxszValue;
+        
+        wxszStr += wxT("\n\n");
+        
+        fo.AddLine(wxszStr, wxTextFileType_Dos); 
+    }
+}
+
+void STIExports::StoreOctaveBandsSpectrum(wxTextFile& fo)
+{
+
+}
+
+bool STIExports::BuildParametersTable(wxString &wxszDataBuffer, const int nFileType)
+{
+   wxString wxszStr, wxszLine, wxszCaption;
+
+   wxszDataBuffer.Clear();
+   
+   //Title generation
+   wxszStr << _("Aurora ") << wxAURORA_VERSION << _(" - ISO3382 Acoustical Parameter Table\n");
+   wxszDataBuffer << wxszStr;
+   wxszStr = _("ISO 3382 OCTAVE BAND ACOUSTICAL PARAMETERS\n\n");
+   wxszDataBuffer << wxszStr;
+
+   //Caption generation
+   wxszCaption  = _("Filename")      +  m_awxszSeparator[nFileType];
+   wxszCaption << _("Frq.band [Hz]") << m_awxszSeparator[nFileType];
+   
+   int i, j;
+   for(i=0; i < AcParameters::N_BANDS; i++) 
+      wxszCaption << m_awxszFrequencyLabel[i] << m_awxszSeparator[nFileType];
+   
+   for(int nCh = 0; nCh < mAp->GetChannelsNumber(); nCh++) 
+   {
+      wxszLine.Clear();   
+      wxszLine << _("Channel ") << (nCh+1) << _(" Parameters\n\n");
+      wxszDataBuffer << wxszLine;
+      wxszDataBuffer << (wxszCaption + LINE_BREAK);
+      
+      for(i=0; i < AcParameters::N_PARAMETERS; i++) 
+      {
+         wxszLine.Clear();
+         wxszStr   = m_wxszIrName + m_awxszSeparator[nFileType];
+         wxszLine << wxszStr;
+         wxszStr   = m_awxszParamFileLabel[i] + m_awxszSeparator[nFileType];
+         wxszLine << wxszStr;
+         
+         for(j=0; j < AcParameters::N_BANDS; j++) 
+         {
+            wxszStr.Printf(_("%.3f"), mAp->GetParameterValue(nCh, j, i));
+            wxszLine << wxszStr << m_awxszSeparator[nFileType];
+         }
+         wxszDataBuffer << (wxszLine + LINE_BREAK);
+      }
+      wxszLine.Printf(_("\nRTU = RT User (%.1f dB, %.1f dB)\n\n"), 
+                      mAp->GetUserMinLevel(),
+                      mAp->GetUserMaxLevel());
+                  
+      wxszDataBuffer << wxszLine;
+   }
+   return true;
+}
+
+
+bool STIExports::SaveToFile()
+{
+   bool bRetVal = true;
+   int  nType = FT_PARAMETER_TXT;
+   
+   wxFileDialog* pFileDlg = new wxFileDialog(0, wxT("Save results to file"), _(""), m_wxszFileName,
+                                             wxT("Parameter File (*.txt)|*.txt|Parameter File (*.csv)|*.csv|Ramsete Echogram (*.prn)|*.prn"),
+                                             wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+   
+   if(pFileDlg->ShowModal() == wxID_OK)
+   {
+        m_wxszFileName = pFileDlg->GetPath();
+        nType = pFileDlg->GetFilterIndex();
+
+        m_wxszFileName << m_awxszExtension[nType];
+        pFileDlg->SetPath(m_wxszFileName);
+
+        wxTextFile resultsFile;
+        
+        if( resultsFile.Create(m_wxszFileName) || 
+            resultsFile.Open(m_wxszFileName) ) 
+        {
+            //file writing
+            resultsFile.Clear();
+
+            switch(nType) 
+            {
+                case FT_PARAMETER_TXT:
+                    StoreParametersTable(resultsFile, FF_TXT);
+                    break;
+                case FT_PARAMETER_CSV:
+                    StoreParametersTable(resultsFile, FF_CSV);
+                    break;
+                case FT_RAMSETE_ECHOGRAM_PRN:
+                    StoreEchogram(resultsFile);
+                    break;
+            }
+
+         //flush data to file.
+         if( !resultsFile.Write(wxTextFileType_Dos) )  
+         {
+            wxMessageBox(_("Write error."), _("Error"), 
+                         wxOK | wxICON_ERROR);
+            bRetVal =  false;         
+            
+         } else {
+             
+            wxMessageBox(_("Datas successifully saved."), _("Success"), 
+                         wxOK | wxICON_INFORMATION);
+         }
+         //Close file.
+         resultsFile.Close();
+         
+      } else {
+
+         wxMessageBox(_("Error on file creation."), _("Error"), 
+                      wxOK | wxICON_ERROR);
+         bRetVal = false;         
+      }
+   }
+   pFileDlg->Destroy();
+   
+   return bRetVal;
+}
+
+
+STIExports::STIExports(wxWindow *pParent, AuroraSTI* pAs, const bool nIsStereo)
+  : AFExports(pParent), 
+    m_pAs(pAs),
+    m_bIsStereo(bIsStereo)
+{
+    mAp->GetIrFileName(mAp->GetActiveChannel(), &m_wxszIrName);
+    m_wxszFileName = _("AP_") + m_wxszIrName;
+
+    m_awxszExtension.Add(_(".prn"));
+   
+    //--------- Labels array generation -------------
+    m_awxszParamFileLabel.Add(_("Signal     [dB]"));
+    m_awxszParamFileLabel.Add(_("Noise      [dB]"));
+    m_awxszParamFileLabel.Add(_("strenGth   [dB]"));
+    m_awxszParamFileLabel.Add(_("C50        [dB]"));
+    m_awxszParamFileLabel.Add(_("C80        [dB]"));
+
+    if(mAp->IsStageMode()) 
+    {
+        m_awxszParamFileLabel.Add(_("St1 (Early) [dB]"));
+        m_awxszParamFileLabel.Add(_("St2         [dB]"));
+        m_awxszParamFileLabel.Add(_("StL (Late)  [dB]"));
+
+    } else {
+
+        m_awxszParamFileLabel.Add(_("D50         [%]"));
+        m_awxszParamFileLabel.Add(_("ts         [ms]"));
+        m_awxszParamFileLabel.Add(_("EDT         [s]"));
+    }
+    
+    m_awxszParamFileLabel.Add(_("Tuser       [s]"));
+    m_awxszParamFileLabel.Add(_("T20         [s]"));
+    m_awxszParamFileLabel.Add(_("T30         [s]"));
+
+    // Spatial parameters labels
+    if( mAp->IsASoundField()      || 
+        mAp->IsAPUProbe()         || 
+        mAp->IsAnIntensityProbe() ||
+        mAp->IsSoundfieldWXYZ()   || 
+        mAp->IsSoundfieldWYXZ() )
+    {
+        m_awxszParamFileLabel.Add(_("JLF          "));
+        m_awxszParamFileLabel.Add(_("JLFC         "));
+        m_awxszParamFileLabel.Add(_("LJ       [dB]"));
+ 
+    } else if(mAp->IsABinauralPair()) {
+  
+        switch(mAp->GetIACCMode()) 
+        {
+            case AcParameters::IM_EARLY:
+                m_awxszParamFileLabel.Add(_("IACC (Early)   "));
+                break;
+            case AcParameters::IM_LATE:
+                m_awxszParamFileLabel.Add(_("IACC (Late)    "));
+                break;
+            case AcParameters::IM_ALL:
+                m_awxszParamFileLabel.Add(_("IACC (All)     "));
+                break;
+            default: // IM_NONE
+                m_awxszParamFileLabel.Add(_("IACC (None)    "));
+                break;
+        }
+        m_awxszParamFileLabel.Add(_("Tau   IACC [ms]"));
+        m_awxszParamFileLabel.Add(_("Width IACC [ms]"));
+
+    } else {
+
+        m_awxszParamFileLabel.Add(_("Peakiness  [dB]"));
+        m_awxszParamFileLabel.Add(_("Millisecs  [dB]"));
+        m_awxszParamFileLabel.Add(_("Impulsivs  [dB]"));
+    }
+   
+//    m_awxszChannelLabel.Add(_("Left "));
+//    m_awxszChannelLabel.Add(_("Right "));
+
+    m_awxszFrequencyLabel.Add(_("  31.5 "));
+    m_awxszFrequencyLabel.Add(_("   63  "));
+    m_awxszFrequencyLabel.Add(_("  125  "));
+    m_awxszFrequencyLabel.Add(_("  250  "));
+    m_awxszFrequencyLabel.Add(_("  500  "));
+    m_awxszFrequencyLabel.Add(_("  1000 "));
+    m_awxszFrequencyLabel.Add(_("  2000 "));
+    m_awxszFrequencyLabel.Add(_("  4000 "));
+    m_awxszFrequencyLabel.Add(_("  8000 "));
+    m_awxszFrequencyLabel.Add(_(" 16000 "));
+    m_awxszFrequencyLabel.Add(_("   A   "));
+    m_awxszFrequencyLabel.Add(_("  Lin  "));
+}
+
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283

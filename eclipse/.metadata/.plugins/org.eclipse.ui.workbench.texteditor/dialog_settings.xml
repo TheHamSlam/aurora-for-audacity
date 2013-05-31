@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="341" key="DIALOG_WIDTH"/>
+		<item value="364" key="DIALOG_Y_ORIGIN"/>
+		<item value="1104" key="DIALOG_X_ORIGIN"/>
+		<item value="519" key="DIALOG_HEIGHT"/>
+		<item value="1|Sans|8.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="Peakiness" key="selection"/>
+		<list key="findhistory">
+			<item value="Peakiness"/>
+			<item value="valid"/>
+			<item value="right"/>
+			<item value="GET_PAR"/>
+			<item value="Update"/>
+			<item value="ResetFiltered"/>
+			<item value="Draw"/>
+			<item value="UpdatePlot"/>
+		</list>
+		<list key="replacehistory">
+			<item value="GSET_PAR"/>
+			<item value="AFSample"/>
+			<item value="double"/>
+			<item value="_96"/>
+			<item value="Filter"/>
+			<item value="fat"/>
+			<item value="APAudioTrack"/>
+			<item value="m_vResults"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="391" key="DIALOG_Y_ORIGIN"/>
+		<item value="687" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>

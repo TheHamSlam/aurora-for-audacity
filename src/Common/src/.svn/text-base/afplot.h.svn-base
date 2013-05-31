@@ -1,0 +1,324 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Common Libraries
+  
+  afplot.h
+
+  Simone Campanini
+
+**********************************************************************/
+
+#ifndef __AURORA_AFPLOT_H__
+#define __AURORA_AFPLOT_H__
+
+#include <wxcmn.h>
+#include <commdefs.h>
+
+#include <wx/dcbuffer.h>
+
+#ifndef __STAND_ALONE__
+   #include <widgets/Ruler.h>
+#endif
+
+#include "afaxis.h"
+
+// Some defines...
+#define DECAY_PLOT_X_SIZE 540 // To be removed
+#define DECAY_PLOT_Y_SIZE 250 // To be removed
+
+#ifdef __WXOSX__
+   #define PLOT_TITLE_FONT_SIZE  12
+   #define AXIS_TITLE_FONT_SIZE  10
+   #define LEGEND_FONT_SIZE      10
+   #define DECAY_RULER_FONT_SIZE 10
+#elif defined __WXMSW__
+   #define PLOT_TITLE_FONT_SIZE  10
+   #define AXIS_TITLE_FONT_SIZE   8
+   #define LEGEND_FONT_SIZE       8
+   #define DECAY_RULER_FONT_SIZE  8
+#else
+// In GTK a smaller font looks better..
+   #define PLOT_TITLE_FONT_SIZE  8
+   #define AXIS_TITLE_FONT_SIZE  6
+   #define LEGEND_FONT_SIZE      6
+   #define DECAY_RULER_FONT_SIZE 6
+#endif
+
+//----------------------------------------------------------------------------
+// AFLegendEntry
+//----------------------------------------------------------------------------
+
+class AFLegendEntry
+{
+  private:
+	wxString m_wxszLabel;
+	wxColour m_wxcolColour;
+
+  public:
+	void SetLabel (wxString& wxszLabel)      { m_wxszLabel = wxszLabel; }
+	void SetLabel (const wxChar* pwxchLabel) { m_wxszLabel = pwxchLabel; }
+	void SetColour(const wxColour& wxcol)    { m_wxcolColour = wxcol; }
+
+	wxString& GetLabel()  { return m_wxszLabel; }
+	wxColour& GetColour() { return m_wxcolColour; }
+
+	AFLegendEntry()
+     : m_wxszLabel(wxT("")), m_wxcolColour(wxNullColour) {}
+	AFLegendEntry(wxString& wxszLabel, wxColour& wxcolColour)
+	 : m_wxszLabel(wxszLabel), m_wxcolColour(wxcolColour) {}
+	AFLegendEntry(const wxChar* pwxchLabel, wxColour& wxcolColour)
+	 : m_wxszLabel(pwxchLabel), m_wxcolColour(wxcolColour) {}
+};
+WX_DECLARE_OBJARRAY(AFLegendEntry, TArrayOfAFLegendEntry);
+
+//----------------------------------------------------------------------------
+// AFLegend
+//----------------------------------------------------------------------------
+
+// sizes in pixel
+#define LGD_MARGIN     5
+#define LGD_BORDER     10
+#define LGD_LINE_WIDTH 10
+
+class AFLegend
+{
+  public:
+	enum { TOP_LEFT = 100, TOP_RIGHT, BOTTOM_RIGHT, BOTTOM_LEFT };
+
+  private:
+	int    m_nPosition;
+
+	wxRect m_wxrectBox;
+    wxSize m_wxsizeMaxLabelsDims;
+
+	wxFont m_wxfntFont;
+	bool   m_bShow;
+
+	TArrayOfAFLegendEntry m_aEntries;
+
+	void FindMaxLabelsDims(wxDC& dc);
+
+  public:
+	void Clear()    { if(m_aEntries.GetCount() > 0) m_aEntries.Clear(); }
+
+	void AddLabel   (wxString& wxszLabel, const wxColour& wxcolBrush = wxNullColour);
+	void AddLabel   (const wxChar* pwxchLabel, const wxColour& wxcolBrush = wxNullColour);
+	void RemoveLabel(const int nIdx);
+
+	bool IsShown() const { return m_bShow; }
+	void Show(const bool bValue = true) { m_bShow = bValue; }
+
+	void SetPosition(const int nPos)    {m_nPosition = nPos; }
+
+	void Draw(wxDC& dc, wxRect& wxrectClientArea);
+
+	AFLegend(const int m_nPosition = TOP_RIGHT);
+};
+
+//----------------------------------------------------------------------------
+// AFPlotBase
+//----------------------------------------------------------------------------
+
+class AFPlotBase: public wxControl
+{
+ public:
+   enum { ID_COPY_BITMAP = 0X3000, ID_COPY_VECTORIAL,
+          ID_SHOW_LEGEND_MCHK,
+	      ID_SET_X_AXIS_RANGE,     ID_SET_Y_AXIS_RANGE,
+	      ID_X_AUTORANGE_MCHK,     ID_Y_AUTORANGE_MCHK,
+	      ID_SET_X_AXIS_DLG,       ID_SET_Y_AXIS_DLG };
+
+ private:
+    wxWindow* m_pwxwndParent;
+
+    wxRect m_wxEnvRect;
+
+    struct { bool     bShow;
+             wxString wxszLabel;
+             wxFont   wxfntFont; } m_Title;
+    
+    wxColour m_wxcolCanvas, 
+             m_wxcolBackground,
+             m_wxcolBorders;
+
+ protected:
+    AFAxisBase *m_pHorzAxis,
+               *m_pVertAxis;
+
+    AFLegend   *m_pLegend;
+
+    wxRect  m_wxrectClientArea;
+
+    int m_nWidth,
+        m_nHeight;
+
+    // Top/Bottom and Left/Right borders.
+    // Borders contain rulers and titles
+    int m_nTBorder, m_nBBorder,
+        m_nLBorder, m_nRBorder;
+
+    bool m_bIsTBorderOn,
+         m_bIsRBorderOn;
+
+    bool m_bIsHorzAutorangeOn,
+         m_bIsVertAutorangeOn;
+    
+    bool m_bIsHorzRangeMutable,
+         m_bIsVertRangeMutable;
+    
+   virtual void Autorange(const double* pdbSerie, const size_t unLength,
+		                  double& dbMin, double& dbMax, const bool bIsLog = false);
+
+   virtual void UpdateVerticalAxis  () = 0;
+   virtual void UpdateHorizontalAxis() = 0;
+
+   // --- Event handlers
+   void OnPaint(wxPaintEvent& event);
+   void OnRightButtonClick(wxMouseEvent& evt);
+#if wxUSE_METAFILE
+   void OnCopyVectorial(wxCommandEvent& evt);
+#endif
+   void OnShowSetXAxisRange(wxCommandEvent& evt);
+   void OnShowSetYAxisRange(wxCommandEvent& evt);
+   void OnXAutorangeMenuCheck(wxCommandEvent& evt);
+   void OnYAutorangeMenuCheck(wxCommandEvent& evt);
+   void OnShowLegendMenuCheck(wxCommandEvent& evt);
+
+   void OnCopyBitmap(wxCommandEvent& evt);
+   void OnChar(wxKeyEvent& evt);
+
+   void OnMouseStartSelection(wxMouseEvent& evt);
+   void OnMouseSelection(wxMouseEvent& evt);
+   void OnMouseEndSelection(wxMouseEvent& evt);
+
+   // This pure virtual method should contains
+   // all the plot routines and MUST be implemented!
+   virtual void Draw(wxDC& dc) = 0;
+
+  private:
+   // This method inits the dc and calls Draw()
+   void UpdatePlot(wxDC& dc, const wxSize& sz);
+
+   wxRect m_wxrectSelection;
+   bool   m_bIsSelectionOn;
+
+   void   DrawSelectionRegion(wxDC& dc);
+
+  public:
+
+   // Plot dimensions
+    int   GetWidth()                      const { return m_nWidth; }
+    int   GetHeight()                     const { return m_nHeight; }
+    int   GetClientAreaWidth()            const { return (m_nWidth  - (m_nLBorder + m_nRBorder)); }
+    int   GetClientAreaHeight()           const { return (m_nHeight - (m_nTBorder + m_nBBorder)); }
+    void  GetClientAreaSize(wxSize& size) const { size = wxSize(GetClientAreaWidth(),
+                                                                GetClientAreaHeight()); }
+    // Get client area top left coordinate
+    int  GetClientAreaHorzOffset()         const { return m_nLBorder; }
+    int  GetClientAreaVertOffset()         const { return m_nTBorder; }
+    void GetClientAreaOffset(wxPoint& ofs) const { ofs.x = m_nLBorder;
+                                                   ofs.y = m_nTBorder;}
+
+    bool IsTopBorderOn()   const { return m_bIsTBorderOn; }
+    bool IsRightBorderOn() const { return m_bIsRBorderOn; }
+
+    void SetTopBorder(const bool bValue)    { m_bIsTBorderOn = bValue; }
+    void SetRightBorder(const bool bValue)  { m_bIsRBorderOn = bValue; }
+
+   // Plot attributes
+   bool IsTitleOn () const                    { return m_Title.bShow; }
+   void ShowTitle (const bool bValue = true)  { m_Title.bShow     = bValue; }
+   void SetTitle  (const wxString& wxszTitle) { m_Title.wxszLabel = wxszTitle; }
+   void SetTitle  (const wxChar* pwxchTitle)  { m_Title.wxszLabel = pwxchTitle; }
+    
+   void SetCanvasColour(wxColour& col)     { m_wxcolCanvas = col; }
+   void SetBackgroundColour(wxColour& col) { m_wxcolBackground = col; }
+   void SetBorderColour(wxColour& col)     { m_wxcolBorders = col; }
+    
+   // Axis
+   void SetHorizontalAxis(AFAxisBase* pab) { m_pHorzAxis = pab; }
+   void SetVerticalAxis  (AFAxisBase* pab) { m_pVertAxis = pab; }
+
+   AFAxisBase* GetHorizontalAxis() const { return m_pHorzAxis; }
+   AFAxisBase* GetVerticalAxis  () const { return m_pVertAxis; }
+
+   bool IsHorzAxisAutorangeOn() const           { return m_bIsHorzAutorangeOn; }
+   bool IsVertAxisAutorangeOn() const           { return m_bIsVertAutorangeOn; }
+   void SetHorzAxisAutorange(const bool bValue) { m_bIsHorzAutorangeOn = (m_bIsHorzRangeMutable) ? bValue : false; }
+   void SetVertAxisAutorange(const bool bValue) { m_bIsVertAutorangeOn = (m_bIsVertRangeMutable) ? bValue : false; }
+    
+
+   AFLegend* GetLegend ();
+   void      ShowLegend(const bool bValue = true);
+
+   // 'ctors.
+   AFPlotBase(wxWindow* parent, wxWindowID id,
+              const wxPoint& pos = wxDefaultPosition,
+              const wxSize& size = wxDefaultSize,
+              const long style   = wxFULL_REPAINT_ON_RESIZE | wxBORDER_NONE);
+   ~AFPlotBase();
+};
+
+
+//----------------------------------------------------------------------------
+// SetAxisRangeDialog
+//----------------------------------------------------------------------------
+#include <wx/statline.h>
+class SetAxisRangeDialog : public wxDialog
+{
+  private:
+	enum
+	{
+		ID_MIN_TC = 1000,
+		ID_MIN_MU_ST,
+		ID_MAX_MU_ST,
+	};
+
+	AFAxisBase* m_pAxis;
+
+	int    m_nId;
+
+	double m_dbMin,
+	       m_dbMax;
+
+    wxPanel*      m_pwxpnlUpper;
+	wxStaticText* m_pwxstMinLbl;
+	wxTextCtrl*   m_pwxtcMin;
+	wxStaticText* m_pwxstMinMu;
+	wxStaticText* m_pwxstMaxLbl;
+	wxTextCtrl*   m_pwxtcMax;
+	wxStaticText* m_pwxstMaxMu;
+	wxStaticLine* m_staticline3;
+	wxPanel*      m_pwxpnlLower;
+	wxButton*     m_pwxbtnCancel;
+	wxButton*     m_pwxbtnOk;
+
+  protected:
+
+	void OnCancel ( wxCommandEvent& event );
+	void OnOk     ( wxCommandEvent& event );
+
+  public:
+	SetAxisRangeDialog(wxWindow* pParent, wxWindowID id, AFAxisBase* pAxis,
+                       const wxString& title = wxT("Set Axis Range"), 
+                       const wxPoint& pos = wxDefaultPosition, 
+                       const wxSize& size = wxDefaultSize, 
+                       long style = wxDEFAULT_DIALOG_STYLE);
+};
+#endif  // __AURORA_AFPLOT_H__
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283
+
+

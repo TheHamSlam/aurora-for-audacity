@@ -1,0 +1,16 @@
+HOW TO BUILD AURORA PLUGINS FOR MAC
+===================================
+
+Assuming you've already build a working Audacity copy with
+dynamic wx libraries links ad you've putted in the Audacity
+directory the 'libs' subdirectory containing wx dylib files,
+you should follow these steps:
+
+1) Open Xcode, then open Aurora project
+2) Build the plugins
+3) Copy the created libraries (with .so extension) in <Audacity_dir>/modules
+4) Run 'update_modules_link' script located in <audacity_src_dir>/mac
+
+Ok, now they will works!
+
+Now 3) and 4) are grouped in the osx_post_install script!

@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/repos/aurora/!svn/ver/1/src/AcParameters/src
+END
+afacpar.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/AcParameters/src/afacpar.h
+END
+sizes.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/AcParameters/src/sizes.h
+END
+exports.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/aurora/!svn/ver/1/src/AcParameters/src/exports.cpp
+END
+track.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/AcParameters/src/track.cpp
+END
+SConscript
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/aurora/!svn/ver/1/src/AcParameters/src/SConscript
+END
+exports.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/AcParameters/src/exports.h
+END
+data.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/AcParameters/src/data.cpp
+END
+track.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/AcParameters/src/track.h
+END
+test.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/AcParameters/src/test.txt
+END
+plot.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/AcParameters/src/plot.cpp
+END
+data.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/AcParameters/src/data.h
+END
+dialogs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/aurora/!svn/ver/1/src/AcParameters/src/dialogs.cpp
+END
+plot.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/AcParameters/src/plot.h
+END
+gui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/AcParameters/src/gui.cpp
+END
+module.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/aurora/!svn/ver/1/src/AcParameters/src/module.cpp
+END
+acpar.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/AcParameters/src/acpar.cpp
+END
+dialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/AcParameters/src/dialogs.h
+END
+gui.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/AcParameters/src/gui.h
+END
+module.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/AcParameters/src/module.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/AcParameters/src/version.h
+END
+acpar.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/AcParameters/src/acpar.h
+END
+afacpar.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/aurora/!svn/ver/1/src/AcParameters/src/afacpar.cpp
+END

@@ -1,0 +1,131 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Speech Transmission Index evaluator
+
+  spectrum.cpp
+
+  Simone Campanini
+
+**********************************************************************/
+
+#include <gpfuncts.h>
+
+#include "spectrum.h"
+
+//----------------------------------------------------------------------------
+// STISpectrumGridCellColoredRectRenderer implementation
+//----------------------------------------------------------------------------
+void STISpectrumGridCellColoredRectRenderer::Draw(wxGrid &grid, wxGridCellAttr& attr, wxDC &dc,
+                                                  const wxRect& rect, int nRow, int nCol, bool bIsSelected)
+{
+   wxGridCellStringRenderer::Draw(grid, attr, dc, rect, nRow, nCol, bIsSelected);
+
+   wxBrush brush;
+   AuroraChooseBrush(brush, nRow);
+
+   wxRect r = rect;
+   r.SetWidth(r.width/2);
+   r.SetHeight(r.height/2);
+   r.x += (rect.width - r.width)/2;
+   r.y += (rect.height - r.height)/2; 
+
+   dc.SetPen(*wxBLACK);
+   dc.SetBrush(brush);
+   dc.DrawRectangle(r);
+}
+
+//----------------------------------------------------------------------------
+// STISpectrumFrame implementation
+//----------------------------------------------------------------------------
+
+void STISpectrumFrame::FillTable()
+{
+    wxString wxszValue;
+    for(int nBand = 0; nBand < 12; nBand++)
+    {
+        wxszValue.Printf(wxT("%.1f"), m_pAs->GetNoiseLevel(nBand, m_nCurrentChnl)); 
+        m_pwxgridSpectrumTable->SetCellValue(0, nBand+1, wxszValue);
+        wxszValue.Printf(wxT("%.1f"), m_pAs->GetSignalLevel(nBand, m_nCurrentChnl));
+        m_pwxgridSpectrumTable->SetCellValue(1, nBand+1, wxszValue);
+        wxszValue.Printf(wxT("%.1f"), m_pAs->GetSigNoiseLevel(nBand, m_nCurrentChnl));
+        m_pwxgridSpectrumTable->SetCellValue(2, nBand+1, wxszValue);
+    }
+}
+
+void STISpectrumFrame::OnFrameClose( wxCommandEvent& event )
+{ 
+    Close(true);     
+}
+
+void STISpectrumFrame::OnPageChange( wxNotebookEvent& event )
+{
+    m_nCurrentChnl = event.GetSelection();
+    FillTable();    
+    m_pSpectrumPlot[m_nCurrentChnl]->Refresh();
+}
+
+void STISpectrumFrame::OnLevelTableLabelClick( wxGridEvent& event )
+{
+   //TODO
+}
+
+STISpectrumFrame::STISpectrumFrame( wxWindow* pParent, 
+                                   AuroraSTI* pAs,
+                                   const bool bIsStereo) 
+  : STISpectrumFrm(pParent),
+    m_pAs(pAs),
+    m_bIsStereo(bIsStereo),
+    m_nCurrentChnl(CH_LEFT)
+{
+    // Set data
+    m_pSpectrumPlot[CH_LEFT]->AddSerie((const double*)m_pAs->GetNoiseSpectrumVector(CH_LEFT));
+    m_pSpectrumPlot[CH_LEFT]->AddSerie((const double*)m_pAs->GetSignalSpectrumVector(CH_LEFT));
+    m_pSpectrumPlot[CH_LEFT]->AddSerie((const double*)m_pAs->GetSigNoiseSpectrumVector(CH_LEFT));
+
+    if(m_bIsStereo)
+    {
+        // Add Right channel spectrum page
+        m_pwxpnlRightPage = new wxPanel( m_pwxnbSpectrumPlot, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), wxTAB_TRAVERSAL );
+        wxBoxSizer* bRightPlotSizer;
+        bRightPlotSizer = new wxBoxSizer( wxVERTICAL );
+    
+        m_pSpectrumPlot[CH_RIGHT] = new OctaveBandsPlot(m_pwxpnlRightPage, ID_RIGHT_PLOT);
+        bRightPlotSizer->Add( m_pSpectrumPlot[CH_RIGHT], 1, wxALL|wxEXPAND, 5 );
+    
+        m_pwxpnlRightPage->SetSizer( bRightPlotSizer );
+        m_pwxpnlRightPage->Layout();
+        bRightPlotSizer->Fit( m_pwxpnlRightPage );
+        
+        m_pwxnbSpectrumPlot->AddPage( m_pwxpnlRightPage, wxT("Right Channel"), false );
+        
+        m_pSpectrumPlot[CH_RIGHT]->AddSerie((const double*)m_pAs->GetNoiseSpectrumVector(CH_RIGHT));
+        m_pSpectrumPlot[CH_RIGHT]->AddSerie((const double*)m_pAs->GetSignalSpectrumVector(CH_RIGHT));
+        m_pSpectrumPlot[CH_RIGHT]->AddSerie((const double*)m_pAs->GetSigNoiseSpectrumVector(CH_RIGHT));
+    }
+/* 
+	bSizer4->Add( m_pwxnbSpectrumPlot, 2, wxALL|wxEXPAND, 5 );
+	m_pwxnbSpectrumPlot->Layout();  // SC
+    bSizer4->Fit(m_pwxnbSpectrumPlot);  // SC
+*/
+    
+    m_pwxgridSpectrumTable->SetCellRenderer(0, 0, new STISpectrumGridCellColoredRectRenderer);
+    m_pwxgridSpectrumTable->SetCellRenderer(1, 0, new STISpectrumGridCellColoredRectRenderer);
+    m_pwxgridSpectrumTable->SetCellRenderer(2, 0, new STISpectrumGridCellColoredRectRenderer); 
+#ifdef __WXGTK__
+    m_pwxgridSpectrumTable->SetRowLabelSize(140);
+#endif
+    FillTable();
+      
+    //m_pwxChart = new Chart(UpdatePlot(), wxT("Left channel"));
+    //m_pwxfcSpectrumPlot->SetChart(m_pwxChart);
+    
+    m_pSpectrumPlot[CH_LEFT]->Refresh();
+}
+
+STISpectrumFrame::~STISpectrumFrame()
+{
+   //TODO
+}

@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/repos/aurora/!svn/ver/1/src/XFunctions/src
+END
+xfn.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/XFunctions/src/xfn.h
+END
+exports.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/XFunctions/src/exports.cpp
+END
+output.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/XFunctions/src/output.h
+END
+SConscript
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/XFunctions/src/SConscript
+END
+exports.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/XFunctions/src/exports.h
+END
+data.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/XFunctions/src/data.cpp
+END
+correlator.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/aurora/!svn/ver/1/src/XFunctions/src/correlator.cpp
+END
+equations.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/XFunctions/src/equations.h
+END
+data.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/XFunctions/src/data.h
+END
+plot.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/XFunctions/src/plot.cpp
+END
+correlator.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/aurora/!svn/ver/1/src/XFunctions/src/correlator.h
+END
+dialogs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/aurora/!svn/ver/1/src/XFunctions/src/dialogs.cpp
+END
+plot.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/XFunctions/src/plot.h
+END
+gui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/XFunctions/src/gui.cpp
+END
+module.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/XFunctions/src/module.cpp
+END
+art.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/XFunctions/src/art.cpp
+END
+dialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/XFunctions/src/dialogs.h
+END
+gui.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/XFunctions/src/gui.h
+END
+module.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/XFunctions/src/module.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/XFunctions/src/version.h
+END
+art.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/XFunctions/src/art.h
+END
+xfn.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/XFunctions/src/xfn.cpp
+END

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src
+END
+dialogs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/dialogs.cpp
+END
+gui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/gui.cpp
+END
+module.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/module.cpp
+END
+SConscript
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/SConscript
+END
+sswgen.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/sswgen.cpp
+END
+dialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/dialogs.h
+END
+gui.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/gui.h
+END
+module.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/module.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/version.h
+END
+sswgen.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repos/aurora/!svn/ver/1/src/SineSweepGenerator/src/sswgen.h
+END

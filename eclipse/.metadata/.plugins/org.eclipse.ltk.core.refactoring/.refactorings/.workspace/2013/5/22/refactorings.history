@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 13 resources" deleteContents="false" description="Delete 13 resources" element1="/Aurora/AcousticParameters.txt" element10="/Aurora/ap_decay_6" element11="/Aurora/ap_decay_7" element12="/Aurora/ap_decay_8" element13="/Aurora/ap_decay_9" element2="/Aurora/ap_decay_0" element3="/Aurora/ap_decay_1" element4="/Aurora/ap_decay_10" element5="/Aurora/ap_decay_11" element6="/Aurora/ap_decay_2" element7="/Aurora/ap_decay_3" element8="/Aurora/ap_decay_4" element9="/Aurora/ap_decay_5" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="13" stamp="1369905371023"/>
+</session>

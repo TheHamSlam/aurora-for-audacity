@@ -1,0 +1,215 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Acoustical Parameters
+
+  gui.h
+
+  Simone Campanini
+
+**********************************************************************/
+
+#ifndef __AURORA_ACPARAM_GUI__
+#define __AURORA_ACPARAM_GUI__
+
+#include <wxcmn.h>
+
+#include <wx/clipbrd.h>
+#include <wx/statline.h>
+#include <wx/textfile.h>
+
+
+#ifndef __STAND_ALONE__
+   #include "acpar.h"
+#else
+   #include "acparsa.h"
+#endif
+
+#include "dialogs.h"
+#include "exports.h"
+#include "plot.h"
+#include "module.h"
+
+//----------------------------------------------------------------------------
+// AcParametersDialog
+//----------------------------------------------------------------------------
+class AcParametersDialog: public AcParDlg 
+{ 
+   private:
+	  EffectAcParameters* m_pEap;
+      AcParameters* m_pAp;
+
+      wxStaticBitmap *m_pwxbmpAuroraLogo,
+                     *m_pwxbmpLogo;
+
+      AcParametersExports*  m_pExportData;
+
+   protected:
+      // handlers
+      void OnCloseDialog      (wxCloseEvent& event);
+
+      // --- Checkbox events ---
+      void OnNoiseCorrCheck(wxCommandEvent & event);
+      void OnEDTCheck(wxCommandEvent & event);
+      void OnComputeStageParamCheck(wxCommandEvent & event);
+      void OnAvgModeCheck(wxCommandEvent & event);
+      void OnAppendResultsToFile(wxCommandEvent & event);
+
+      // --- TextCtl events ---
+      void OnEditRevTimeMinExtreme(wxCommandEvent & event);
+      void OnEditRevTimeMaxExtreme(wxCommandEvent & event);
+      void OnEditDirSoundTrigValue(wxCommandEvent & event);
+      void OnEditPeakSPLValue(wxCommandEvent & event);
+      void OnEditProbeMicDist(wxCommandEvent & event);
+      void OnEditCValue(wxCommandEvent & event);
+      void OnEditAppendFileName(wxCommandEvent & event) ;
+
+      // --- Radiobuttons event ---
+      void OnOmniMicClick(wxCommandEvent & event);
+      void OnSoundfieldClick(wxCommandEvent & event);
+      void OnPUProbeClick(wxCommandEvent & event);
+      void OnIntensityProbeClick(wxCommandEvent & event);
+      void OnBinauralClick(wxCommandEvent & event);
+      void On4ChModeOmniRadio( wxCommandEvent& event );
+      void On4ChModeSoundfieldWXYZRadio( wxCommandEvent& event );
+      void On4ChModeSoundfieldWYXZRadio( wxCommandEvent& event );
+        
+      // --- Choice events ---
+      void OnIACCChoice(wxCommandEvent & event);
+
+      // --- Buttons events
+      void OnOpenFile(wxCommandEvent & event);
+      void OnOk(wxCommandEvent & event);
+      void OnCancel(wxCommandEvent & event);
+
+      // -- Utilities ---
+      void StereoModeCtl(int mode);
+
+public:
+      // constructors and destructors 
+      AcParametersDialog(wxWindow* pParent,
+                         EffectAcParameters* pEap,
+    		             AcParameters* pAp,
+                         AcParametersExports* pExportData);
+};
+
+
+
+
+//----------------------------------------------------------------------------
+// AcParametersShow
+//----------------------------------------------------------------------------
+class AcParametersShowDialog : public AcParShowDlg
+{
+ 
+ protected:
+    enum { 
+        ID_COPY_SELECTION_MENU = 0x2000 
+    };
+   
+ private:
+
+   wxWindow  *mParent;
+   wxMenu    *mContextMenu;
+   APDecayPlot* m_pDecayPlot;
+   APBarPlot*   m_pBarPlot;
+   
+   EffectAcParameters* m_pEap;
+   AcParameters*       m_pAp; // To be removed
+   
+   // Data sources
+   TArrayOfAPAudioTracks*         m_paAudioTracks;
+   AcParameters::TSchroederDecay* m_paDecay;
+   AcParameters::TResults*        m_paResults;
+
+   AcParametersExports*           m_pExportData;
+   
+   AFConfig*                      m_pCfg;
+
+   wxStaticBitmap *m_pwxbmpAuroraLogo,
+                  *m_pwxbmpLogo;
+
+   int m_nCurrentChannel,
+       m_nCurrentBand,
+       m_nCurrentParameter;
+
+   bool m_bIsScopeOn;
+
+   void UpdateCellValue(const int nPar, const int nRow, const int nBand, const bool bInit = false);
+   void UpdateParametersValues(const bool init = false);
+   void UpdatePlot(const bool bReplaceData = true);
+   
+   void CreateDecayPlot();
+   void CreateBarPlot();
+   void SetupDecayPlot();
+   void SetupBarPlot();
+
+   // --- Events handlers
+   void OnCloseDialog       (wxCloseEvent& event);
+   void OnClose             (wxCommandEvent & event);
+   void OnHelp              (wxCommandEvent & event);
+   void OnOk                (wxCommandEvent & event);
+   void OnSetupButton       (wxCommandEvent& event);
+   void OnSaveResults       (wxCommandEvent & event);
+   void OnCopyResults       (wxCommandEvent & event);
+   void OnCopySelection     (wxCommandEvent & event);
+   void OnStoreGRefSig      (wxCommandEvent & event);
+   void OnChannelListSelect ( wxCommandEvent& event );
+   void OnGridCellRightClick( wxGridEvent& event );
+   void OnGraphChange       ( wxGridEvent& event );
+   void OnGridLabelDoubleClick( wxGridEvent& event );
+   void OnChar              (wxKeyEvent &event);
+
+   void PromptSetupDialog();
+   void StoreGeometry();
+   void RestoreGeometry();
+   void Init();
+
+  public:
+   // --- ctors    
+   AcParametersShowDialog(wxWindow* pParent,
+		                  EffectAcParameters* pEap,
+		                  AcParameters* pAp,
+		                  AcParametersExports* pExportData,
+		                  AFConfig* pCfg);
+   ~AcParametersShowDialog();
+};
+
+//----------------------------------------------------------------------------
+// StoreGValueDialog
+//----------------------------------------------------------------------------
+class StoreGValueDialog : public GStoreDlg
+{
+private: 
+   AcParameters* m_pAp;
+   double mDist;
+   
+protected:
+    // Handlers for GStoreDlg events.
+    void OnCloseDialog      (wxCloseEvent& event);
+    void OnEditDistanceField( wxCommandEvent& event );
+    void OnRestoreDefaults  ( wxCommandEvent& event );
+    void OnOK               ( wxCommandEvent& event );
+    void OnCancel           ( wxCommandEvent& event );
+    
+public:
+    /** Constructor */
+    StoreGValueDialog( AcParameters *ap, 
+                       wxWindow* parent );
+};
+
+
+#endif // __AURORA_ACPARAM_GUI__
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283

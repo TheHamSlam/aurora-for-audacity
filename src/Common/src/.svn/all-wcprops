@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/repos/aurora/!svn/ver/1/src/Common/src
+END
+gpfuncts.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Common/src/gpfuncts.h
+END
+trsel.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/aurora/!svn/ver/1/src/Common/src/trsel.h
+END
+afcharts.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Common/src/afcharts.h
+END
+afart.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/aurora/!svn/ver/1/src/Common/src/afart.h
+END
+gtprogind.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Common/src/gtprogind.h
+END
+SConscript
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Common/src/SConscript
+END
+afaudio.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Common/src/afaudio.cpp
+END
+afvector.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/Common/src/afvector.cpp
+END
+afexports.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/Common/src/afexports.cpp
+END
+afaxis.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Common/src/afaxis.cpp
+END
+afconfig.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/Common/src/afconfig.cpp
+END
+afaudio.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Common/src/afaudio.h
+END
+afcomplex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/Common/src/afcomplex.cpp
+END
+afvector.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Common/src/afvector.h
+END
+afexports.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Common/src/afexports.h
+END
+afaxis.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/Common/src/afaxis.h
+END
+afconfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Common/src/afconfig.h
+END
+arrows.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/Common/src/arrows.h
+END
+afcomplex.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Common/src/afcomplex.h
+END
+afdataplot.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/Common/src/afdataplot.h
+END
+afdata.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/Common/src/afdata.h
+END
+afplot.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Common/src/afplot.cpp
+END
+afscope.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Common/src/afscope.h
+END
+gpfuncts.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/Common/src/gpfuncts.cpp
+END
+trsel.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Common/src/trsel.cpp
+END
+afplot.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/Common/src/afplot.h
+END
+stickers.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Common/src/stickers.h
+END
+afart.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Common/src/afart.cpp
+END
+gtprogind.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/Common/src/gtprogind.cpp
+END

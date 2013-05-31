@@ -1,0 +1,218 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations
+                       plugin collection
+
+  Common Libraries
+
+  afaxis.h
+
+  Simone Campanini
+
+**********************************************************************/
+
+#ifndef __AURORA_AFAXIS_H__
+#define __AURORA_AFAXIS_H__
+
+#include <commdefs.h>
+
+#ifndef __STAND_ALONE__
+   #include <widgets/Ruler.h>
+#endif
+
+#ifdef __WXOSX__
+   #define AXIS_TITLE_FONT_SIZE  10
+   #define RULER_FONT_SIZE 10
+#elif defined __WXMSW__
+   #define PLOT_TITLE_FONT_SIZE  10
+   #define AXIS_TITLE_FONT_SIZE   8
+   #define RULER_FONT_SIZE  8
+#else
+// In GTK a smaller font looks better..
+   #define AXIS_TITLE_FONT_SIZE  6
+   #define RULER_FONT_SIZE 6
+#endif
+
+class AFPlotBase;
+
+//----------------------------------------------------------------------------
+// AFAxisBase
+//----------------------------------------------------------------------------
+
+class AFAxisBase
+{
+  public:
+	enum { RF_HORIZONTAL = wxHORIZONTAL,
+		   RF_VERTICAL   = wxVERTICAL };
+
+	// Rulers setup
+	enum { RF_INT        = Ruler::IntFormat,
+	       RF_REAL       = Ruler::RealFormat,
+	       RF_REALLOG    = Ruler::RealLogFormat,
+	       RF_TIME       = Ruler::TimeFormat,
+	       RF_LINEARdB   = Ruler::LinearDBFormat/*,
+	       RF_CATEGORIES*/
+	     };
+
+  protected:
+	Ruler *m_pRuler;
+
+    int    m_nOrientation;
+
+    wxRect m_wxrectAxisBox,
+           m_wxrectRulerBox;
+
+    int  m_nRulerFormat;
+
+    struct { bool    bShow;
+             int     nLenght;
+             wxPoint wxptOfs; } m_Grid;
+
+    struct { bool     bShow;
+             wxString wxszLabel;
+             wxFont   wxfntFont;
+             wxPoint  wxptPos; } m_Title;
+
+    wxString m_wxszName,
+             m_wxszMeasureUnit;
+
+    wxFont   m_wxfntMajor,
+             m_wxfntMinor,
+             m_wxfntMinorMinor;
+
+  public:
+    Ruler* GetRuler() { return m_pRuler; }
+
+    virtual bool IsCategories() { return false; }
+
+    bool IsTitleOn()  const { return m_Title.bShow; }
+    void ShowTitle(const bool bValue = true) { m_Title.bShow = bValue; }
+    void ToggleTitle()                       { m_Title.bShow = !m_Title.bShow; }
+
+    void SetTitle(const wxString& wxszLabel)  { m_Title.wxszLabel = wxszLabel; }
+    void SetTitle(const wxChar* pwxchLabel)   { m_Title.wxszLabel = pwxchLabel; }
+
+    void SetTitleFont(wxFont& wxfntFont)      { m_Title.wxfntFont = wxfntFont; }
+
+    virtual void SetFormat(const int nFormat);
+    int  GetType()   const { return m_nRulerFormat; } // TO BE REMOVED
+    int  GetFormat() const { return m_nRulerFormat; }
+
+    bool IsGridOn()   const { return m_Grid.bShow; }
+    void ShowGrid(const bool bValue = true)   { m_Grid.bShow = bValue; }
+
+    void SetRulerFonts(const wxFont &wxfntMinor, const wxFont &wxfntMajor, const wxFont &wxfntMinorMinor);
+
+    // Sizing methods
+    void  SetBounds(wxDC& dc, wxRect& wxrectBox, int nGridLength = 0);
+    void  SetBounds(wxDC& dc, int nLeft, int nTop, int nRight, int nBottom, int nGridLength = 0);
+
+    wxRect& GetBounds     () { return m_wxrectAxisBox; }
+    wxRect& GetRulerBounds() { return m_wxrectRulerBox; }
+
+    void   GetSize(int& nWidth, int& nHeight);
+    wxSize GetSize();
+
+    int  GetWidth (wxDC& dc);
+    int  GetHeight(wxDC& dc);
+    int  GetWidth () const { return m_wxrectAxisBox.width;  }
+    int  GetHeight() const { return m_wxrectAxisBox.height; }
+
+    wxString& GetName()                   { return m_wxszName; }
+    void SetName(wxString& wxszName)      { m_wxszName = wxszName; }
+    void SetName(const wxChar* pwxchName) { m_wxszName = pwxchName; }
+    
+    wxString& GetMeasureUnit()                 { return m_wxszMeasureUnit; }
+    void SetMeasureUnit(wxString& wxszMu)      { m_wxszMeasureUnit = wxszMu; }
+    void SetMeasureUnit(const wxChar* pwxchMu) { m_wxszMeasureUnit = pwxchMu; }
+
+  protected:
+    void DrawTitles(wxDC& dc);
+    void DrawGrid(wxDC& dc);
+
+  public:
+    virtual void SetPixelRange(const int nMin, const int nMax) {}
+    virtual void GetRange(double& dbMin, double& dbMax) {}
+    virtual void SetRange(const double dbMin, const double dbMax) {}
+
+    virtual void Draw(wxDC& dc);
+
+public:
+	AFAxisBase(const int nOrientation = RF_HORIZONTAL);
+	~AFAxisBase();
+
+};
+
+//----------------------------------------------------------------------------
+// AFAxis
+//----------------------------------------------------------------------------
+class AFAxis : public AFAxisBase
+{
+  protected:
+
+    double m_dbMin,
+           m_dbMax;
+    bool   m_bIsLog;
+
+  private:
+    void Update();
+
+  public:
+    void SetPixelRange(const int nMin, const int nMax);
+    void SetRange(const double dbMin, const double dbMax);
+    void SetRange(const double dbMin, const double dbMax, const int nFormat, const bool bIsLog = false);
+    void GetRange(double& dbMin, double& dbMax) { dbMin = m_dbMin, dbMax = m_dbMax; }
+    double& GetMin() { return m_dbMin; }
+    double& GetMax() { return m_dbMax; }
+
+    bool IsLog() const { return m_bIsLog; }
+    void SetLog(const bool bValue);
+
+    void Draw(wxDC& dc);
+
+	AFAxis(const int nOrientation = RF_HORIZONTAL);
+};
+
+//----------------------------------------------------------------------------
+// AFCategoriesAxis
+//----------------------------------------------------------------------------
+class AFCategoriesAxis : public AFAxisBase
+{
+  protected:
+    struct {wxArrayString awxszLabels;
+    	    int           nCount;
+            int           nStart;
+            int           nStep; } m_Categories;
+
+  public:
+    bool IsCategories() { return true; }
+    void SetFormat(const int nFormat) {} // empty: in this class you cannot set format!
+
+    void AddCategories(const wxChar* apwxchCat[], const size_t unCount);
+    void AddCategories(const wxArrayString& awxszCat);
+
+    int GetCategoriesCount() const { return m_Categories.nCount; }
+    int GetCategoriesStart() const { return m_Categories.nStart; }
+    int GetCategoriesStep () const { return m_Categories.nStep; }
+
+    virtual void Draw(wxDC& dc);
+
+	AFCategoriesAxis(); // This can be only horizontal
+	~AFCategoriesAxis();
+};
+
+
+
+
+#endif /* __AURORA_AFAXIS_H__ */
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283

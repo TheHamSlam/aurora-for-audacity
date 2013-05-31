@@ -1,0 +1,2760 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2AAC0B105546B7500DB518D /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB77AAFE841565C02AAC07 /* Carbon.framework */; };
+		FC323F821492909D00F0A662 /* stickers.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F811492909D00F0A662 /* stickers.h */; };
+		FC323F831492909D00F0A662 /* stickers.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F811492909D00F0A662 /* stickers.h */; };
+		FC323F841492909D00F0A662 /* stickers.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F811492909D00F0A662 /* stickers.h */; };
+		FC323F851492909D00F0A662 /* stickers.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F811492909D00F0A662 /* stickers.h */; };
+		FC323F861492909D00F0A662 /* stickers.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F811492909D00F0A662 /* stickers.h */; };
+		FC323F871492909D00F0A662 /* stickers.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F811492909D00F0A662 /* stickers.h */; };
+		FC323F881492909D00F0A662 /* stickers.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F811492909D00F0A662 /* stickers.h */; };
+		FC323F8A149290B300F0A662 /* wxcmn.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F89149290B300F0A662 /* wxcmn.h */; };
+		FC323F8B149290B300F0A662 /* wxcmn.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F89149290B300F0A662 /* wxcmn.h */; };
+		FC323F8C149290B300F0A662 /* wxcmn.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F89149290B300F0A662 /* wxcmn.h */; };
+		FC323F8D149290B300F0A662 /* wxcmn.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F89149290B300F0A662 /* wxcmn.h */; };
+		FC323F8E149290B300F0A662 /* wxcmn.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F89149290B300F0A662 /* wxcmn.h */; };
+		FC323F8F149290B300F0A662 /* wxcmn.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F89149290B300F0A662 /* wxcmn.h */; };
+		FC323F90149290B300F0A662 /* wxcmn.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F89149290B300F0A662 /* wxcmn.h */; };
+		FC323F92149290C800F0A662 /* afart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC323F91149290C800F0A662 /* afart.cpp */; };
+		FC323F93149290C800F0A662 /* afart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC323F91149290C800F0A662 /* afart.cpp */; };
+		FC323F94149290C800F0A662 /* afart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC323F91149290C800F0A662 /* afart.cpp */; };
+		FC323F95149290C800F0A662 /* afart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC323F91149290C800F0A662 /* afart.cpp */; };
+		FC323F96149290C800F0A662 /* afart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC323F91149290C800F0A662 /* afart.cpp */; };
+		FC323F97149290C800F0A662 /* afart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC323F91149290C800F0A662 /* afart.cpp */; };
+		FC323F98149290C800F0A662 /* afart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC323F91149290C800F0A662 /* afart.cpp */; };
+		FC323F9A149290F100F0A662 /* afart.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F99149290F100F0A662 /* afart.h */; };
+		FC323F9B149290F100F0A662 /* afart.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F99149290F100F0A662 /* afart.h */; };
+		FC323F9C149290F100F0A662 /* afart.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F99149290F100F0A662 /* afart.h */; };
+		FC323F9D149290F100F0A662 /* afart.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F99149290F100F0A662 /* afart.h */; };
+		FC323F9E149290F100F0A662 /* afart.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F99149290F100F0A662 /* afart.h */; };
+		FC323F9F149290F100F0A662 /* afart.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F99149290F100F0A662 /* afart.h */; };
+		FC323FA0149290F100F0A662 /* afart.h in Headers */ = {isa = PBXBuildFile; fileRef = FC323F99149290F100F0A662 /* afart.h */; };
+		FC33D2CB14CDC84B00CB3867 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC33D2CA14CDC84B00CB3867 /* track.cpp */; };
+		FC33D2CE14CDC86100CB3867 /* track.h in Headers */ = {isa = PBXBuildFile; fileRef = FC33D2CC14CDC86100CB3867 /* track.h */; };
+		FC33D2CF14CDC86100CB3867 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = FC33D2CD14CDC86100CB3867 /* version.h */; };
+		FC33D32714CEADD000CB3867 /* progdlgg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC33D32614CEADD000CB3867 /* progdlgg.cpp */; };
+		FC33D32814CEADD000CB3867 /* progdlgg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC33D32614CEADD000CB3867 /* progdlgg.cpp */; };
+		FC33D32914CEADD000CB3867 /* progdlgg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC33D32614CEADD000CB3867 /* progdlgg.cpp */; };
+		FC33D32A14CEADD000CB3867 /* progdlgg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC33D32614CEADD000CB3867 /* progdlgg.cpp */; };
+		FC33D32B14CEADD000CB3867 /* progdlgg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC33D32614CEADD000CB3867 /* progdlgg.cpp */; };
+		FC33D32C14CEADD000CB3867 /* progdlgg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC33D32614CEADD000CB3867 /* progdlgg.cpp */; };
+		FC33D32D14CEADD000CB3867 /* progdlgg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC33D32614CEADD000CB3867 /* progdlgg.cpp */; };
+		FC40A0D0151B1B7B003F1B6C /* LoadModules.h in Headers */ = {isa = PBXBuildFile; fileRef = FC40A0CF151B1B7B003F1B6C /* LoadModules.h */; };
+		FC40A0D1151B1B7B003F1B6C /* LoadModules.h in Headers */ = {isa = PBXBuildFile; fileRef = FC40A0CF151B1B7B003F1B6C /* LoadModules.h */; };
+		FC40A0D2151B1B7B003F1B6C /* LoadModules.h in Headers */ = {isa = PBXBuildFile; fileRef = FC40A0CF151B1B7B003F1B6C /* LoadModules.h */; };
+		FC40A0D3151B1B7B003F1B6C /* LoadModules.h in Headers */ = {isa = PBXBuildFile; fileRef = FC40A0CF151B1B7B003F1B6C /* LoadModules.h */; };
+		FC40A0D4151B1B7B003F1B6C /* LoadModules.h in Headers */ = {isa = PBXBuildFile; fileRef = FC40A0CF151B1B7B003F1B6C /* LoadModules.h */; };
+		FC40A0D5151B1B7B003F1B6C /* LoadModules.h in Headers */ = {isa = PBXBuildFile; fileRef = FC40A0CF151B1B7B003F1B6C /* LoadModules.h */; };
+		FC40A0D6151B1B7B003F1B6C /* LoadModules.h in Headers */ = {isa = PBXBuildFile; fileRef = FC40A0CF151B1B7B003F1B6C /* LoadModules.h */; };
+		FC41B56A1462DF0A00C244C4 /* afdata.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5691462DF0A00C244C4 /* afdata.h */; };
+		FC41B56B1462DF0A00C244C4 /* afdata.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5691462DF0A00C244C4 /* afdata.h */; };
+		FC41B56C1462DF0A00C244C4 /* afdata.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5691462DF0A00C244C4 /* afdata.h */; };
+		FC41B56D1462DF0A00C244C4 /* afdata.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5691462DF0A00C244C4 /* afdata.h */; };
+		FC41B56E1462DF0A00C244C4 /* afdata.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5691462DF0A00C244C4 /* afdata.h */; };
+		FC41B56F1462DF0A00C244C4 /* afdata.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5691462DF0A00C244C4 /* afdata.h */; };
+		FC41B5701462DF0A00C244C4 /* afdata.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5691462DF0A00C244C4 /* afdata.h */; };
+		FC41B5721462DF2700C244C4 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC41B5711462DF2700C244C4 /* data.cpp */; };
+		FC41B5741462DF3800C244C4 /* data.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5731462DF3800C244C4 /* data.h */; };
+		FC41B5761462DF5100C244C4 /* data.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5751462DF5100C244C4 /* data.h */; };
+		FC41B5781462DF6000C244C4 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC41B5771462DF6000C244C4 /* data.cpp */; };
+		FC41B57A1462DF7A00C244C4 /* data.h in Headers */ = {isa = PBXBuildFile; fileRef = FC41B5791462DF7A00C244C4 /* data.h */; };
+		FC41B57C1462DF8E00C244C4 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC41B57B1462DF8E00C244C4 /* data.cpp */; };
+		FC5AE3B7143DB76C00AA006F /* acpar.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3AF143DB76C00AA006F /* acpar.h */; };
+		FC5AE3B8143DB76C00AA006F /* afacpar.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3B0143DB76C00AA006F /* afacpar.h */; };
+		FC5AE3B9143DB76C00AA006F /* dialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3B1143DB76C00AA006F /* dialogs.h */; };
+		FC5AE3BA143DB76C00AA006F /* exports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3B2143DB76C00AA006F /* exports.h */; };
+		FC5AE3BB143DB76C00AA006F /* gui.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3B3143DB76C00AA006F /* gui.h */; };
+		FC5AE3BC143DB76C00AA006F /* module.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3B4143DB76C00AA006F /* module.h */; };
+		FC5AE3BD143DB76C00AA006F /* plot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3B5143DB76C00AA006F /* plot.h */; };
+		FC5AE3BE143DB76C00AA006F /* sizes.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3B6143DB76C00AA006F /* sizes.h */; };
+		FC5AE3C6143DB83100AA006F /* acpar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE3BF143DB83100AA006F /* acpar.cpp */; };
+		FC5AE3C7143DB83100AA006F /* afacpar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE3C0143DB83100AA006F /* afacpar.cpp */; };
+		FC5AE3C8143DB83100AA006F /* dialogs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE3C1143DB83100AA006F /* dialogs.cpp */; };
+		FC5AE3C9143DB83100AA006F /* exports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE3C2143DB83100AA006F /* exports.cpp */; };
+		FC5AE3CA143DB83100AA006F /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE3C3143DB83100AA006F /* gui.cpp */; };
+		FC5AE3CB143DB83100AA006F /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE3C4143DB83100AA006F /* module.cpp */; };
+		FC5AE3CC143DB83100AA006F /* plot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE3C5143DB83100AA006F /* plot.cpp */; };
+		FC5AE3D6143DB87900AA006F /* afaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CD143DB87900AA006F /* afaudio.h */; };
+		FC5AE3D8143DB87900AA006F /* afconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CF143DB87900AA006F /* afconfig.h */; };
+		FC5AE3D9143DB87900AA006F /* afexports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D0143DB87900AA006F /* afexports.h */; };
+		FC5AE3DA143DB87900AA006F /* afplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D1143DB87900AA006F /* afplot.h */; };
+		FC5AE3DC143DB87900AA006F /* gpfuncts.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D3143DB87900AA006F /* gpfuncts.h */; };
+		FC5AE3DF143DB87900AA006F /* afaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CD143DB87900AA006F /* afaudio.h */; };
+		FC5AE3E1143DB87900AA006F /* afconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CF143DB87900AA006F /* afconfig.h */; };
+		FC5AE3E2143DB87900AA006F /* afexports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D0143DB87900AA006F /* afexports.h */; };
+		FC5AE3E3143DB87900AA006F /* afplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D1143DB87900AA006F /* afplot.h */; };
+		FC5AE3E5143DB87900AA006F /* gpfuncts.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D3143DB87900AA006F /* gpfuncts.h */; };
+		FC5AE3E6143DB87900AA006F /* gtprogind.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D4143DB87900AA006F /* gtprogind.h */; };
+		FC5AE3E8143DB87900AA006F /* afaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CD143DB87900AA006F /* afaudio.h */; };
+		FC5AE3EA143DB87900AA006F /* afconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CF143DB87900AA006F /* afconfig.h */; };
+		FC5AE3EB143DB87900AA006F /* afexports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D0143DB87900AA006F /* afexports.h */; };
+		FC5AE3EC143DB87900AA006F /* afplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D1143DB87900AA006F /* afplot.h */; };
+		FC5AE3EE143DB87900AA006F /* gpfuncts.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D3143DB87900AA006F /* gpfuncts.h */; };
+		FC5AE3F1143DB87900AA006F /* afaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CD143DB87900AA006F /* afaudio.h */; };
+		FC5AE3F3143DB87900AA006F /* afconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CF143DB87900AA006F /* afconfig.h */; };
+		FC5AE3F4143DB87900AA006F /* afexports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D0143DB87900AA006F /* afexports.h */; };
+		FC5AE3F5143DB87900AA006F /* afplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D1143DB87900AA006F /* afplot.h */; };
+		FC5AE3F7143DB87900AA006F /* gpfuncts.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D3143DB87900AA006F /* gpfuncts.h */; };
+		FC5AE3FA143DB87900AA006F /* afaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CD143DB87900AA006F /* afaudio.h */; };
+		FC5AE3FB143DB87900AA006F /* afcomplex.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CE143DB87900AA006F /* afcomplex.h */; };
+		FC5AE3FC143DB87900AA006F /* afconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CF143DB87900AA006F /* afconfig.h */; };
+		FC5AE3FD143DB87900AA006F /* afexports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D0143DB87900AA006F /* afexports.h */; };
+		FC5AE3FE143DB87900AA006F /* afplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D1143DB87900AA006F /* afplot.h */; };
+		FC5AE3FF143DB87900AA006F /* afvector.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D2143DB87900AA006F /* afvector.h */; };
+		FC5AE400143DB87900AA006F /* gpfuncts.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D3143DB87900AA006F /* gpfuncts.h */; };
+		FC5AE403143DB87900AA006F /* afaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CD143DB87900AA006F /* afaudio.h */; };
+		FC5AE405143DB87900AA006F /* afconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CF143DB87900AA006F /* afconfig.h */; };
+		FC5AE406143DB87900AA006F /* afexports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D0143DB87900AA006F /* afexports.h */; };
+		FC5AE407143DB87900AA006F /* afplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D1143DB87900AA006F /* afplot.h */; };
+		FC5AE409143DB87900AA006F /* gpfuncts.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D3143DB87900AA006F /* gpfuncts.h */; };
+		FC5AE40C143DB87900AA006F /* afaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CD143DB87900AA006F /* afaudio.h */; };
+		FC5AE40D143DB87900AA006F /* afcomplex.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CE143DB87900AA006F /* afcomplex.h */; };
+		FC5AE40E143DB87900AA006F /* afconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3CF143DB87900AA006F /* afconfig.h */; };
+		FC5AE40F143DB87900AA006F /* afexports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D0143DB87900AA006F /* afexports.h */; };
+		FC5AE410143DB87900AA006F /* afplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D1143DB87900AA006F /* afplot.h */; };
+		FC5AE411143DB87900AA006F /* afvector.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D2143DB87900AA006F /* afvector.h */; };
+		FC5AE412143DB87900AA006F /* gpfuncts.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D3143DB87900AA006F /* gpfuncts.h */; };
+		FC5AE41E143DB8A300AA006F /* afaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE415143DB8A300AA006F /* afaudio.cpp */; };
+		FC5AE420143DB8A300AA006F /* afconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE417143DB8A300AA006F /* afconfig.cpp */; };
+		FC5AE421143DB8A300AA006F /* afexports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE418143DB8A300AA006F /* afexports.cpp */; };
+		FC5AE422143DB8A300AA006F /* afplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE419143DB8A300AA006F /* afplot.cpp */; };
+		FC5AE424143DB8A300AA006F /* gpfuncts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */; };
+		FC5AE427143DB8A300AA006F /* afaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE415143DB8A300AA006F /* afaudio.cpp */; };
+		FC5AE429143DB8A300AA006F /* afconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE417143DB8A300AA006F /* afconfig.cpp */; };
+		FC5AE42A143DB8A300AA006F /* afexports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE418143DB8A300AA006F /* afexports.cpp */; };
+		FC5AE42B143DB8A300AA006F /* afplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE419143DB8A300AA006F /* afplot.cpp */; };
+		FC5AE42D143DB8A300AA006F /* gpfuncts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */; };
+		FC5AE42E143DB8A300AA006F /* gtprogind.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41C143DB8A300AA006F /* gtprogind.cpp */; };
+		FC5AE430143DB8A300AA006F /* afaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE415143DB8A300AA006F /* afaudio.cpp */; };
+		FC5AE432143DB8A300AA006F /* afconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE417143DB8A300AA006F /* afconfig.cpp */; };
+		FC5AE433143DB8A300AA006F /* afexports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE418143DB8A300AA006F /* afexports.cpp */; };
+		FC5AE434143DB8A300AA006F /* afplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE419143DB8A300AA006F /* afplot.cpp */; };
+		FC5AE436143DB8A300AA006F /* gpfuncts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */; };
+		FC5AE439143DB8A300AA006F /* afaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE415143DB8A300AA006F /* afaudio.cpp */; };
+		FC5AE43B143DB8A300AA006F /* afconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE417143DB8A300AA006F /* afconfig.cpp */; };
+		FC5AE43C143DB8A300AA006F /* afexports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE418143DB8A300AA006F /* afexports.cpp */; };
+		FC5AE43D143DB8A300AA006F /* afplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE419143DB8A300AA006F /* afplot.cpp */; };
+		FC5AE43F143DB8A300AA006F /* gpfuncts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */; };
+		FC5AE442143DB8A300AA006F /* afaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE415143DB8A300AA006F /* afaudio.cpp */; };
+		FC5AE443143DB8A300AA006F /* afcomplex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE416143DB8A300AA006F /* afcomplex.cpp */; };
+		FC5AE444143DB8A300AA006F /* afconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE417143DB8A300AA006F /* afconfig.cpp */; };
+		FC5AE445143DB8A300AA006F /* afexports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE418143DB8A300AA006F /* afexports.cpp */; };
+		FC5AE446143DB8A300AA006F /* afplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE419143DB8A300AA006F /* afplot.cpp */; };
+		FC5AE447143DB8A300AA006F /* afvector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41A143DB8A300AA006F /* afvector.cpp */; };
+		FC5AE448143DB8A300AA006F /* gpfuncts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */; };
+		FC5AE44B143DB8A300AA006F /* afaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE415143DB8A300AA006F /* afaudio.cpp */; };
+		FC5AE44D143DB8A300AA006F /* afconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE417143DB8A300AA006F /* afconfig.cpp */; };
+		FC5AE44E143DB8A300AA006F /* afexports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE418143DB8A300AA006F /* afexports.cpp */; };
+		FC5AE44F143DB8A300AA006F /* afplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE419143DB8A300AA006F /* afplot.cpp */; };
+		FC5AE451143DB8A300AA006F /* gpfuncts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */; };
+		FC5AE454143DB8A300AA006F /* afaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE415143DB8A300AA006F /* afaudio.cpp */; };
+		FC5AE455143DB8A300AA006F /* afcomplex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE416143DB8A300AA006F /* afcomplex.cpp */; };
+		FC5AE456143DB8A300AA006F /* afconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE417143DB8A300AA006F /* afconfig.cpp */; };
+		FC5AE457143DB8A300AA006F /* afexports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE418143DB8A300AA006F /* afexports.cpp */; };
+		FC5AE458143DB8A300AA006F /* afplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE419143DB8A300AA006F /* afplot.cpp */; };
+		FC5AE459143DB8A300AA006F /* afvector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41A143DB8A300AA006F /* afvector.cpp */; };
+		FC5AE45A143DB8A300AA006F /* gpfuncts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */; };
+		FC5AE467143DB95A00AA006F /* auconv.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE45F143DB95A00AA006F /* auconv.h */; };
+		FC5AE468143DB95A00AA006F /* convolver.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE460143DB95A00AA006F /* convolver.h */; };
+		FC5AE469143DB95A00AA006F /* dialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE461143DB95A00AA006F /* dialogs.h */; };
+		FC5AE46A143DB95A00AA006F /* gui.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE462143DB95A00AA006F /* gui.h */; };
+		FC5AE46B143DB95A00AA006F /* module.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE463143DB95A00AA006F /* module.h */; };
+		FC5AE46C143DB95A00AA006F /* multivolver.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE464143DB95A00AA006F /* multivolver.h */; };
+		FC5AE46D143DB95A00AA006F /* plot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE465143DB95A00AA006F /* plot.h */; };
+		FC5AE46E143DB95A00AA006F /* trprop.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE466143DB95A00AA006F /* trprop.h */; };
+		FC5AE477143DB98500AA006F /* auconv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE46F143DB98500AA006F /* auconv.cpp */; };
+		FC5AE478143DB98500AA006F /* convolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE470143DB98500AA006F /* convolver.cpp */; };
+		FC5AE479143DB98500AA006F /* dialogs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE471143DB98500AA006F /* dialogs.cpp */; };
+		FC5AE47A143DB98500AA006F /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE472143DB98500AA006F /* gui.cpp */; };
+		FC5AE47B143DB98500AA006F /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE473143DB98500AA006F /* module.cpp */; };
+		FC5AE47C143DB98500AA006F /* multivolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE474143DB98500AA006F /* multivolver.cpp */; };
+		FC5AE47D143DB98500AA006F /* plot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE475143DB98500AA006F /* plot.cpp */; };
+		FC5AE47E143DB98500AA006F /* trprop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE476143DB98500AA006F /* trprop.cpp */; };
+		FC5AE487143DB9C400AA006F /* afcpxmatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE47F143DB9C400AA006F /* afcpxmatrix.h */; };
+		FC5AE488143DB9C400AA006F /* afkirk.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE480143DB9C400AA006F /* afkirk.h */; };
+		FC5AE489143DB9C400AA006F /* afktrack.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE481143DB9C400AA006F /* afktrack.h */; };
+		FC5AE48A143DB9C400AA006F /* afmatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE482143DB9C400AA006F /* afmatrix.h */; };
+		FC5AE48B143DB9C400AA006F /* dialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE483143DB9C400AA006F /* dialogs.h */; };
+		FC5AE48C143DB9C400AA006F /* gui.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE484143DB9C400AA006F /* gui.h */; };
+		FC5AE48D143DB9C400AA006F /* kirk.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE485143DB9C400AA006F /* kirk.h */; };
+		FC5AE48E143DB9C400AA006F /* module.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE486143DB9C400AA006F /* module.h */; };
+		FC5AE495143DB9DE00AA006F /* afkirk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE48F143DB9DE00AA006F /* afkirk.cpp */; };
+		FC5AE496143DB9DE00AA006F /* afktrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE490143DB9DE00AA006F /* afktrack.cpp */; };
+		FC5AE497143DB9DE00AA006F /* dialogs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE491143DB9DE00AA006F /* dialogs.cpp */; };
+		FC5AE498143DB9DE00AA006F /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE492143DB9DE00AA006F /* gui.cpp */; };
+		FC5AE499143DB9DE00AA006F /* kirk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE493143DB9DE00AA006F /* kirk.cpp */; };
+		FC5AE49A143DB9DE00AA006F /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE494143DB9DE00AA006F /* module.cpp */; };
+		FC5AE49F143DBA0A00AA006F /* dialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE49B143DBA0A00AA006F /* dialogs.h */; };
+		FC5AE4A0143DBA0A00AA006F /* gui.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE49C143DBA0A00AA006F /* gui.h */; };
+		FC5AE4A1143DBA0A00AA006F /* module.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE49D143DBA0A00AA006F /* module.h */; };
+		FC5AE4A2143DBA0A00AA006F /* sswgen.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE49E143DBA0A00AA006F /* sswgen.h */; };
+		FC5AE4A7143DBA1F00AA006F /* dialogs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4A3143DBA1F00AA006F /* dialogs.cpp */; };
+		FC5AE4A8143DBA1F00AA006F /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4A4143DBA1F00AA006F /* gui.cpp */; };
+		FC5AE4A9143DBA1F00AA006F /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4A5143DBA1F00AA006F /* module.cpp */; };
+		FC5AE4AA143DBA1F00AA006F /* sswgen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4A6143DBA1F00AA006F /* sswgen.cpp */; };
+		FC5AE4E0143DBAC400AA006F /* afthan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4D9143DBAC400AA006F /* afthan.cpp */; };
+		FC5AE4E1143DBAC400AA006F /* dialogs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4DA143DBAC400AA006F /* dialogs.cpp */; };
+		FC5AE4E2143DBAC400AA006F /* exports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4DB143DBAC400AA006F /* exports.cpp */; };
+		FC5AE4E3143DBAC400AA006F /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4DC143DBAC400AA006F /* gui.cpp */; };
+		FC5AE4E4143DBAC400AA006F /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4DD143DBAC400AA006F /* module.cpp */; };
+		FC5AE4E5143DBAC400AA006F /* plot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4DE143DBAC400AA006F /* plot.cpp */; };
+		FC5AE4E6143DBAC400AA006F /* than.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE4DF143DBAC400AA006F /* than.cpp */; };
+		FC5AE4EE143DBADC00AA006F /* afthan.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4E7143DBADC00AA006F /* afthan.h */; };
+		FC5AE4EF143DBADC00AA006F /* dialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4E8143DBADC00AA006F /* dialogs.h */; };
+		FC5AE4F0143DBADC00AA006F /* exports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4E9143DBADC00AA006F /* exports.h */; };
+		FC5AE4F1143DBADC00AA006F /* gui.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4EA143DBADC00AA006F /* gui.h */; };
+		FC5AE4F2143DBADC00AA006F /* module.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4EB143DBADC00AA006F /* module.h */; };
+		FC5AE4F3143DBADC00AA006F /* plot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4EC143DBADC00AA006F /* plot.h */; };
+		FC5AE4F4143DBADC00AA006F /* than.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4ED143DBADC00AA006F /* than.h */; };
+		FC5AE4FE143DBB2600AA006F /* art.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4F5143DBB2600AA006F /* art.h */; };
+		FC5AE4FF143DBB2600AA006F /* correlator.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4F6143DBB2600AA006F /* correlator.h */; };
+		FC5AE500143DBB2600AA006F /* dialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4F7143DBB2600AA006F /* dialogs.h */; };
+		FC5AE501143DBB2600AA006F /* equations.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4F8143DBB2600AA006F /* equations.h */; };
+		FC5AE502143DBB2600AA006F /* exports.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4F9143DBB2600AA006F /* exports.h */; };
+		FC5AE503143DBB2600AA006F /* gui.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4FA143DBB2600AA006F /* gui.h */; };
+		FC5AE504143DBB2600AA006F /* module.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4FB143DBB2600AA006F /* module.h */; };
+		FC5AE505143DBB2600AA006F /* plot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4FC143DBB2600AA006F /* plot.h */; };
+		FC5AE506143DBB2600AA006F /* xfn.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE4FD143DBB2600AA006F /* xfn.h */; };
+		FC5AE50F143DBB4400AA006F /* art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE507143DBB4400AA006F /* art.cpp */; };
+		FC5AE510143DBB4400AA006F /* correlator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE508143DBB4400AA006F /* correlator.cpp */; };
+		FC5AE511143DBB4400AA006F /* dialogs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE509143DBB4400AA006F /* dialogs.cpp */; };
+		FC5AE512143DBB4400AA006F /* exports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE50A143DBB4400AA006F /* exports.cpp */; };
+		FC5AE513143DBB4400AA006F /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE50B143DBB4400AA006F /* gui.cpp */; };
+		FC5AE514143DBB4400AA006F /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE50C143DBB4400AA006F /* module.cpp */; };
+		FC5AE515143DBB4400AA006F /* plot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE50D143DBB4400AA006F /* plot.cpp */; };
+		FC5AE516143DBB4400AA006F /* xfn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE50E143DBB4400AA006F /* xfn.cpp */; };
+		FC5AE527143DBCDD00AA006F /* dialogs.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE51E143DBCDD00AA006F /* dialogs.h */; };
+		FC5AE528143DBCDD00AA006F /* gui.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE51F143DBCDD00AA006F /* gui.h */; };
+		FC5AE529143DBCDD00AA006F /* module.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE520143DBCDD00AA006F /* module.h */; };
+		FC5AE52A143DBCDD00AA006F /* plot.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE521143DBCDD00AA006F /* plot.h */; };
+		FC5AE52C143DBCDD00AA006F /* spectrum.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE523143DBCDD00AA006F /* spectrum.h */; };
+		FC5AE52D143DBCDD00AA006F /* spframe.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE524143DBCDD00AA006F /* spframe.h */; };
+		FC5AE52E143DBCDD00AA006F /* sti.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE525143DBCDD00AA006F /* sti.h */; };
+		FC5AE52F143DBCDD00AA006F /* track.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE526143DBCDD00AA006F /* track.h */; };
+		FC5AE539143DBCF500AA006F /* dialogs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE530143DBCF500AA006F /* dialogs.cpp */; };
+		FC5AE53A143DBCF500AA006F /* gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE531143DBCF500AA006F /* gui.cpp */; };
+		FC5AE53B143DBCF500AA006F /* module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE532143DBCF500AA006F /* module.cpp */; };
+		FC5AE53C143DBCF500AA006F /* plot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE533143DBCF500AA006F /* plot.cpp */; };
+		FC5AE53E143DBCF500AA006F /* spectrum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE535143DBCF500AA006F /* spectrum.cpp */; };
+		FC5AE53F143DBCF500AA006F /* spframe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE536143DBCF500AA006F /* spframe.cpp */; };
+		FC5AE540143DBCF500AA006F /* sti.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE537143DBCF500AA006F /* sti.cpp */; };
+		FC5AE541143DBCF500AA006F /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE538143DBCF500AA006F /* track.cpp */; };
+		FC63FD5514A1DD850001F944 /* splitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC63FD5414A1DD850001F944 /* splitter.cpp */; };
+		FC63FD5614A1DD850001F944 /* splitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC63FD5414A1DD850001F944 /* splitter.cpp */; };
+		FC63FD5714A1DD850001F944 /* splitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC63FD5414A1DD850001F944 /* splitter.cpp */; };
+		FC63FD5814A1DD850001F944 /* splitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC63FD5414A1DD850001F944 /* splitter.cpp */; };
+		FCB4FAD714442D32000BC441 /* exports.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAD614442D32000BC441 /* exports.h */; };
+		FCB4FAD914442D47000BC441 /* exports.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCB4FAD814442D47000BC441 /* exports.cpp */; };
+		FCB4FB01144483E8000BC441 /* audtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFE144483E8000BC441 /* audtypes.h */; };
+		FCB4FB02144483E8000BC441 /* commdefs.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFF144483E8000BC441 /* commdefs.h */; };
+		FCB4FB03144483E8000BC441 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FB00144483E8000BC441 /* version.h */; };
+		FCB4FB04144483E8000BC441 /* audtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFE144483E8000BC441 /* audtypes.h */; };
+		FCB4FB05144483E8000BC441 /* commdefs.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFF144483E8000BC441 /* commdefs.h */; };
+		FCB4FB06144483E8000BC441 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FB00144483E8000BC441 /* version.h */; };
+		FCB4FB07144483E8000BC441 /* audtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFE144483E8000BC441 /* audtypes.h */; };
+		FCB4FB08144483E8000BC441 /* commdefs.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFF144483E8000BC441 /* commdefs.h */; };
+		FCB4FB09144483E8000BC441 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FB00144483E8000BC441 /* version.h */; };
+		FCB4FB0A144483E8000BC441 /* audtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFE144483E8000BC441 /* audtypes.h */; };
+		FCB4FB0B144483E8000BC441 /* commdefs.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFF144483E8000BC441 /* commdefs.h */; };
+		FCB4FB0C144483E8000BC441 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FB00144483E8000BC441 /* version.h */; };
+		FCB4FB0D144483E8000BC441 /* audtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFE144483E8000BC441 /* audtypes.h */; };
+		FCB4FB0E144483E8000BC441 /* commdefs.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFF144483E8000BC441 /* commdefs.h */; };
+		FCB4FB0F144483E8000BC441 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FB00144483E8000BC441 /* version.h */; };
+		FCB4FB10144483E8000BC441 /* audtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFE144483E8000BC441 /* audtypes.h */; };
+		FCB4FB11144483E8000BC441 /* commdefs.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFF144483E8000BC441 /* commdefs.h */; };
+		FCB4FB12144483E8000BC441 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FB00144483E8000BC441 /* version.h */; };
+		FCB4FB13144483E8000BC441 /* audtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFE144483E8000BC441 /* audtypes.h */; };
+		FCB4FB14144483E8000BC441 /* commdefs.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FAFF144483E8000BC441 /* commdefs.h */; };
+		FCB4FB15144483E8000BC441 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB4FB00144483E8000BC441 /* version.h */; };
+		FCE8E1D814890A66000B432B /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCE8E1D514890A66000B432B /* data.cpp */; };
+		FCE8E1D914890A66000B432B /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCE8E1D614890A66000B432B /* track.cpp */; };
+		FCE8E1DF14890A7F000B432B /* data.h in Headers */ = {isa = PBXBuildFile; fileRef = FCE8E1DB14890A7F000B432B /* data.h */; };
+		FCE8E1E114890A7F000B432B /* track.h in Headers */ = {isa = PBXBuildFile; fileRef = FCE8E1DD14890A7F000B432B /* track.h */; };
+		FCEF4A2814750C6900C5C08F /* afaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2414750C6900C5C08F /* afaxis.h */; };
+		FCEF4A2914750C6900C5C08F /* afcharts.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2514750C6900C5C08F /* afcharts.h */; };
+		FCEF4A2A14750C6900C5C08F /* afdataplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2614750C6900C5C08F /* afdataplot.h */; };
+		FCEF4A2B14750C6900C5C08F /* afscope.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2714750C6900C5C08F /* afscope.h */; };
+		FCEF4A2C14750C6900C5C08F /* afaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2414750C6900C5C08F /* afaxis.h */; };
+		FCEF4A2D14750C6900C5C08F /* afcharts.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2514750C6900C5C08F /* afcharts.h */; };
+		FCEF4A2E14750C6900C5C08F /* afdataplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2614750C6900C5C08F /* afdataplot.h */; };
+		FCEF4A2F14750C6900C5C08F /* afscope.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2714750C6900C5C08F /* afscope.h */; };
+		FCEF4A3014750C6900C5C08F /* afaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2414750C6900C5C08F /* afaxis.h */; };
+		FCEF4A3114750C6900C5C08F /* afcharts.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2514750C6900C5C08F /* afcharts.h */; };
+		FCEF4A3214750C6900C5C08F /* afdataplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2614750C6900C5C08F /* afdataplot.h */; };
+		FCEF4A3314750C6900C5C08F /* afscope.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2714750C6900C5C08F /* afscope.h */; };
+		FCEF4A3414750C6900C5C08F /* afaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2414750C6900C5C08F /* afaxis.h */; };
+		FCEF4A3514750C6900C5C08F /* afcharts.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2514750C6900C5C08F /* afcharts.h */; };
+		FCEF4A3614750C6900C5C08F /* afdataplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2614750C6900C5C08F /* afdataplot.h */; };
+		FCEF4A3714750C6900C5C08F /* afscope.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2714750C6900C5C08F /* afscope.h */; };
+		FCEF4A3814750C6900C5C08F /* afaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2414750C6900C5C08F /* afaxis.h */; };
+		FCEF4A3914750C6900C5C08F /* afcharts.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2514750C6900C5C08F /* afcharts.h */; };
+		FCEF4A3A14750C6900C5C08F /* afdataplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2614750C6900C5C08F /* afdataplot.h */; };
+		FCEF4A3B14750C6900C5C08F /* afscope.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2714750C6900C5C08F /* afscope.h */; };
+		FCEF4A3C14750C6900C5C08F /* afaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2414750C6900C5C08F /* afaxis.h */; };
+		FCEF4A3D14750C6900C5C08F /* afcharts.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2514750C6900C5C08F /* afcharts.h */; };
+		FCEF4A3E14750C6900C5C08F /* afdataplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2614750C6900C5C08F /* afdataplot.h */; };
+		FCEF4A3F14750C6900C5C08F /* afscope.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2714750C6900C5C08F /* afscope.h */; };
+		FCEF4A4014750C6900C5C08F /* afaxis.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2414750C6900C5C08F /* afaxis.h */; };
+		FCEF4A4114750C6900C5C08F /* afcharts.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2514750C6900C5C08F /* afcharts.h */; };
+		FCEF4A4214750C6900C5C08F /* afdataplot.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2614750C6900C5C08F /* afdataplot.h */; };
+		FCEF4A4314750C6900C5C08F /* afscope.h in Headers */ = {isa = PBXBuildFile; fileRef = FCEF4A2714750C6900C5C08F /* afscope.h */; };
+		FCEF4A4514750C7F00C5C08F /* afaxis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF4A4414750C7F00C5C08F /* afaxis.cpp */; };
+		FCEF4A4614750C7F00C5C08F /* afaxis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF4A4414750C7F00C5C08F /* afaxis.cpp */; };
+		FCEF4A4714750C7F00C5C08F /* afaxis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF4A4414750C7F00C5C08F /* afaxis.cpp */; };
+		FCEF4A4814750C7F00C5C08F /* afaxis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF4A4414750C7F00C5C08F /* afaxis.cpp */; };
+		FCEF4A4914750C7F00C5C08F /* afaxis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF4A4414750C7F00C5C08F /* afaxis.cpp */; };
+		FCEF4A4A14750C7F00C5C08F /* afaxis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF4A4414750C7F00C5C08F /* afaxis.cpp */; };
+		FCEF4A4B14750C7F00C5C08F /* afaxis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF4A4414750C7F00C5C08F /* afaxis.cpp */; };
+		FCEF4A6C1475139700C5C08F /* trsel.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5AE3D5143DB87900AA006F /* trsel.h */; };
+		FCEFFB3014162D2C0039BA3A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB77AAFE841565C02AAC07 /* Carbon.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		08FB77AAFE841565C02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		32BAE0B70371A74B00C91783 /* Aurora_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aurora_Prefix.pch; sourceTree = "<group>"; };
+		D2AAC09D05546B4700DB518D /* AcParametersd.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = AcParametersd.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC1D249F142B906A0076FC4E /* Kirkebyd.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Kirkebyd.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC323F811492909D00F0A662 /* stickers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stickers.h; path = ../src/Common/src/stickers.h; sourceTree = SOURCE_ROOT; };
+		FC323F89149290B300F0A662 /* wxcmn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wxcmn.h; path = ../src/Common/include/wxcmn.h; sourceTree = SOURCE_ROOT; };
+		FC323F91149290C800F0A662 /* afart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afart.cpp; path = ../src/Common/src/afart.cpp; sourceTree = SOURCE_ROOT; };
+		FC323F99149290F100F0A662 /* afart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afart.h; path = ../src/Common/src/afart.h; sourceTree = SOURCE_ROOT; };
+		FC33D2CA14CDC84B00CB3867 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = track.cpp; path = ../src/AcParameters/src/track.cpp; sourceTree = SOURCE_ROOT; };
+		FC33D2CC14CDC86100CB3867 /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = track.h; path = ../src/AcParameters/src/track.h; sourceTree = SOURCE_ROOT; };
+		FC33D2CD14CDC86100CB3867 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../src/AcParameters/src/version.h; sourceTree = SOURCE_ROOT; };
+		FC33D32614CEADD000CB3867 /* progdlgg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = progdlgg.cpp; path = ../src/Common/wx/progdlgg.cpp; sourceTree = SOURCE_ROOT; };
+		FC40A0CF151B1B7B003F1B6C /* LoadModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadModules.h; path = "../../audacity-src-2.0.0/src/LoadModules.h"; sourceTree = SOURCE_ROOT; };
+		FC40A0D7151B1BA0003F1B6C /* LoadModules.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadModules.cpp; path = "../../audacity-src-2.0.0/src/LoadModules.cpp"; sourceTree = SOURCE_ROOT; };
+		FC41B5691462DF0A00C244C4 /* afdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afdata.h; path = ../src/Common/src/afdata.h; sourceTree = SOURCE_ROOT; };
+		FC41B5711462DF2700C244C4 /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = data.cpp; path = ../src/AcParameters/src/data.cpp; sourceTree = SOURCE_ROOT; };
+		FC41B5731462DF3800C244C4 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = data.h; path = ../src/AcParameters/src/data.h; sourceTree = SOURCE_ROOT; };
+		FC41B5751462DF5100C244C4 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = data.h; path = ../src/STI/src/data.h; sourceTree = SOURCE_ROOT; };
+		FC41B5771462DF6000C244C4 /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = data.cpp; path = ../src/STI/src/data.cpp; sourceTree = SOURCE_ROOT; };
+		FC41B5791462DF7A00C244C4 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = data.h; path = ../src/XFunctions/src/data.h; sourceTree = SOURCE_ROOT; };
+		FC41B57B1462DF8E00C244C4 /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = data.cpp; path = ../src/XFunctions/src/data.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE3AF143DB76C00AA006F /* acpar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = acpar.h; path = ../src/AcParameters/src/acpar.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3B0143DB76C00AA006F /* afacpar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afacpar.h; path = ../src/AcParameters/src/afacpar.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3B1143DB76C00AA006F /* dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dialogs.h; path = ../src/AcParameters/src/dialogs.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3B2143DB76C00AA006F /* exports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exports.h; path = ../src/AcParameters/src/exports.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3B3143DB76C00AA006F /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gui.h; path = ../src/AcParameters/src/gui.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3B4143DB76C00AA006F /* module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = module.h; path = ../src/AcParameters/src/module.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3B5143DB76C00AA006F /* plot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plot.h; path = ../src/AcParameters/src/plot.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3B6143DB76C00AA006F /* sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sizes.h; path = ../src/AcParameters/src/sizes.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3BF143DB83100AA006F /* acpar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = acpar.cpp; path = ../src/AcParameters/src/acpar.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE3C0143DB83100AA006F /* afacpar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afacpar.cpp; path = ../src/AcParameters/src/afacpar.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE3C1143DB83100AA006F /* dialogs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dialogs.cpp; path = ../src/AcParameters/src/dialogs.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE3C2143DB83100AA006F /* exports.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = exports.cpp; path = ../src/AcParameters/src/exports.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE3C3143DB83100AA006F /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gui.cpp; path = ../src/AcParameters/src/gui.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE3C4143DB83100AA006F /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = ../src/AcParameters/src/module.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE3C5143DB83100AA006F /* plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plot.cpp; path = ../src/AcParameters/src/plot.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE3CD143DB87900AA006F /* afaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afaudio.h; path = ../src/Common/src/afaudio.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3CE143DB87900AA006F /* afcomplex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afcomplex.h; path = ../src/Common/src/afcomplex.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3CF143DB87900AA006F /* afconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afconfig.h; path = ../src/Common/src/afconfig.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3D0143DB87900AA006F /* afexports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afexports.h; path = ../src/Common/src/afexports.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3D1143DB87900AA006F /* afplot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afplot.h; path = ../src/Common/src/afplot.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3D2143DB87900AA006F /* afvector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afvector.h; path = ../src/Common/src/afvector.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3D3143DB87900AA006F /* gpfuncts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gpfuncts.h; path = ../src/Common/src/gpfuncts.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3D4143DB87900AA006F /* gtprogind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gtprogind.h; path = ../src/Common/src/gtprogind.h; sourceTree = SOURCE_ROOT; };
+		FC5AE3D5143DB87900AA006F /* trsel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trsel.h; path = ../src/Common/src/trsel.h; sourceTree = SOURCE_ROOT; };
+		FC5AE415143DB8A300AA006F /* afaudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afaudio.cpp; path = ../src/Common/src/afaudio.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE416143DB8A300AA006F /* afcomplex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afcomplex.cpp; path = ../src/Common/src/afcomplex.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE417143DB8A300AA006F /* afconfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afconfig.cpp; path = ../src/Common/src/afconfig.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE418143DB8A300AA006F /* afexports.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afexports.cpp; path = ../src/Common/src/afexports.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE419143DB8A300AA006F /* afplot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afplot.cpp; path = ../src/Common/src/afplot.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE41A143DB8A300AA006F /* afvector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afvector.cpp; path = ../src/Common/src/afvector.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gpfuncts.cpp; path = ../src/Common/src/gpfuncts.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE41C143DB8A300AA006F /* gtprogind.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gtprogind.cpp; path = ../src/Common/src/gtprogind.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE41D143DB8A300AA006F /* trsel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = trsel.cpp; path = ../src/Common/src/trsel.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE45F143DB95A00AA006F /* auconv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = auconv.h; path = ../src/Convolver/src/auconv.h; sourceTree = SOURCE_ROOT; };
+		FC5AE460143DB95A00AA006F /* convolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = convolver.h; path = ../src/Convolver/src/convolver.h; sourceTree = SOURCE_ROOT; };
+		FC5AE461143DB95A00AA006F /* dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dialogs.h; path = ../src/Convolver/src/dialogs.h; sourceTree = SOURCE_ROOT; };
+		FC5AE462143DB95A00AA006F /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gui.h; path = ../src/Convolver/src/gui.h; sourceTree = SOURCE_ROOT; };
+		FC5AE463143DB95A00AA006F /* module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = module.h; path = ../src/Convolver/src/module.h; sourceTree = SOURCE_ROOT; };
+		FC5AE464143DB95A00AA006F /* multivolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = multivolver.h; path = ../src/Convolver/src/multivolver.h; sourceTree = SOURCE_ROOT; };
+		FC5AE465143DB95A00AA006F /* plot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plot.h; path = ../src/Convolver/src/plot.h; sourceTree = SOURCE_ROOT; };
+		FC5AE466143DB95A00AA006F /* trprop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trprop.h; path = ../src/Convolver/src/trprop.h; sourceTree = SOURCE_ROOT; };
+		FC5AE46F143DB98500AA006F /* auconv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = auconv.cpp; path = ../src/Convolver/src/auconv.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE470143DB98500AA006F /* convolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = convolver.cpp; path = ../src/Convolver/src/convolver.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE471143DB98500AA006F /* dialogs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dialogs.cpp; path = ../src/Convolver/src/dialogs.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE472143DB98500AA006F /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gui.cpp; path = ../src/Convolver/src/gui.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE473143DB98500AA006F /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = ../src/Convolver/src/module.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE474143DB98500AA006F /* multivolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = multivolver.cpp; path = ../src/Convolver/src/multivolver.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE475143DB98500AA006F /* plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plot.cpp; path = ../src/Convolver/src/plot.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE476143DB98500AA006F /* trprop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = trprop.cpp; path = ../src/Convolver/src/trprop.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE47F143DB9C400AA006F /* afcpxmatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afcpxmatrix.h; path = ../src/Kirkeby/src/afcpxmatrix.h; sourceTree = SOURCE_ROOT; };
+		FC5AE480143DB9C400AA006F /* afkirk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afkirk.h; path = ../src/Kirkeby/src/afkirk.h; sourceTree = SOURCE_ROOT; };
+		FC5AE481143DB9C400AA006F /* afktrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afktrack.h; path = ../src/Kirkeby/src/afktrack.h; sourceTree = SOURCE_ROOT; };
+		FC5AE482143DB9C400AA006F /* afmatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afmatrix.h; path = ../src/Kirkeby/src/afmatrix.h; sourceTree = SOURCE_ROOT; };
+		FC5AE483143DB9C400AA006F /* dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dialogs.h; path = ../src/Kirkeby/src/dialogs.h; sourceTree = SOURCE_ROOT; };
+		FC5AE484143DB9C400AA006F /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gui.h; path = ../src/Kirkeby/src/gui.h; sourceTree = SOURCE_ROOT; };
+		FC5AE485143DB9C400AA006F /* kirk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kirk.h; path = ../src/Kirkeby/src/kirk.h; sourceTree = SOURCE_ROOT; };
+		FC5AE486143DB9C400AA006F /* module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = module.h; path = ../src/Kirkeby/src/module.h; sourceTree = SOURCE_ROOT; };
+		FC5AE48F143DB9DE00AA006F /* afkirk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afkirk.cpp; path = ../src/Kirkeby/src/afkirk.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE490143DB9DE00AA006F /* afktrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afktrack.cpp; path = ../src/Kirkeby/src/afktrack.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE491143DB9DE00AA006F /* dialogs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dialogs.cpp; path = ../src/Kirkeby/src/dialogs.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE492143DB9DE00AA006F /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gui.cpp; path = ../src/Kirkeby/src/gui.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE493143DB9DE00AA006F /* kirk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = kirk.cpp; path = ../src/Kirkeby/src/kirk.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE494143DB9DE00AA006F /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = ../src/Kirkeby/src/module.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE49B143DBA0A00AA006F /* dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dialogs.h; path = ../src/SineSweepGenerator/src/dialogs.h; sourceTree = SOURCE_ROOT; };
+		FC5AE49C143DBA0A00AA006F /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gui.h; path = ../src/SineSweepGenerator/src/gui.h; sourceTree = SOURCE_ROOT; };
+		FC5AE49D143DBA0A00AA006F /* module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = module.h; path = ../src/SineSweepGenerator/src/module.h; sourceTree = SOURCE_ROOT; };
+		FC5AE49E143DBA0A00AA006F /* sswgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sswgen.h; path = ../src/SineSweepGenerator/src/sswgen.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4A3143DBA1F00AA006F /* dialogs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dialogs.cpp; path = ../src/SineSweepGenerator/src/dialogs.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4A4143DBA1F00AA006F /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gui.cpp; path = ../src/SineSweepGenerator/src/gui.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4A5143DBA1F00AA006F /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = ../src/SineSweepGenerator/src/module.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4A6143DBA1F00AA006F /* sswgen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sswgen.cpp; path = ../src/SineSweepGenerator/src/sswgen.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4D9143DBAC400AA006F /* afthan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afthan.cpp; path = ../src/TimeHistoryAnalyzer/src/afthan.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4DA143DBAC400AA006F /* dialogs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dialogs.cpp; path = ../src/TimeHistoryAnalyzer/src/dialogs.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4DB143DBAC400AA006F /* exports.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = exports.cpp; path = ../src/TimeHistoryAnalyzer/src/exports.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4DC143DBAC400AA006F /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gui.cpp; path = ../src/TimeHistoryAnalyzer/src/gui.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4DD143DBAC400AA006F /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = ../src/TimeHistoryAnalyzer/src/module.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4DE143DBAC400AA006F /* plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plot.cpp; path = ../src/TimeHistoryAnalyzer/src/plot.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4DF143DBAC400AA006F /* than.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = than.cpp; path = ../src/TimeHistoryAnalyzer/src/than.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE4E7143DBADC00AA006F /* afthan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afthan.h; path = ../src/TimeHistoryAnalyzer/src/afthan.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4E8143DBADC00AA006F /* dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dialogs.h; path = ../src/TimeHistoryAnalyzer/src/dialogs.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4E9143DBADC00AA006F /* exports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exports.h; path = ../src/TimeHistoryAnalyzer/src/exports.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4EA143DBADC00AA006F /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gui.h; path = ../src/TimeHistoryAnalyzer/src/gui.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4EB143DBADC00AA006F /* module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = module.h; path = ../src/TimeHistoryAnalyzer/src/module.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4EC143DBADC00AA006F /* plot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plot.h; path = ../src/TimeHistoryAnalyzer/src/plot.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4ED143DBADC00AA006F /* than.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = than.h; path = ../src/TimeHistoryAnalyzer/src/than.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4F5143DBB2600AA006F /* art.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = art.h; path = ../src/XFunctions/src/art.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4F6143DBB2600AA006F /* correlator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = correlator.h; path = ../src/XFunctions/src/correlator.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4F7143DBB2600AA006F /* dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dialogs.h; path = ../src/XFunctions/src/dialogs.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4F8143DBB2600AA006F /* equations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = equations.h; path = ../src/XFunctions/src/equations.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4F9143DBB2600AA006F /* exports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exports.h; path = ../src/XFunctions/src/exports.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4FA143DBB2600AA006F /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gui.h; path = ../src/XFunctions/src/gui.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4FB143DBB2600AA006F /* module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = module.h; path = ../src/XFunctions/src/module.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4FC143DBB2600AA006F /* plot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plot.h; path = ../src/XFunctions/src/plot.h; sourceTree = SOURCE_ROOT; };
+		FC5AE4FD143DBB2600AA006F /* xfn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xfn.h; path = ../src/XFunctions/src/xfn.h; sourceTree = SOURCE_ROOT; };
+		FC5AE507143DBB4400AA006F /* art.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = art.cpp; path = ../src/XFunctions/src/art.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE508143DBB4400AA006F /* correlator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = correlator.cpp; path = ../src/XFunctions/src/correlator.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE509143DBB4400AA006F /* dialogs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dialogs.cpp; path = ../src/XFunctions/src/dialogs.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE50A143DBB4400AA006F /* exports.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = exports.cpp; path = ../src/XFunctions/src/exports.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE50B143DBB4400AA006F /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gui.cpp; path = ../src/XFunctions/src/gui.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE50C143DBB4400AA006F /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = ../src/XFunctions/src/module.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE50D143DBB4400AA006F /* plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plot.cpp; path = ../src/XFunctions/src/plot.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE50E143DBB4400AA006F /* xfn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xfn.cpp; path = ../src/XFunctions/src/xfn.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE51E143DBCDD00AA006F /* dialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dialogs.h; path = ../src/STI/src/dialogs.h; sourceTree = SOURCE_ROOT; };
+		FC5AE51F143DBCDD00AA006F /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gui.h; path = ../src/STI/src/gui.h; sourceTree = SOURCE_ROOT; };
+		FC5AE520143DBCDD00AA006F /* module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = module.h; path = ../src/STI/src/module.h; sourceTree = SOURCE_ROOT; };
+		FC5AE521143DBCDD00AA006F /* plot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plot.h; path = ../src/STI/src/plot.h; sourceTree = SOURCE_ROOT; };
+		FC5AE523143DBCDD00AA006F /* spectrum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spectrum.h; path = ../src/STI/src/spectrum.h; sourceTree = SOURCE_ROOT; };
+		FC5AE524143DBCDD00AA006F /* spframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spframe.h; path = ../src/STI/src/spframe.h; sourceTree = SOURCE_ROOT; };
+		FC5AE525143DBCDD00AA006F /* sti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sti.h; path = ../src/STI/src/sti.h; sourceTree = SOURCE_ROOT; };
+		FC5AE526143DBCDD00AA006F /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = track.h; path = ../src/STI/src/track.h; sourceTree = SOURCE_ROOT; };
+		FC5AE530143DBCF500AA006F /* dialogs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dialogs.cpp; path = ../src/STI/src/dialogs.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE531143DBCF500AA006F /* gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gui.cpp; path = ../src/STI/src/gui.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE532143DBCF500AA006F /* module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = module.cpp; path = ../src/STI/src/module.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE533143DBCF500AA006F /* plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plot.cpp; path = ../src/STI/src/plot.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE535143DBCF500AA006F /* spectrum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spectrum.cpp; path = ../src/STI/src/spectrum.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE536143DBCF500AA006F /* spframe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spframe.cpp; path = ../src/STI/src/spframe.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE537143DBCF500AA006F /* sti.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sti.cpp; path = ../src/STI/src/sti.cpp; sourceTree = SOURCE_ROOT; };
+		FC5AE538143DBCF500AA006F /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = track.cpp; path = ../src/STI/src/track.cpp; sourceTree = SOURCE_ROOT; };
+		FC63FD5414A1DD850001F944 /* splitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = splitter.cpp; path = ../src/Common/wx/splitter.cpp; sourceTree = SOURCE_ROOT; };
+		FCAA0740124350AA0043895E /* XFunctionsd.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = XFunctionsd.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCB4FAD614442D32000BC441 /* exports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = exports.h; path = ../src/STI/src/exports.h; sourceTree = SOURCE_ROOT; };
+		FCB4FAD814442D47000BC441 /* exports.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = exports.cpp; path = ../src/STI/src/exports.cpp; sourceTree = SOURCE_ROOT; };
+		FCB4FAFE144483E8000BC441 /* audtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = audtypes.h; path = ../src/Common/include/audtypes.h; sourceTree = SOURCE_ROOT; };
+		FCB4FAFF144483E8000BC441 /* commdefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commdefs.h; path = ../src/Common/include/commdefs.h; sourceTree = SOURCE_ROOT; };
+		FCB4FB00144483E8000BC441 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../src/Common/include/version.h; sourceTree = SOURCE_ROOT; };
+		FCD97936122BAB010001AAA1 /* Convolverd.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Convolverd.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD9799A122BB3720001AAA1 /* SineSweepGeneratord.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SineSweepGeneratord.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD979A2122BB3910001AAA1 /* TimeHistoryAnalyzerd.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = TimeHistoryAnalyzerd.so; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCE8E1D514890A66000B432B /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = data.cpp; path = ../src/TimeHistoryAnalyzer/src/data.cpp; sourceTree = SOURCE_ROOT; };
+		FCE8E1D614890A66000B432B /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = track.cpp; path = ../src/TimeHistoryAnalyzer/src/track.cpp; sourceTree = SOURCE_ROOT; };
+		FCE8E1DB14890A7F000B432B /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = data.h; path = ../src/TimeHistoryAnalyzer/src/data.h; sourceTree = SOURCE_ROOT; };
+		FCE8E1DD14890A7F000B432B /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = track.h; path = ../src/TimeHistoryAnalyzer/src/track.h; sourceTree = SOURCE_ROOT; };
+		FCEF4A2414750C6900C5C08F /* afaxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afaxis.h; path = ../src/Common/src/afaxis.h; sourceTree = SOURCE_ROOT; };
+		FCEF4A2514750C6900C5C08F /* afcharts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afcharts.h; path = ../src/Common/src/afcharts.h; sourceTree = SOURCE_ROOT; };
+		FCEF4A2614750C6900C5C08F /* afdataplot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afdataplot.h; path = ../src/Common/src/afdataplot.h; sourceTree = SOURCE_ROOT; };
+		FCEF4A2714750C6900C5C08F /* afscope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afscope.h; path = ../src/Common/src/afscope.h; sourceTree = SOURCE_ROOT; };
+		FCEF4A4414750C7F00C5C08F /* afaxis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = afaxis.cpp; path = ../src/Common/src/afaxis.cpp; sourceTree = SOURCE_ROOT; };
+		FCEFFB4314162D2C0039BA3A /* STId.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = STId.so; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AAC09B05546B4700DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2AAC0B105546B7500DB518D /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC1D2498142B906A0076FC4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCAA073A124350AA0043895E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD97934122BAB010001AAA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD97998122BB3720001AAA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD979A0122BB3910001AAA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCEFFB2F14162D2C0039BA3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCEFFB3014162D2C0039BA3A /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DDFF38A45A11DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC09D05546B4700DB518D /* AcParametersd.so */,
+				FCD97936122BAB010001AAA1 /* Convolverd.so */,
+				FCD9799A122BB3720001AAA1 /* SineSweepGeneratord.so */,
+				FCD979A2122BB3910001AAA1 /* TimeHistoryAnalyzerd.so */,
+				FCAA0740124350AA0043895E /* XFunctionsd.so */,
+				FCEFFB4314162D2C0039BA3A /* STId.so */,
+				FC1D249F142B906A0076FC4E /* Kirkebyd.so */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* Aurora */ = {
+			isa = PBXGroup;
+			children = (
+				FC1D1EF914220CE20076FC4E /* Audacity */,
+				FCD9792F122BAA920001AAA1 /* AcParameters */,
+				FCD979D6122BB58B0001AAA1 /* Common */,
+				FCD97937122BAB420001AAA1 /* Convolver */,
+				FC1D2473142B90120076FC4E /* Kirkeby */,
+				FCD97990122BB3080001AAA1 /* SineSweepGenerator */,
+				FC0E0D591407A3190034ADA7 /* STI */,
+				FCD97991122BB3130001AAA1 /* TimeHistoryAnalyzer */,
+				FCAA071D1243503F0043895E /* XFunctions */,
+				08FB77ACFE841707C02AAC07 /* Source */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DDFF38A45A11DB9C8B /* Products */,
+			);
+			name = Aurora;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AAFE841565C02AAC07 /* Carbon.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		08FB77ACFE841707C02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				32BAE0B70371A74B00C91783 /* Aurora_Prefix.pch */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		FC0E0D591407A3190034ADA7 /* STI */ = {
+			isa = PBXGroup;
+			children = (
+				FC0E0D5A1407A3300034ADA7 /* headers */,
+				FC0E0D5B1407A3430034ADA7 /* src */,
+			);
+			name = STI;
+			sourceTree = "<group>";
+		};
+		FC0E0D5A1407A3300034ADA7 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FC41B5751462DF5100C244C4 /* data.h */,
+				FCB4FAD614442D32000BC441 /* exports.h */,
+				FC5AE51E143DBCDD00AA006F /* dialogs.h */,
+				FC5AE51F143DBCDD00AA006F /* gui.h */,
+				FC5AE520143DBCDD00AA006F /* module.h */,
+				FC5AE521143DBCDD00AA006F /* plot.h */,
+				FC5AE523143DBCDD00AA006F /* spectrum.h */,
+				FC5AE524143DBCDD00AA006F /* spframe.h */,
+				FC5AE525143DBCDD00AA006F /* sti.h */,
+				FC5AE526143DBCDD00AA006F /* track.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		FC0E0D5B1407A3430034ADA7 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC41B5771462DF6000C244C4 /* data.cpp */,
+				FCB4FAD814442D47000BC441 /* exports.cpp */,
+				FC5AE530143DBCF500AA006F /* dialogs.cpp */,
+				FC5AE531143DBCF500AA006F /* gui.cpp */,
+				FC5AE532143DBCF500AA006F /* module.cpp */,
+				FC5AE533143DBCF500AA006F /* plot.cpp */,
+				FC5AE535143DBCF500AA006F /* spectrum.cpp */,
+				FC5AE536143DBCF500AA006F /* spframe.cpp */,
+				FC5AE537143DBCF500AA006F /* sti.cpp */,
+				FC5AE538143DBCF500AA006F /* track.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FC1D1EF914220CE20076FC4E /* Audacity */ = {
+			isa = PBXGroup;
+			children = (
+				FC1D1EFA14220CF70076FC4E /* headers */,
+				FC1D1EFB14220D000076FC4E /* src */,
+			);
+			name = Audacity;
+			sourceTree = "<group>";
+		};
+		FC1D1EFA14220CF70076FC4E /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FC40A0CF151B1B7B003F1B6C /* LoadModules.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		FC1D1EFB14220D000076FC4E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC40A0D7151B1BA0003F1B6C /* LoadModules.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FC1D2473142B90120076FC4E /* Kirkeby */ = {
+			isa = PBXGroup;
+			children = (
+				FC1D2474142B90210076FC4E /* headers */,
+				FC1D2475142B902B0076FC4E /* src */,
+			);
+			name = Kirkeby;
+			sourceTree = "<group>";
+		};
+		FC1D2474142B90210076FC4E /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FC5AE47F143DB9C400AA006F /* afcpxmatrix.h */,
+				FC5AE480143DB9C400AA006F /* afkirk.h */,
+				FC5AE481143DB9C400AA006F /* afktrack.h */,
+				FC5AE482143DB9C400AA006F /* afmatrix.h */,
+				FC5AE483143DB9C400AA006F /* dialogs.h */,
+				FC5AE484143DB9C400AA006F /* gui.h */,
+				FC5AE485143DB9C400AA006F /* kirk.h */,
+				FC5AE486143DB9C400AA006F /* module.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		FC1D2475142B902B0076FC4E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC5AE48F143DB9DE00AA006F /* afkirk.cpp */,
+				FC5AE490143DB9DE00AA006F /* afktrack.cpp */,
+				FC5AE491143DB9DE00AA006F /* dialogs.cpp */,
+				FC5AE492143DB9DE00AA006F /* gui.cpp */,
+				FC5AE493143DB9DE00AA006F /* kirk.cpp */,
+				FC5AE494143DB9DE00AA006F /* module.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FC63FD5314A1DD560001F944 /* wx */ = {
+			isa = PBXGroup;
+			children = (
+				FC33D32614CEADD000CB3867 /* progdlgg.cpp */,
+				FC63FD5414A1DD850001F944 /* splitter.cpp */,
+			);
+			name = wx;
+			sourceTree = "<group>";
+		};
+		FCAA071D1243503F0043895E /* XFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				FCAA071E1243504C0043895E /* headers */,
+				FCAA071F1243505C0043895E /* src */,
+			);
+			name = XFunctions;
+			sourceTree = "<group>";
+		};
+		FCAA071E1243504C0043895E /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FC41B5791462DF7A00C244C4 /* data.h */,
+				FC5AE4F5143DBB2600AA006F /* art.h */,
+				FC5AE4F6143DBB2600AA006F /* correlator.h */,
+				FC5AE4F7143DBB2600AA006F /* dialogs.h */,
+				FC5AE4F8143DBB2600AA006F /* equations.h */,
+				FC5AE4F9143DBB2600AA006F /* exports.h */,
+				FC5AE4FA143DBB2600AA006F /* gui.h */,
+				FC5AE4FB143DBB2600AA006F /* module.h */,
+				FC5AE4FC143DBB2600AA006F /* plot.h */,
+				FC5AE4FD143DBB2600AA006F /* xfn.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		FCAA071F1243505C0043895E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC41B57B1462DF8E00C244C4 /* data.cpp */,
+				FC5AE507143DBB4400AA006F /* art.cpp */,
+				FC5AE508143DBB4400AA006F /* correlator.cpp */,
+				FC5AE509143DBB4400AA006F /* dialogs.cpp */,
+				FC5AE50A143DBB4400AA006F /* exports.cpp */,
+				FC5AE50B143DBB4400AA006F /* gui.cpp */,
+				FC5AE50C143DBB4400AA006F /* module.cpp */,
+				FC5AE50D143DBB4400AA006F /* plot.cpp */,
+				FC5AE50E143DBB4400AA006F /* xfn.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FCD9792F122BAA920001AAA1 /* AcParameters */ = {
+			isa = PBXGroup;
+			children = (
+				FCD9793D122BAB5C0001AAA1 /* headers */,
+				FCD97930122BAAC60001AAA1 /* src */,
+			);
+			name = AcParameters;
+			sourceTree = "<group>";
+		};
+		FCD97930122BAAC60001AAA1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC33D2CA14CDC84B00CB3867 /* track.cpp */,
+				FC41B5711462DF2700C244C4 /* data.cpp */,
+				FC5AE3BF143DB83100AA006F /* acpar.cpp */,
+				FC5AE3C0143DB83100AA006F /* afacpar.cpp */,
+				FC5AE3C1143DB83100AA006F /* dialogs.cpp */,
+				FC5AE3C2143DB83100AA006F /* exports.cpp */,
+				FC5AE3C3143DB83100AA006F /* gui.cpp */,
+				FC5AE3C4143DB83100AA006F /* module.cpp */,
+				FC5AE3C5143DB83100AA006F /* plot.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FCD97937122BAB420001AAA1 /* Convolver */ = {
+			isa = PBXGroup;
+			children = (
+				FCD9793C122BAB540001AAA1 /* headers */,
+				FCD9793B122BAB4C0001AAA1 /* src */,
+			);
+			name = Convolver;
+			sourceTree = "<group>";
+		};
+		FCD9793B122BAB4C0001AAA1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC5AE46F143DB98500AA006F /* auconv.cpp */,
+				FC5AE470143DB98500AA006F /* convolver.cpp */,
+				FC5AE471143DB98500AA006F /* dialogs.cpp */,
+				FC5AE472143DB98500AA006F /* gui.cpp */,
+				FC5AE473143DB98500AA006F /* module.cpp */,
+				FC5AE474143DB98500AA006F /* multivolver.cpp */,
+				FC5AE475143DB98500AA006F /* plot.cpp */,
+				FC5AE476143DB98500AA006F /* trprop.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FCD9793C122BAB540001AAA1 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FC5AE45F143DB95A00AA006F /* auconv.h */,
+				FC5AE460143DB95A00AA006F /* convolver.h */,
+				FC5AE461143DB95A00AA006F /* dialogs.h */,
+				FC5AE462143DB95A00AA006F /* gui.h */,
+				FC5AE463143DB95A00AA006F /* module.h */,
+				FC5AE464143DB95A00AA006F /* multivolver.h */,
+				FC5AE465143DB95A00AA006F /* plot.h */,
+				FC5AE466143DB95A00AA006F /* trprop.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		FCD9793D122BAB5C0001AAA1 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FC33D2CC14CDC86100CB3867 /* track.h */,
+				FC33D2CD14CDC86100CB3867 /* version.h */,
+				FC41B5731462DF3800C244C4 /* data.h */,
+				FC5AE3AF143DB76C00AA006F /* acpar.h */,
+				FC5AE3B0143DB76C00AA006F /* afacpar.h */,
+				FC5AE3B1143DB76C00AA006F /* dialogs.h */,
+				FC5AE3B2143DB76C00AA006F /* exports.h */,
+				FC5AE3B3143DB76C00AA006F /* gui.h */,
+				FC5AE3B4143DB76C00AA006F /* module.h */,
+				FC5AE3B5143DB76C00AA006F /* plot.h */,
+				FC5AE3B6143DB76C00AA006F /* sizes.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		FCD97990122BB3080001AAA1 /* SineSweepGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				FCD97995122BB33D0001AAA1 /* headers */,
+				FCD97994122BB32F0001AAA1 /* src */,
+			);
+			name = SineSweepGenerator;
+			sourceTree = "<group>";
+		};
+		FCD97991122BB3130001AAA1 /* TimeHistoryAnalyzer */ = {
+			isa = PBXGroup;
+			children = (
+				FCD97992122BB31E0001AAA1 /* headers */,
+				FCD97993122BB3260001AAA1 /* src */,
+			);
+			name = TimeHistoryAnalyzer;
+			sourceTree = "<group>";
+		};
+		FCD97992122BB31E0001AAA1 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FCE8E1DB14890A7F000B432B /* data.h */,
+				FCE8E1DD14890A7F000B432B /* track.h */,
+				FC5AE4E7143DBADC00AA006F /* afthan.h */,
+				FC5AE4E8143DBADC00AA006F /* dialogs.h */,
+				FC5AE4E9143DBADC00AA006F /* exports.h */,
+				FC5AE4EA143DBADC00AA006F /* gui.h */,
+				FC5AE4EB143DBADC00AA006F /* module.h */,
+				FC5AE4EC143DBADC00AA006F /* plot.h */,
+				FC5AE4ED143DBADC00AA006F /* than.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		FCD97993122BB3260001AAA1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FCE8E1D514890A66000B432B /* data.cpp */,
+				FCE8E1D614890A66000B432B /* track.cpp */,
+				FC5AE4D9143DBAC400AA006F /* afthan.cpp */,
+				FC5AE4DA143DBAC400AA006F /* dialogs.cpp */,
+				FC5AE4DB143DBAC400AA006F /* exports.cpp */,
+				FC5AE4DC143DBAC400AA006F /* gui.cpp */,
+				FC5AE4DD143DBAC400AA006F /* module.cpp */,
+				FC5AE4DE143DBAC400AA006F /* plot.cpp */,
+				FC5AE4DF143DBAC400AA006F /* than.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FCD97994122BB32F0001AAA1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC5AE4A3143DBA1F00AA006F /* dialogs.cpp */,
+				FC5AE4A4143DBA1F00AA006F /* gui.cpp */,
+				FC5AE4A5143DBA1F00AA006F /* module.cpp */,
+				FC5AE4A6143DBA1F00AA006F /* sswgen.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FCD97995122BB33D0001AAA1 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FC5AE49B143DBA0A00AA006F /* dialogs.h */,
+				FC5AE49C143DBA0A00AA006F /* gui.h */,
+				FC5AE49D143DBA0A00AA006F /* module.h */,
+				FC5AE49E143DBA0A00AA006F /* sswgen.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		FCD979D6122BB58B0001AAA1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FC63FD5314A1DD560001F944 /* wx */,
+				FCD979D8122BB59E0001AAA1 /* headers */,
+				FCD979D7122BB5930001AAA1 /* src */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		FCD979D7122BB5930001AAA1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC323F91149290C800F0A662 /* afart.cpp */,
+				FCEF4A4414750C7F00C5C08F /* afaxis.cpp */,
+				FC5AE415143DB8A300AA006F /* afaudio.cpp */,
+				FC5AE416143DB8A300AA006F /* afcomplex.cpp */,
+				FC5AE417143DB8A300AA006F /* afconfig.cpp */,
+				FC5AE418143DB8A300AA006F /* afexports.cpp */,
+				FC5AE419143DB8A300AA006F /* afplot.cpp */,
+				FC5AE41A143DB8A300AA006F /* afvector.cpp */,
+				FC5AE41B143DB8A300AA006F /* gpfuncts.cpp */,
+				FC5AE41C143DB8A300AA006F /* gtprogind.cpp */,
+				FC5AE41D143DB8A300AA006F /* trsel.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FCD979D8122BB59E0001AAA1 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				FC323F99149290F100F0A662 /* afart.h */,
+				FC323F89149290B300F0A662 /* wxcmn.h */,
+				FC323F811492909D00F0A662 /* stickers.h */,
+				FCEF4A2414750C6900C5C08F /* afaxis.h */,
+				FCEF4A2514750C6900C5C08F /* afcharts.h */,
+				FCEF4A2614750C6900C5C08F /* afdataplot.h */,
+				FCEF4A2714750C6900C5C08F /* afscope.h */,
+				FC41B5691462DF0A00C244C4 /* afdata.h */,
+				FCB4FAFE144483E8000BC441 /* audtypes.h */,
+				FCB4FAFF144483E8000BC441 /* commdefs.h */,
+				FCB4FB00144483E8000BC441 /* version.h */,
+				FC5AE3CD143DB87900AA006F /* afaudio.h */,
+				FC5AE3CE143DB87900AA006F /* afcomplex.h */,
+				FC5AE3CF143DB87900AA006F /* afconfig.h */,
+				FC5AE3D0143DB87900AA006F /* afexports.h */,
+				FC5AE3D1143DB87900AA006F /* afplot.h */,
+				FC5AE3D2143DB87900AA006F /* afvector.h */,
+				FC5AE3D3143DB87900AA006F /* gpfuncts.h */,
+				FC5AE3D4143DB87900AA006F /* gtprogind.h */,
+				FC5AE3D5143DB87900AA006F /* trsel.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC09905546B4700DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE3B7143DB76C00AA006F /* acpar.h in Headers */,
+				FC5AE3B8143DB76C00AA006F /* afacpar.h in Headers */,
+				FC5AE3B9143DB76C00AA006F /* dialogs.h in Headers */,
+				FC5AE3BA143DB76C00AA006F /* exports.h in Headers */,
+				FC5AE3BB143DB76C00AA006F /* gui.h in Headers */,
+				FC5AE3BC143DB76C00AA006F /* module.h in Headers */,
+				FC5AE3BD143DB76C00AA006F /* plot.h in Headers */,
+				FC5AE3BE143DB76C00AA006F /* sizes.h in Headers */,
+				FC5AE3D6143DB87900AA006F /* afaudio.h in Headers */,
+				FC5AE3D8143DB87900AA006F /* afconfig.h in Headers */,
+				FC5AE3D9143DB87900AA006F /* afexports.h in Headers */,
+				FC5AE3DA143DB87900AA006F /* afplot.h in Headers */,
+				FC5AE3DC143DB87900AA006F /* gpfuncts.h in Headers */,
+				FCB4FB01144483E8000BC441 /* audtypes.h in Headers */,
+				FCB4FB02144483E8000BC441 /* commdefs.h in Headers */,
+				FCB4FB03144483E8000BC441 /* version.h in Headers */,
+				FC41B5701462DF0A00C244C4 /* afdata.h in Headers */,
+				FC41B5741462DF3800C244C4 /* data.h in Headers */,
+				FCEF4A2C14750C6900C5C08F /* afaxis.h in Headers */,
+				FCEF4A2D14750C6900C5C08F /* afcharts.h in Headers */,
+				FCEF4A2E14750C6900C5C08F /* afdataplot.h in Headers */,
+				FCEF4A2F14750C6900C5C08F /* afscope.h in Headers */,
+				FC323F881492909D00F0A662 /* stickers.h in Headers */,
+				FC323F90149290B300F0A662 /* wxcmn.h in Headers */,
+				FC323FA0149290F100F0A662 /* afart.h in Headers */,
+				FC33D2CE14CDC86100CB3867 /* track.h in Headers */,
+				FC33D2CF14CDC86100CB3867 /* version.h in Headers */,
+				FC40A0D0151B1B7B003F1B6C /* LoadModules.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC1D2477142B906A0076FC4E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE40C143DB87900AA006F /* afaudio.h in Headers */,
+				FC5AE40D143DB87900AA006F /* afcomplex.h in Headers */,
+				FC5AE40E143DB87900AA006F /* afconfig.h in Headers */,
+				FC5AE40F143DB87900AA006F /* afexports.h in Headers */,
+				FC5AE410143DB87900AA006F /* afplot.h in Headers */,
+				FC5AE411143DB87900AA006F /* afvector.h in Headers */,
+				FC5AE412143DB87900AA006F /* gpfuncts.h in Headers */,
+				FC5AE487143DB9C400AA006F /* afcpxmatrix.h in Headers */,
+				FC5AE488143DB9C400AA006F /* afkirk.h in Headers */,
+				FC5AE489143DB9C400AA006F /* afktrack.h in Headers */,
+				FC5AE48A143DB9C400AA006F /* afmatrix.h in Headers */,
+				FC5AE48B143DB9C400AA006F /* dialogs.h in Headers */,
+				FC5AE48C143DB9C400AA006F /* gui.h in Headers */,
+				FC5AE48D143DB9C400AA006F /* kirk.h in Headers */,
+				FC5AE48E143DB9C400AA006F /* module.h in Headers */,
+				FCB4FB0D144483E8000BC441 /* audtypes.h in Headers */,
+				FCB4FB0E144483E8000BC441 /* commdefs.h in Headers */,
+				FCB4FB0F144483E8000BC441 /* version.h in Headers */,
+				FC41B56B1462DF0A00C244C4 /* afdata.h in Headers */,
+				FCEF4A4014750C6900C5C08F /* afaxis.h in Headers */,
+				FCEF4A4114750C6900C5C08F /* afcharts.h in Headers */,
+				FCEF4A4214750C6900C5C08F /* afdataplot.h in Headers */,
+				FCEF4A4314750C6900C5C08F /* afscope.h in Headers */,
+				FC323F851492909D00F0A662 /* stickers.h in Headers */,
+				FC323F8D149290B300F0A662 /* wxcmn.h in Headers */,
+				FC323F9D149290F100F0A662 /* afart.h in Headers */,
+				FC40A0D6151B1B7B003F1B6C /* LoadModules.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCAA0721124350AA0043895E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE3FA143DB87900AA006F /* afaudio.h in Headers */,
+				FC5AE3FB143DB87900AA006F /* afcomplex.h in Headers */,
+				FC5AE3FC143DB87900AA006F /* afconfig.h in Headers */,
+				FC5AE3FD143DB87900AA006F /* afexports.h in Headers */,
+				FC5AE3FE143DB87900AA006F /* afplot.h in Headers */,
+				FC5AE3FF143DB87900AA006F /* afvector.h in Headers */,
+				FC5AE400143DB87900AA006F /* gpfuncts.h in Headers */,
+				FC5AE4FE143DBB2600AA006F /* art.h in Headers */,
+				FC5AE4FF143DBB2600AA006F /* correlator.h in Headers */,
+				FC5AE500143DBB2600AA006F /* dialogs.h in Headers */,
+				FC5AE501143DBB2600AA006F /* equations.h in Headers */,
+				FC5AE502143DBB2600AA006F /* exports.h in Headers */,
+				FC5AE503143DBB2600AA006F /* gui.h in Headers */,
+				FC5AE504143DBB2600AA006F /* module.h in Headers */,
+				FC5AE505143DBB2600AA006F /* plot.h in Headers */,
+				FC5AE506143DBB2600AA006F /* xfn.h in Headers */,
+				FCB4FB13144483E8000BC441 /* audtypes.h in Headers */,
+				FCB4FB14144483E8000BC441 /* commdefs.h in Headers */,
+				FCB4FB15144483E8000BC441 /* version.h in Headers */,
+				FC41B56C1462DF0A00C244C4 /* afdata.h in Headers */,
+				FC41B57A1462DF7A00C244C4 /* data.h in Headers */,
+				FCEF4A2814750C6900C5C08F /* afaxis.h in Headers */,
+				FCEF4A2914750C6900C5C08F /* afcharts.h in Headers */,
+				FCEF4A2A14750C6900C5C08F /* afdataplot.h in Headers */,
+				FCEF4A2B14750C6900C5C08F /* afscope.h in Headers */,
+				FC323F831492909D00F0A662 /* stickers.h in Headers */,
+				FC323F8B149290B300F0A662 /* wxcmn.h in Headers */,
+				FC323F9B149290F100F0A662 /* afart.h in Headers */,
+				FC40A0D4151B1B7B003F1B6C /* LoadModules.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD97932122BAB010001AAA1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE3DF143DB87900AA006F /* afaudio.h in Headers */,
+				FC5AE3E1143DB87900AA006F /* afconfig.h in Headers */,
+				FC5AE3E2143DB87900AA006F /* afexports.h in Headers */,
+				FC5AE3E3143DB87900AA006F /* afplot.h in Headers */,
+				FC5AE3E5143DB87900AA006F /* gpfuncts.h in Headers */,
+				FC5AE3E6143DB87900AA006F /* gtprogind.h in Headers */,
+				FC5AE467143DB95A00AA006F /* auconv.h in Headers */,
+				FC5AE468143DB95A00AA006F /* convolver.h in Headers */,
+				FC5AE469143DB95A00AA006F /* dialogs.h in Headers */,
+				FC5AE46A143DB95A00AA006F /* gui.h in Headers */,
+				FC5AE46B143DB95A00AA006F /* module.h in Headers */,
+				FC5AE46C143DB95A00AA006F /* multivolver.h in Headers */,
+				FC5AE46D143DB95A00AA006F /* plot.h in Headers */,
+				FC5AE46E143DB95A00AA006F /* trprop.h in Headers */,
+				FCB4FB04144483E8000BC441 /* audtypes.h in Headers */,
+				FCB4FB05144483E8000BC441 /* commdefs.h in Headers */,
+				FCB4FB06144483E8000BC441 /* version.h in Headers */,
+				FC41B56F1462DF0A00C244C4 /* afdata.h in Headers */,
+				FCEF4A3014750C6900C5C08F /* afaxis.h in Headers */,
+				FCEF4A3114750C6900C5C08F /* afcharts.h in Headers */,
+				FCEF4A3214750C6900C5C08F /* afdataplot.h in Headers */,
+				FCEF4A3314750C6900C5C08F /* afscope.h in Headers */,
+				FCEF4A6C1475139700C5C08F /* trsel.h in Headers */,
+				FC323F871492909D00F0A662 /* stickers.h in Headers */,
+				FC323F8F149290B300F0A662 /* wxcmn.h in Headers */,
+				FC323F9F149290F100F0A662 /* afart.h in Headers */,
+				FC40A0D1151B1B7B003F1B6C /* LoadModules.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD97996122BB3720001AAA1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE3E8143DB87900AA006F /* afaudio.h in Headers */,
+				FC5AE3EA143DB87900AA006F /* afconfig.h in Headers */,
+				FC5AE3EB143DB87900AA006F /* afexports.h in Headers */,
+				FC5AE3EC143DB87900AA006F /* afplot.h in Headers */,
+				FC5AE3EE143DB87900AA006F /* gpfuncts.h in Headers */,
+				FC5AE49F143DBA0A00AA006F /* dialogs.h in Headers */,
+				FC5AE4A0143DBA0A00AA006F /* gui.h in Headers */,
+				FC5AE4A1143DBA0A00AA006F /* module.h in Headers */,
+				FC5AE4A2143DBA0A00AA006F /* sswgen.h in Headers */,
+				FCB4FB07144483E8000BC441 /* audtypes.h in Headers */,
+				FCB4FB08144483E8000BC441 /* commdefs.h in Headers */,
+				FCB4FB09144483E8000BC441 /* version.h in Headers */,
+				FC41B56E1462DF0A00C244C4 /* afdata.h in Headers */,
+				FCEF4A3414750C6900C5C08F /* afaxis.h in Headers */,
+				FCEF4A3514750C6900C5C08F /* afcharts.h in Headers */,
+				FCEF4A3614750C6900C5C08F /* afdataplot.h in Headers */,
+				FCEF4A3714750C6900C5C08F /* afscope.h in Headers */,
+				FC323F861492909D00F0A662 /* stickers.h in Headers */,
+				FC323F8E149290B300F0A662 /* wxcmn.h in Headers */,
+				FC323F9E149290F100F0A662 /* afart.h in Headers */,
+				FC40A0D2151B1B7B003F1B6C /* LoadModules.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD9799E122BB3910001AAA1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE3F1143DB87900AA006F /* afaudio.h in Headers */,
+				FC5AE3F3143DB87900AA006F /* afconfig.h in Headers */,
+				FC5AE3F4143DB87900AA006F /* afexports.h in Headers */,
+				FC5AE3F5143DB87900AA006F /* afplot.h in Headers */,
+				FC5AE3F7143DB87900AA006F /* gpfuncts.h in Headers */,
+				FC5AE4EE143DBADC00AA006F /* afthan.h in Headers */,
+				FC5AE4EF143DBADC00AA006F /* dialogs.h in Headers */,
+				FC5AE4F0143DBADC00AA006F /* exports.h in Headers */,
+				FC5AE4F1143DBADC00AA006F /* gui.h in Headers */,
+				FC5AE4F2143DBADC00AA006F /* module.h in Headers */,
+				FC5AE4F3143DBADC00AA006F /* plot.h in Headers */,
+				FC5AE4F4143DBADC00AA006F /* than.h in Headers */,
+				FCB4FB0A144483E8000BC441 /* audtypes.h in Headers */,
+				FCB4FB0B144483E8000BC441 /* commdefs.h in Headers */,
+				FCB4FB0C144483E8000BC441 /* version.h in Headers */,
+				FC41B56D1462DF0A00C244C4 /* afdata.h in Headers */,
+				FCEF4A3814750C6900C5C08F /* afaxis.h in Headers */,
+				FCEF4A3914750C6900C5C08F /* afcharts.h in Headers */,
+				FCEF4A3A14750C6900C5C08F /* afdataplot.h in Headers */,
+				FCEF4A3B14750C6900C5C08F /* afscope.h in Headers */,
+				FCE8E1DF14890A7F000B432B /* data.h in Headers */,
+				FCE8E1E114890A7F000B432B /* track.h in Headers */,
+				FC323F821492909D00F0A662 /* stickers.h in Headers */,
+				FC323F8A149290B300F0A662 /* wxcmn.h in Headers */,
+				FC323F9A149290F100F0A662 /* afart.h in Headers */,
+				FC40A0D3151B1B7B003F1B6C /* LoadModules.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCEFFB1F14162D2C0039BA3A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE403143DB87900AA006F /* afaudio.h in Headers */,
+				FC5AE405143DB87900AA006F /* afconfig.h in Headers */,
+				FC5AE406143DB87900AA006F /* afexports.h in Headers */,
+				FC5AE407143DB87900AA006F /* afplot.h in Headers */,
+				FC5AE409143DB87900AA006F /* gpfuncts.h in Headers */,
+				FC5AE527143DBCDD00AA006F /* dialogs.h in Headers */,
+				FC5AE528143DBCDD00AA006F /* gui.h in Headers */,
+				FC5AE529143DBCDD00AA006F /* module.h in Headers */,
+				FC5AE52A143DBCDD00AA006F /* plot.h in Headers */,
+				FC5AE52C143DBCDD00AA006F /* spectrum.h in Headers */,
+				FC5AE52D143DBCDD00AA006F /* spframe.h in Headers */,
+				FC5AE52E143DBCDD00AA006F /* sti.h in Headers */,
+				FC5AE52F143DBCDD00AA006F /* track.h in Headers */,
+				FCB4FAD714442D32000BC441 /* exports.h in Headers */,
+				FCB4FB10144483E8000BC441 /* audtypes.h in Headers */,
+				FCB4FB11144483E8000BC441 /* commdefs.h in Headers */,
+				FCB4FB12144483E8000BC441 /* version.h in Headers */,
+				FC41B56A1462DF0A00C244C4 /* afdata.h in Headers */,
+				FC41B5761462DF5100C244C4 /* data.h in Headers */,
+				FCEF4A3C14750C6900C5C08F /* afaxis.h in Headers */,
+				FCEF4A3D14750C6900C5C08F /* afcharts.h in Headers */,
+				FCEF4A3E14750C6900C5C08F /* afdataplot.h in Headers */,
+				FCEF4A3F14750C6900C5C08F /* afscope.h in Headers */,
+				FC323F841492909D00F0A662 /* stickers.h in Headers */,
+				FC323F8C149290B300F0A662 /* wxcmn.h in Headers */,
+				FC323F9C149290F100F0A662 /* afart.h in Headers */,
+				FC40A0D5151B1B7B003F1B6C /* LoadModules.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC09C05546B4700DB518D /* AcParameters */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB916008733D950010E9CD /* Build configuration list for PBXNativeTarget "AcParameters" */;
+			buildPhases = (
+				D2AAC09905546B4700DB518D /* Headers */,
+				D2AAC09B05546B4700DB518D /* Frameworks */,
+				D2AAC09A05546B4700DB518D /* Sources */,
+				FCAA077612435F8E0043895E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AcParameters;
+			productName = Aurora;
+			productReference = D2AAC09D05546B4700DB518D /* AcParametersd.so */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		FC1D2476142B906A0076FC4E /* Kirkeby */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC1D249A142B906A0076FC4E /* Build configuration list for PBXNativeTarget "Kirkeby" */;
+			buildPhases = (
+				FC1D2477142B906A0076FC4E /* Headers */,
+				FC1D248B142B906A0076FC4E /* Sources */,
+				FC1D2498142B906A0076FC4E /* Frameworks */,
+				FC1D2499142B906A0076FC4E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Kirkeby;
+			productName = Convolver;
+			productReference = FC1D249F142B906A0076FC4E /* Kirkebyd.so */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		FCAA0720124350AA0043895E /* XFunctions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCAA073B124350AA0043895E /* Build configuration list for PBXNativeTarget "XFunctions" */;
+			buildPhases = (
+				FCAA0721124350AA0043895E /* Headers */,
+				FCAA072F124350AA0043895E /* Sources */,
+				FCAA073A124350AA0043895E /* Frameworks */,
+				FCAA075E124354610043895E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XFunctions;
+			productName = Convolver;
+			productReference = FCAA0740124350AA0043895E /* XFunctionsd.so */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		FCD97935122BAB010001AAA1 /* Convolver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCD97938122BAB420001AAA1 /* Build configuration list for PBXNativeTarget "Convolver" */;
+			buildPhases = (
+				FCD97932122BAB010001AAA1 /* Headers */,
+				FCD97933122BAB010001AAA1 /* Sources */,
+				FCD97934122BAB010001AAA1 /* Frameworks */,
+				FCAA077412435F810043895E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Convolver;
+			productName = Convolver;
+			productReference = FCD97936122BAB010001AAA1 /* Convolverd.so */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		FCD97999122BB3720001AAA1 /* SineSweepGenerator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCD9799B122BB3900001AAA1 /* Build configuration list for PBXNativeTarget "SineSweepGenerator" */;
+			buildPhases = (
+				FCD97996122BB3720001AAA1 /* Headers */,
+				FCD97997122BB3720001AAA1 /* Sources */,
+				FCD97998122BB3720001AAA1 /* Frameworks */,
+				FCAA077212435F730043895E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SineSweepGenerator;
+			productName = LogSweepGenerator;
+			productReference = FCD9799A122BB3720001AAA1 /* SineSweepGeneratord.so */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		FCD979A1122BB3910001AAA1 /* TimeHistoryAnalyzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCD979A3122BB3AF0001AAA1 /* Build configuration list for PBXNativeTarget "TimeHistoryAnalyzer" */;
+			buildPhases = (
+				FCD9799E122BB3910001AAA1 /* Headers */,
+				FCD9799F122BB3910001AAA1 /* Sources */,
+				FCD979A0122BB3910001AAA1 /* Frameworks */,
+				FCAA077012435F5A0043895E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimeHistoryAnalyzer;
+			productName = TimeHistoryAnalyzer;
+			productReference = FCD979A2122BB3910001AAA1 /* TimeHistoryAnalyzerd.so */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		FCEFFB1E14162D2C0039BA3A /* STI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCEFFB3E14162D2C0039BA3A /* Build configuration list for PBXNativeTarget "STI" */;
+			buildPhases = (
+				FCEFFB1F14162D2C0039BA3A /* Headers */,
+				FCEFFB2F14162D2C0039BA3A /* Frameworks */,
+				FCEFFB3114162D2C0039BA3A /* Sources */,
+				FCEFFB3D14162D2C0039BA3A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = STI;
+			productName = Aurora;
+			productReference = FCEFFB4314162D2C0039BA3A /* STId.so */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB916408733D950010E9CD /* Build configuration list for PBXProject "Aurora" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* Aurora */;
+			productRefGroup = 034768DDFF38A45A11DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC09C05546B4700DB518D /* AcParameters */,
+				FCD97935122BAB010001AAA1 /* Convolver */,
+				FCD97999122BB3720001AAA1 /* SineSweepGenerator */,
+				FCD979A1122BB3910001AAA1 /* TimeHistoryAnalyzer */,
+				FCAA0720124350AA0043895E /* XFunctions */,
+				FCEFFB1E14162D2C0039BA3A /* STI */,
+				FC1D2476142B906A0076FC4E /* Kirkeby */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FC1D2499142B906A0076FC4E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CURRENT_DIR=`pwd`\n\nMODULE_NAME=${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\n\nRELEASE_SS=\"Release\"\nDEBUG_SS=\"Debug\"\nif [[ \"$CONFIGURATION\" =~ \"${DEBUG_SS}\" ]]\nthen\n    echo \"Debug configuration.\"\n\n    if [[ -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" && ! -L \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Removing garbage\"\n        rm -f \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\"\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    elif [[ ! -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    fi\n\nelif [[ \"$CONFIGURATION\" =~ \"${RELEASE_SS}\" ]]\nthen\n    cd \"${BUILD_DIR}/${CONFIGURATION}\"\n    echo \"Copying ${MODULE_NAME} to ${AUDACITY_MODULES_PATH}\"\n    cp  \"${MODULE_NAME}\" \"${AUDACITY_MODULES_PATH}\"\n    cd ${CURRENT_DIR}\nfi\n\nexit 0";
+		};
+		FCAA075E124354610043895E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CURRENT_DIR=`pwd`\n\nMODULE_NAME=${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\n\nRELEASE_SS=\"Release\"\nDEBUG_SS=\"Debug\"\nif [[ \"$CONFIGURATION\" =~ \"${DEBUG_SS}\" ]]\nthen\n    echo \"Debug configuration.\"\n\n    if [[ -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" && ! -L \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Removing garbage\"\n        rm -f \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\"\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    elif [[ ! -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    fi\n\nelif [[ \"$CONFIGURATION\" =~ \"${RELEASE_SS}\" ]]\nthen\n    cd \"${BUILD_DIR}/${CONFIGURATION}\"\n    echo \"Copying ${MODULE_NAME} to ${AUDACITY_MODULES_PATH}\"\n    cp  \"${MODULE_NAME}\" \"${AUDACITY_MODULES_PATH}\"\n    cd ${CURRENT_DIR}\nfi\n\nexit 0";
+		};
+		FCAA077012435F5A0043895E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CURRENT_DIR=`pwd`\n\nMODULE_NAME=${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\n\nRELEASE_SS=\"Release\"\nDEBUG_SS=\"Debug\"\nif [[ \"$CONFIGURATION\" =~ \"${DEBUG_SS}\" ]]\nthen\n    echo \"Debug configuration.\"\n\n    if [[ -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" && ! -L \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Removing garbage\"\n        rm -f \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\"\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    elif [[ ! -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    fi\n\nelif [[ \"$CONFIGURATION\" =~ \"${RELEASE_SS}\" ]]\nthen\n    cd \"${BUILD_DIR}/${CONFIGURATION}\"\n    echo \"Copying ${MODULE_NAME} to ${AUDACITY_MODULES_PATH}\"\n    cp  \"${MODULE_NAME}\" \"${AUDACITY_MODULES_PATH}\"\n    cd ${CURRENT_DIR}\nfi\n\nexit 0";
+		};
+		FCAA077212435F730043895E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CURRENT_DIR=`pwd`\n\nMODULE_NAME=${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\n\nRELEASE_SS=\"Release\"\nDEBUG_SS=\"Debug\"\nif [[ \"$CONFIGURATION\" =~ \"${DEBUG_SS}\" ]]\nthen\n    echo \"Debug configuration.\"\n\n    if [[ -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" && ! -L \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Removing garbage\"\n        rm -f \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\"\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    elif [[ ! -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    fi\n\nelif [[ \"$CONFIGURATION\" =~ \"${RELEASE_SS}\" ]]\nthen\n    cd \"${BUILD_DIR}/${CONFIGURATION}\"\n    echo \"Copying ${MODULE_NAME} to ${AUDACITY_MODULES_PATH}\"\n    cp  \"${MODULE_NAME}\" \"${AUDACITY_MODULES_PATH}\"\n    cd ${CURRENT_DIR}\nfi\n\nexit 0";
+		};
+		FCAA077412435F810043895E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CURRENT_DIR=`pwd`\n\nMODULE_NAME=${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\n\nRELEASE_SS=\"Release\"\nDEBUG_SS=\"Debug\"\nif [[ \"$CONFIGURATION\" =~ \"${DEBUG_SS}\" ]]\nthen\n    echo \"Debug configuration.\"\n\n    if [[ -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" && ! -L \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Removing garbage\"\n        rm -f \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\"\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    elif [[ ! -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    fi\n\nelif [[ \"$CONFIGURATION\" =~ \"${RELEASE_SS}\" ]]\nthen\n    cd \"${BUILD_DIR}/${CONFIGURATION}\"\n    echo \"Copying ${MODULE_NAME} to ${AUDACITY_MODULES_PATH}\"\n    cp  \"${MODULE_NAME}\" \"${AUDACITY_MODULES_PATH}\"\n    cd ${CURRENT_DIR}\nfi\n\nexit 0";
+		};
+		FCAA077612435F8E0043895E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CURRENT_DIR=`pwd`\n\nMODULE_NAME=${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\n\nRELEASE_SS=\"Release\"\nDEBUG_SS=\"Debug\"\nif [[ \"$CONFIGURATION\" =~ \"${DEBUG_SS}\" ]]\nthen\n    echo \"Debug configuration.\"\n\n    if [[ -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" && ! -L \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Removing garbage\"\n        rm -f \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\"\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    elif [[ ! -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    fi\n\nelif [[ \"$CONFIGURATION\" =~ \"${RELEASE_SS}\" ]]\nthen\n    cd \"${BUILD_DIR}/${CONFIGURATION}\"\n    echo \"Copying ${MODULE_NAME} to ${AUDACITY_MODULES_PATH}\"\n    cp  \"${MODULE_NAME}\" \"${AUDACITY_MODULES_PATH}\"\n    cd ${CURRENT_DIR}\nfi\n\nexit 0";
+		};
+		FCEFFB3D14162D2C0039BA3A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CURRENT_DIR=`pwd`\n\nMODULE_NAME=${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\n\nRELEASE_SS=\"Release\"\nDEBUG_SS=\"Debug\"\nif [[ \"$CONFIGURATION\" =~ \"${DEBUG_SS}\" ]]\nthen\n    echo \"Debug configuration.\"\n\n    if [[ -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" && ! -L \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Removing garbage\"\n        rm -f \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\"\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    elif [[ ! -e \"${AUDACITY_MODULES_PATH}/${MODULE_NAME}\" ]]\n    then\n        echo \"Creating symbolic link to module\"\n        ln -s \"${BUILD_DIR}/${CONFIGURATION}/${MODULE_NAME}\"  \"${AUDACITY_MODULES_PATH}\"\n    fi\n\nelif [[ \"$CONFIGURATION\" =~ \"${RELEASE_SS}\" ]]\nthen\n    cd \"${BUILD_DIR}/${CONFIGURATION}\"\n    echo \"Copying ${MODULE_NAME} to ${AUDACITY_MODULES_PATH}\"\n    cp  \"${MODULE_NAME}\" \"${AUDACITY_MODULES_PATH}\"\n    cd ${CURRENT_DIR}\nfi\n\nexit 0";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC09A05546B4700DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE3C6143DB83100AA006F /* acpar.cpp in Sources */,
+				FC5AE3C7143DB83100AA006F /* afacpar.cpp in Sources */,
+				FC5AE3C8143DB83100AA006F /* dialogs.cpp in Sources */,
+				FC5AE3C9143DB83100AA006F /* exports.cpp in Sources */,
+				FC5AE3CA143DB83100AA006F /* gui.cpp in Sources */,
+				FC5AE3CB143DB83100AA006F /* module.cpp in Sources */,
+				FC5AE3CC143DB83100AA006F /* plot.cpp in Sources */,
+				FC5AE41E143DB8A300AA006F /* afaudio.cpp in Sources */,
+				FC5AE420143DB8A300AA006F /* afconfig.cpp in Sources */,
+				FC5AE421143DB8A300AA006F /* afexports.cpp in Sources */,
+				FC5AE422143DB8A300AA006F /* afplot.cpp in Sources */,
+				FC5AE424143DB8A300AA006F /* gpfuncts.cpp in Sources */,
+				FC41B5721462DF2700C244C4 /* data.cpp in Sources */,
+				FCEF4A4614750C7F00C5C08F /* afaxis.cpp in Sources */,
+				FC323F98149290C800F0A662 /* afart.cpp in Sources */,
+				FC63FD5814A1DD850001F944 /* splitter.cpp in Sources */,
+				FC33D2CB14CDC84B00CB3867 /* track.cpp in Sources */,
+				FC33D32714CEADD000CB3867 /* progdlgg.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC1D248B142B906A0076FC4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE454143DB8A300AA006F /* afaudio.cpp in Sources */,
+				FC5AE455143DB8A300AA006F /* afcomplex.cpp in Sources */,
+				FC5AE456143DB8A300AA006F /* afconfig.cpp in Sources */,
+				FC5AE457143DB8A300AA006F /* afexports.cpp in Sources */,
+				FC5AE458143DB8A300AA006F /* afplot.cpp in Sources */,
+				FC5AE459143DB8A300AA006F /* afvector.cpp in Sources */,
+				FC5AE45A143DB8A300AA006F /* gpfuncts.cpp in Sources */,
+				FC5AE495143DB9DE00AA006F /* afkirk.cpp in Sources */,
+				FC5AE496143DB9DE00AA006F /* afktrack.cpp in Sources */,
+				FC5AE497143DB9DE00AA006F /* dialogs.cpp in Sources */,
+				FC5AE498143DB9DE00AA006F /* gui.cpp in Sources */,
+				FC5AE499143DB9DE00AA006F /* kirk.cpp in Sources */,
+				FC5AE49A143DB9DE00AA006F /* module.cpp in Sources */,
+				FCEF4A4B14750C7F00C5C08F /* afaxis.cpp in Sources */,
+				FC323F95149290C800F0A662 /* afart.cpp in Sources */,
+				FC33D32D14CEADD000CB3867 /* progdlgg.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCAA072F124350AA0043895E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE442143DB8A300AA006F /* afaudio.cpp in Sources */,
+				FC5AE443143DB8A300AA006F /* afcomplex.cpp in Sources */,
+				FC5AE444143DB8A300AA006F /* afconfig.cpp in Sources */,
+				FC5AE445143DB8A300AA006F /* afexports.cpp in Sources */,
+				FC5AE446143DB8A300AA006F /* afplot.cpp in Sources */,
+				FC5AE447143DB8A300AA006F /* afvector.cpp in Sources */,
+				FC5AE448143DB8A300AA006F /* gpfuncts.cpp in Sources */,
+				FC5AE50F143DBB4400AA006F /* art.cpp in Sources */,
+				FC5AE510143DBB4400AA006F /* correlator.cpp in Sources */,
+				FC5AE511143DBB4400AA006F /* dialogs.cpp in Sources */,
+				FC5AE512143DBB4400AA006F /* exports.cpp in Sources */,
+				FC5AE513143DBB4400AA006F /* gui.cpp in Sources */,
+				FC5AE514143DBB4400AA006F /* module.cpp in Sources */,
+				FC5AE515143DBB4400AA006F /* plot.cpp in Sources */,
+				FC5AE516143DBB4400AA006F /* xfn.cpp in Sources */,
+				FC41B57C1462DF8E00C244C4 /* data.cpp in Sources */,
+				FCEF4A4514750C7F00C5C08F /* afaxis.cpp in Sources */,
+				FC323F93149290C800F0A662 /* afart.cpp in Sources */,
+				FC63FD5614A1DD850001F944 /* splitter.cpp in Sources */,
+				FC33D32B14CEADD000CB3867 /* progdlgg.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD97933122BAB010001AAA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE427143DB8A300AA006F /* afaudio.cpp in Sources */,
+				FC5AE429143DB8A300AA006F /* afconfig.cpp in Sources */,
+				FC5AE42A143DB8A300AA006F /* afexports.cpp in Sources */,
+				FC5AE42B143DB8A300AA006F /* afplot.cpp in Sources */,
+				FC5AE42D143DB8A300AA006F /* gpfuncts.cpp in Sources */,
+				FC5AE42E143DB8A300AA006F /* gtprogind.cpp in Sources */,
+				FC5AE477143DB98500AA006F /* auconv.cpp in Sources */,
+				FC5AE478143DB98500AA006F /* convolver.cpp in Sources */,
+				FC5AE479143DB98500AA006F /* dialogs.cpp in Sources */,
+				FC5AE47A143DB98500AA006F /* gui.cpp in Sources */,
+				FC5AE47B143DB98500AA006F /* module.cpp in Sources */,
+				FC5AE47C143DB98500AA006F /* multivolver.cpp in Sources */,
+				FC5AE47D143DB98500AA006F /* plot.cpp in Sources */,
+				FC5AE47E143DB98500AA006F /* trprop.cpp in Sources */,
+				FCEF4A4714750C7F00C5C08F /* afaxis.cpp in Sources */,
+				FC323F97149290C800F0A662 /* afart.cpp in Sources */,
+				FC33D32814CEADD000CB3867 /* progdlgg.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD97997122BB3720001AAA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE430143DB8A300AA006F /* afaudio.cpp in Sources */,
+				FC5AE432143DB8A300AA006F /* afconfig.cpp in Sources */,
+				FC5AE433143DB8A300AA006F /* afexports.cpp in Sources */,
+				FC5AE434143DB8A300AA006F /* afplot.cpp in Sources */,
+				FC5AE436143DB8A300AA006F /* gpfuncts.cpp in Sources */,
+				FC5AE4A7143DBA1F00AA006F /* dialogs.cpp in Sources */,
+				FC5AE4A8143DBA1F00AA006F /* gui.cpp in Sources */,
+				FC5AE4A9143DBA1F00AA006F /* module.cpp in Sources */,
+				FC5AE4AA143DBA1F00AA006F /* sswgen.cpp in Sources */,
+				FCEF4A4814750C7F00C5C08F /* afaxis.cpp in Sources */,
+				FC323F96149290C800F0A662 /* afart.cpp in Sources */,
+				FC33D32914CEADD000CB3867 /* progdlgg.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCD9799F122BB3910001AAA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE439143DB8A300AA006F /* afaudio.cpp in Sources */,
+				FC5AE43B143DB8A300AA006F /* afconfig.cpp in Sources */,
+				FC5AE43C143DB8A300AA006F /* afexports.cpp in Sources */,
+				FC5AE43D143DB8A300AA006F /* afplot.cpp in Sources */,
+				FC5AE43F143DB8A300AA006F /* gpfuncts.cpp in Sources */,
+				FC5AE4E0143DBAC400AA006F /* afthan.cpp in Sources */,
+				FC5AE4E1143DBAC400AA006F /* dialogs.cpp in Sources */,
+				FC5AE4E2143DBAC400AA006F /* exports.cpp in Sources */,
+				FC5AE4E3143DBAC400AA006F /* gui.cpp in Sources */,
+				FC5AE4E4143DBAC400AA006F /* module.cpp in Sources */,
+				FC5AE4E5143DBAC400AA006F /* plot.cpp in Sources */,
+				FC5AE4E6143DBAC400AA006F /* than.cpp in Sources */,
+				FCEF4A4914750C7F00C5C08F /* afaxis.cpp in Sources */,
+				FCE8E1D814890A66000B432B /* data.cpp in Sources */,
+				FCE8E1D914890A66000B432B /* track.cpp in Sources */,
+				FC323F92149290C800F0A662 /* afart.cpp in Sources */,
+				FC63FD5514A1DD850001F944 /* splitter.cpp in Sources */,
+				FC33D32A14CEADD000CB3867 /* progdlgg.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCEFFB3114162D2C0039BA3A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC5AE44B143DB8A300AA006F /* afaudio.cpp in Sources */,
+				FC5AE44D143DB8A300AA006F /* afconfig.cpp in Sources */,
+				FC5AE44E143DB8A300AA006F /* afexports.cpp in Sources */,
+				FC5AE44F143DB8A300AA006F /* afplot.cpp in Sources */,
+				FC5AE451143DB8A300AA006F /* gpfuncts.cpp in Sources */,
+				FC5AE539143DBCF500AA006F /* dialogs.cpp in Sources */,
+				FC5AE53A143DBCF500AA006F /* gui.cpp in Sources */,
+				FC5AE53B143DBCF500AA006F /* module.cpp in Sources */,
+				FC5AE53C143DBCF500AA006F /* plot.cpp in Sources */,
+				FC5AE53E143DBCF500AA006F /* spectrum.cpp in Sources */,
+				FC5AE53F143DBCF500AA006F /* spframe.cpp in Sources */,
+				FC5AE540143DBCF500AA006F /* sti.cpp in Sources */,
+				FC5AE541143DBCF500AA006F /* track.cpp in Sources */,
+				FCB4FAD914442D47000BC441 /* exports.cpp in Sources */,
+				FC41B5781462DF6000C244C4 /* data.cpp in Sources */,
+				FCEF4A4A14750C7F00C5C08F /* afaxis.cpp in Sources */,
+				FC323F94149290C800F0A662 /* afart.cpp in Sources */,
+				FC63FD5714A1DD850001F944 /* splitter.cpp in Sources */,
+				FC33D32C14CEADD000CB3867 /* progdlgg.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FC1D249C142B906A0076FC4E /* Debug Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(inherited)",
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = Kirkebyd;
+				ZERO_LINK = NO;
+			};
+			name = "Debug Shared";
+		};
+		FC1D249E142B906A0076FC4E /* Release Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_VERSION = 4.0;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = Kirkeby;
+				ZERO_LINK = NO;
+			};
+			name = "Release Shared";
+		};
+		FC323FD21493472C00F0A662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				AUDACITY_BINARY = "$(AUDACITY_BINARY_PATH)/Audacity.app/Contents/MacOS/Audacity";
+				AUDACITY_BINARY_PATH = /Applications/Audacity;
+				AUDACITY_BUNDLE_PATH = "$(AUDACITY_SRC_PREFIX)/mac/build/Release Static";
+				AUDACITY_LIB_PREFIX = "$(AUDACITY_SRC_PREFIX)/lib-src";
+				AUDACITY_MODULES_PATH = "$(AUDACITY_BINARY_PATH)/modules";
+				AUDACITY_SRC_PATH = "$(AUDACITY_SRC_PREFIX)/src";
+				AUDACITY_SRC_PREFIX = "/Users/simone/src/audacity-src-2.0.0";
+				EXECUTABLE_EXTENSION = so;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					AURORA_RELEASE,
+					NDEBUG,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(WX_PREFIX)/include",
+					"$(AUDACITY_LIB_PREFIX)/lib-widget-extra",
+					"$(AUDACITY_LIB_PREFIX)/portsmf",
+					"$(AUDACITY_LIB_PREFIX)/portmixer/include",
+					"$(AUDACITY_LIB_PREFIX)/portaudio-v19/include",
+					../src/Common/include,
+					../src/Common/include/src,
+					"$(AUDACITY_SRC_PATH)",
+					"$(WX_PREFIX)/lib/wx/include/mac-unicode-release-$(WX_VERSION)",
+					"$(WX_PREFIX)/include/wx-$(WX_VERSION)",
+				);
+				INSTALL_PATH = "$(AUDACITY_MODULES_PATH)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(WX_PREFIX)/lib/i386",
+					"$(WX_PREFIX)/lib",
+				);
+				MACH_O_TYPE = mh_bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle_loader",
+					"$(AUDACITY_BINARY)",
+					"-fPIC",
+					"-undefined",
+					dynamic_lookup,
+				);
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				WX_PREFIX = /opt/local;
+				WX_VERSION = 2.8;
+			};
+			name = Release;
+		};
+		FC323FD31493472C00F0A662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				DSTROOT = /tmp/AcParameters.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Aurora_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__AUDEBUG__,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = AcParameters;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC323FD41493472C00F0A662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					/opt/local/lib/i386/libfftw3f.a,
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = Convolver;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC323FD51493472C00F0A662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/LogSweepGenerator.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__AUDEBUG__,
+					AURORA_RELEASE,
+					NDEBUG,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				GCC_VERSION = 4.0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = SineSweepGenerator;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC323FD61493472C00F0A662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/TimeHistoryAnalyzer.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__AUDEBUG__,
+					__ITUP56_SINGLE_FRAME__,
+					AURORA_RELEASE,
+					NDEBUG,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = TimeHistoryAnalyzer;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC323FD71493472C00F0A662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/XFunctions.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILD_DIR)",
+				);
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = XFunctions;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC323FD81493472C00F0A662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				DSTROOT = /tmp/STI.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Aurora_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = STI;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC323FD91493472C00F0A662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_VERSION = 4.0;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					/opt/local/lib/i386/libfftw3f.a,
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = Kirkeby;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC32404E149BCAC600F0A662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				AUDACITY_BINARY = "$(AUDACITY_BUNDLE_PATH)/Audacity.app/Contents/MacOS/Audacity";
+				AUDACITY_BINARY_PATH = /Applications/Audacity;
+				AUDACITY_BUNDLE_PATH = "$(AUDACITY_SRC_PREFIX)/mac/build/Debug Static";
+				AUDACITY_LIB_PREFIX = "$(AUDACITY_SRC_PREFIX)/lib-src";
+				AUDACITY_MODULES_PATH = "$(AUDACITY_BUNDLE_PATH)/modules";
+				AUDACITY_SRC_PATH = "$(AUDACITY_SRC_PREFIX)/src";
+				AUDACITY_SRC_PREFIX = "/Users/simone/src/audacity-src-2.0.0";
+				EXECUTABLE_EXTENSION = so;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__WXDEBUG__,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+					__AUDEBUG__,
+				);
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(WX_PREFIX)/include",
+					"$(AUDACITY_LIB_PREFIX)/lib-widget-extra",
+					"$(AUDACITY_LIB_PREFIX)/portsmf",
+					"$(AUDACITY_LIB_PREFIX)/portmixer/include",
+					"$(AUDACITY_LIB_PREFIX)/portaudio-v19/include",
+					../src/Common/include,
+					../src/Common/include/src,
+					"$(AUDACITY_SRC_PATH)",
+					"$(WX_PREFIX)/lib/wx/include/mac-unicode-release-$(WX_VERSION)",
+					"$(WX_PREFIX)/include/wx-$(WX_VERSION)",
+				);
+				INSTALL_PATH = "$(AUDACITY_MODULES_PATH)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(WX_PREFIX)/lib/i386",
+					"$(WX_PREFIX)/lib",
+				);
+				MACH_O_TYPE = mh_bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle_loader",
+					"$(OTHER_LDFLAGS_QUOTED_FOR_PROJECT_1)",
+					"-fPIC",
+					"-undefined",
+					dynamic_lookup,
+				);
+				OTHER_LDFLAGS_QUOTED_FOR_PROJECT_1 = "\"$(AUDACITY_BINARY)\"";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				WX_PREFIX = /opt/local;
+				WX_VERSION = 2.8;
+			};
+			name = Debug;
+		};
+		FC32404F149BCAC600F0A662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				DSTROOT = /tmp/AcParameters.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Aurora_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__WXDEBUG__,
+					__AUDEBUG__,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = AcParametersd;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		FC324050149BCAC600F0A662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = Convolverd;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		FC324051149BCAC600F0A662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/LogSweepGenerator.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__WXDEBUG__,
+					__AUDEBUG__,
+					AURORA_RELEASE,
+					NDEBUG,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				GCC_VERSION = 4.0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = SineSweepGeneratord;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		FC324052149BCAC600F0A662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/TimeHistoryAnalyzer.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__WXDEBUG__,
+					__AUDEBUG__,
+					__ITUP56_SINGLE_FRAME__,
+					AURORA_RELEASE,
+					NDEBUG,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = TimeHistoryAnalyzerd;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		FC324053149BCAC600F0A662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/XFunctions.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILD_DIR)",
+				);
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = XFunctionsd;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		FC324054149BCAC600F0A662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				DSTROOT = /tmp/STI.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Aurora_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = STId;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		FC324055149BCAC600F0A662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_VERSION = 4.0;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = Kirkebyd;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		FCAA073D124350AA0043895E /* Debug Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(inherited)",
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = XFunctionsd;
+				ZERO_LINK = NO;
+			};
+			name = "Debug Shared";
+		};
+		FCAA073F124350AA0043895E /* Release Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/XFunctions.dst;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILD_DIR)",
+				);
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = XFunctions;
+				ZERO_LINK = NO;
+			};
+			name = "Release Shared";
+		};
+		FCD97A79122E56320001AAA1 /* Debug Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/AcParameters.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Aurora_Prefix.pch;
+				GCC_VERSION = 4.0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = AcParametersd;
+				ZERO_LINK = NO;
+			};
+			name = "Debug Shared";
+		};
+		FCD97A7A122E56320001AAA1 /* Release Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				DSTROOT = /tmp/AcParameters.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Aurora_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__AUDEBUG__,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = AcParameters;
+				ZERO_LINK = NO;
+			};
+			name = "Release Shared";
+		};
+		FCD97A7B122E56320001AAA1 /* Debug Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(inherited)",
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = Convolverd;
+				ZERO_LINK = NO;
+			};
+			name = "Debug Shared";
+		};
+		FCD97A7C122E56320001AAA1 /* Release Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Convolver.dst;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include,
+				);
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lfftw3f",
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = Convolver;
+				ZERO_LINK = NO;
+			};
+			name = "Release Shared";
+		};
+		FCD97A7D122E56320001AAA1 /* Debug Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/SineSweepGenerator.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACH_O_TYPE = mh_bundle;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = SineSweepGeneratord;
+				ZERO_LINK = NO;
+			};
+			name = "Debug Shared";
+		};
+		FCD97A7E122E56320001AAA1 /* Release Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/LogSweepGenerator.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_VERSION = 4.0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = SineSweepGenerator;
+				ZERO_LINK = NO;
+			};
+			name = "Release Shared";
+		};
+		FCD97A7F122E56320001AAA1 /* Debug Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/TimeHistoryAnalyzer.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__AUDEBUG__,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXDEBUG__,
+					__WXMAC__,
+					__ITUP56_SINGLE_FRAME__,
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = TimeHistoryAnalyzerd;
+				ZERO_LINK = NO;
+			};
+			name = "Debug Shared";
+		};
+		FCD97A80122E56320001AAA1 /* Release Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/TimeHistoryAnalyzer.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__AUDEBUG__,
+					__ITUP56_SINGLE_FRAME__,
+					AURORA_RELEASE,
+					NDEBUG,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PREBINDING = NO;
+				PRODUCT_NAME = TimeHistoryAnalyzer;
+				ZERO_LINK = NO;
+			};
+			name = "Release Shared";
+		};
+		FCD97A81122E56320001AAA1 /* Debug Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_32_BIT)";
+				AUDACITY_BINARY = "\"/Users/simone/src/audacity-read-only/mac/build/Debug Shared/Audacity.app/Contents/MacOS/Audacity\"";
+				AUDACITY_BUNDLE_PATH = "$(AUDACITY_SRC_PREFIX)/mac/build/Debug Shared";
+				AUDACITY_LIB_PREFIX = "$(AUDACITY_SRC_PREFIX)/lib-src";
+				AUDACITY_MODULES_PATH = "$(AUDACITY_BUNDLE_PATH)/modules";
+				AUDACITY_SRC_PATH = "$(AUDACITY_SRC_PREFIX)/src";
+				AUDACITY_SRC_PREFIX = "/Users/simone/src/audacity-read-only";
+				EXECUTABLE_EXTENSION = so;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__AUDEBUG__,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXDEBUG__,
+					__WXMAC__,
+				);
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(WX_PREFIX)/include",
+					"$(AUDACITY_LIB_PREFIX)/lib-widget-extra",
+					"$(AUDACITY_LIB_PREFIX)/portsmf",
+					"$(AUDACITY_LIB_PREFIX)/portmixer/include",
+					"$(AUDACITY_LIB_PREFIX)/portaudio-v19/include",
+					../src/Common/include,
+					../src/Common/include/src,
+					"$(AUDACITY_SRC_PATH)",
+					"$(WX_PREFIX)/lib/wx/include/mac-unicode-debug-$(WX_VERSION)",
+					"$(WX_PREFIX)/include/wx-$(WX_VERSION)",
+				);
+				INSTALL_PATH = "$(AUDACITY_MODULES_PATH)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(WX_PREFIX)/lib/i386",
+					"$(WX_PREFIX)/lib",
+				);
+				LINKER_DISPLAYS_MANGLED_NAMES = YES;
+				MACH_O_TYPE = mh_bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle_loader",
+					"$(AUDACITY_BINARY)",
+					"-fPIC",
+					"-undefined",
+					dynamic_lookup,
+					"-lwx_macud_html-2.8",
+					"-lwx_macud_adv-2.8",
+					"-lwx_macud_core-2.8",
+					"-lwx_base_carbonud_xml-2.8",
+					"-lwx_base_carbonud_net-2.8",
+					"-lwx_base_carbonud-2.8",
+				);
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				WX_PREFIX = /opt/local;
+				WX_VERSION = 2.8;
+			};
+			name = "Debug Shared";
+		};
+		FCD97A82122E56320001AAA1 /* Release Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				AUDACITY_BINARY = "$(AUDACITY_BINARY_PATH)/Audacity.app/Contents/MacOS/Audacity";
+				AUDACITY_BINARY_PATH = /Applications/Audacity;
+				AUDACITY_BUNDLE_PATH = "$(AUDACITY_SRC_PREFIX)/mac/build/Release Shared";
+				AUDACITY_LIB_PREFIX = "$(AUDACITY_SRC_PREFIX)/lib-src";
+				AUDACITY_MODULES_PATH = "$(AUDACITY_BINARY_PATH)/modules";
+				AUDACITY_SRC_PATH = "$(AUDACITY_SRC_PREFIX)/src";
+				AUDACITY_SRC_PREFIX = "/Users/simone/src/audacity-read-only";
+				EXECUTABLE_EXTENSION = so;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					AURORA_RELEASE,
+					NDEBUG,
+					"_FILE_OFFSET_BITS=64",
+					_LARGE_FILES,
+					__WXMAC__,
+				);
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(WX_PREFIX)/include",
+					"$(AUDACITY_LIB_PREFIX)/lib-widget-extra",
+					"$(AUDACITY_LIB_PREFIX)/portsmf",
+					"$(AUDACITY_LIB_PREFIX)/portmixer/include",
+					"$(AUDACITY_LIB_PREFIX)/portaudio-v19/include",
+					../src/Common/include,
+					../src/Common/include/src,
+					"$(AUDACITY_SRC_PATH)",
+					"$(WX_PREFIX)/lib/wx/include/mac-unicode-release-$(WX_VERSION)",
+					"$(WX_PREFIX)/include/wx-$(WX_VERSION)",
+				);
+				INSTALL_PATH = "$(AUDACITY_MODULES_PATH)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(WX_PREFIX)/lib/i386",
+					"$(WX_PREFIX)/lib",
+				);
+				MACH_O_TYPE = mh_bundle;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-bundle_loader",
+					"$(AUDACITY_BINARY)",
+					"-fPIC",
+					"-undefined",
+					dynamic_lookup,
+					"-lwx_macu_html-2.8",
+					"-lwx_macu_adv-2.8",
+					"-lwx_macu_core-2.8",
+					"-lwx_base_carbonu_xml-2.8",
+					"-lwx_base_carbonu_net-2.8",
+					"-lwx_base_carbonu-2.8",
+				);
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				WX_PREFIX = /opt/local;
+				WX_VERSION = 2.8;
+			};
+			name = "Release Shared";
+		};
+		FCEFFB4014162D2C0039BA3A /* Debug Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/STI.dst;
+				DYLIB_COMPATIBILITY_VERSION = "";
+				DYLIB_CURRENT_VERSION = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Aurora_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = STId;
+				ZERO_LINK = NO;
+			};
+			name = "Debug Shared";
+		};
+		FCEFFB4214162D2C0039BA3A /* Release Shared */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = i386;
+				DSTROOT = /tmp/STI.dst;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Aurora_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = STI;
+				ZERO_LINK = NO;
+			};
+			name = "Release Shared";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB916008733D950010E9CD /* Build configuration list for PBXNativeTarget "AcParameters" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCD97A79122E56320001AAA1 /* Debug Shared */,
+				FCD97A7A122E56320001AAA1 /* Release Shared */,
+				FC323FD31493472C00F0A662 /* Release */,
+				FC32404F149BCAC600F0A662 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug Shared";
+		};
+		1DEB916408733D950010E9CD /* Build configuration list for PBXProject "Aurora" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCD97A81122E56320001AAA1 /* Debug Shared */,
+				FCD97A82122E56320001AAA1 /* Release Shared */,
+				FC323FD21493472C00F0A662 /* Release */,
+				FC32404E149BCAC600F0A662 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug Shared";
+		};
+		FC1D249A142B906A0076FC4E /* Build configuration list for PBXNativeTarget "Kirkeby" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC1D249C142B906A0076FC4E /* Debug Shared */,
+				FC1D249E142B906A0076FC4E /* Release Shared */,
+				FC323FD91493472C00F0A662 /* Release */,
+				FC324055149BCAC600F0A662 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug Shared";
+		};
+		FCAA073B124350AA0043895E /* Build configuration list for PBXNativeTarget "XFunctions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCAA073D124350AA0043895E /* Debug Shared */,
+				FCAA073F124350AA0043895E /* Release Shared */,
+				FC323FD71493472C00F0A662 /* Release */,
+				FC324053149BCAC600F0A662 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug Shared";
+		};
+		FCD97938122BAB420001AAA1 /* Build configuration list for PBXNativeTarget "Convolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCD97A7B122E56320001AAA1 /* Debug Shared */,
+				FCD97A7C122E56320001AAA1 /* Release Shared */,
+				FC323FD41493472C00F0A662 /* Release */,
+				FC324050149BCAC600F0A662 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug Shared";
+		};
+		FCD9799B122BB3900001AAA1 /* Build configuration list for PBXNativeTarget "SineSweepGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCD97A7D122E56320001AAA1 /* Debug Shared */,
+				FCD97A7E122E56320001AAA1 /* Release Shared */,
+				FC323FD51493472C00F0A662 /* Release */,
+				FC324051149BCAC600F0A662 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug Shared";
+		};
+		FCD979A3122BB3AF0001AAA1 /* Build configuration list for PBXNativeTarget "TimeHistoryAnalyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCD97A7F122E56320001AAA1 /* Debug Shared */,
+				FCD97A80122E56320001AAA1 /* Release Shared */,
+				FC323FD61493472C00F0A662 /* Release */,
+				FC324052149BCAC600F0A662 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug Shared";
+		};
+		FCEFFB3E14162D2C0039BA3A /* Build configuration list for PBXNativeTarget "STI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCEFFB4014162D2C0039BA3A /* Debug Shared */,
+				FCEFFB4214162D2C0039BA3A /* Release Shared */,
+				FC323FD81493472C00F0A662 /* Release */,
+				FC324054149BCAC600F0A662 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug Shared";
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}

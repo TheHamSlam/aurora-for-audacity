@@ -1,0 +1,93 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations
+                       plugin collection
+
+  Acoustical Parameters
+
+  track.cpp
+
+  Angelo Farina - Simone Campanini
+
+************************************************************************/
+
+#include <gpfuncts.h>
+
+#include "track.h"
+
+//-------------------------------------------------------------------------------------
+// APAudioTrack implementation
+//-------------------------------------------------------------------------------------
+bool APAudioTrack::FindFirstArrivalTime(const double dbDirectSoundTrigdB)
+{
+	// WARNING: this method is duplicated! See afaudio.cpp
+    if(GetTrackMax() == 0.0) FindMax();
+
+    double dbRelativeThreshold = dbDirectSoundTrigdB * GetTrackMax();
+
+	AFSampleCount fat = 0;
+	while( (fat < m_smpcLen) &&
+		   (fabs(m_apsmpTrack[CH_LEFT][fat]) < dbRelativeThreshold) )
+	  fat++;
+
+	// FAT not found:  the signal is not an Impulse Response!!!
+	if(fat == m_smpcLen) return false;
+
+	// Safer to start 4 samples before FAT
+	if(fat > 4)
+	  fat -= 4;
+	else
+	  fat  = 0;
+
+	m_dbFAT = fat / m_dbRate;
+
+	return true;
+}
+
+void APAudioTrack::ApplyFilter(const int nBand)
+{
+	wxString wxszLabel = wxT("IR_");
+
+	double dbGain =  ((nBand == BD_A) || (nBand == BD_Lin)) ? 1.0 : 12.8825; // valore da verificare..... = 22.2 dB;
+
+	ResetFilteredTrack(0, dbGain);
+
+	switch(nBand)
+	{
+	    case BD_A:
+	    	AFilter();
+	        wxszLabel << wxT("A_filtered");
+	        break;
+
+	    case BD_Lin:
+	    	LFilter();
+	        wxszLabel << wxT("not_filtered");
+	        break;
+
+	    default:
+	    	OctaveFilter(0, g_adbOctaveBandFcb[nBand]);
+	        wxszLabel << g_awxpchBandLabels[nBand] << wxT("_Hz_band_filtered");
+	        break;
+	}
+
+    // Removing mean value
+	RemoveMean();
+
+	//SetName(wxszLabel);
+}
+
+#include <wx/arrimpl.cpp>
+WX_DEFINE_OBJARRAY(TArrayOfAPAudioTracks);
+
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283
+

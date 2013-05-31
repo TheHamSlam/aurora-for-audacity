@@ -1,0 +1,459 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Acoustical Parameters
+
+  exports.cpp
+
+  Angelo Farina - Simone Campanini
+
+*******************************************************************//**
+
+\class AcParametersExports
+\brief Data exports manager
+
+  This class manages all Acoustics Parameters exports to/from
+  files and clipboard.
+
+*//*******************************************************************/
+
+
+#include <wx/filename.h>
+#include <wx/progdlg.h>
+#include <wx/textfile.h>
+
+#include <Audacity.h>
+#include <widgets/ProgressDialog.h>
+
+#include <commdefs.h>
+#include <afconfig.h>
+#include <afexports.h>
+
+#include "afacpar.h"
+
+#ifndef __STAND_ALONE__
+   #include "acpar.h"
+#else
+   #include "acparsa.h"
+#endif
+
+
+#include "exports.h"
+
+
+
+const wxChar* const AcParametersExports::m_awxpchParamLabels[] = {
+
+    wxT("Signal [dB]"),    wxT("Noise [dB]"),      wxT("strenGth [dB]"),  wxT("C50 [dB]"),   wxT("C80 [dB]"),
+	wxT("D50 [%]"),        wxT("Ts [ms]"),         wxT("EDT [s]"),        wxT("Tuser [s]"),  wxT("T20 [s]"),
+    wxT("T30 [s]"),
+
+    wxT("Peakiness [dB]"), wxT("Millisecs [dB]"),  wxT("Impulsivs [dB]"),
+
+    wxT("St1 [dB]"),       wxT("St2 [dB]"),        wxT("StLate [dB]"),
+    wxT("IACC"),           wxT("IACC delay [ms]"), wxT("IACC width [ms]"),
+    wxT("JLF"),            wxT("JLFC"),            wxT("LJ [dB]")
+};
+
+
+void AcParametersExports::StoreParametersTable(wxTextFile& fo, const int nFileType)
+{
+   wxString wxszValue, wxszLine, wxszCaption;
+   
+   //Title generation
+   wxszLine << wxT("Aurora ") << wxAURORA_VERSION << wxT(" - ISO3382 Acoustical Parameter File");
+   fo.AddLine(wxszLine, wxTextFileType_Dos);
+   wxszLine = wxT("ISO 3382 OCTAVE BAND ACOUSTICAL PARAMETERS\n");
+   fo.AddLine(wxszLine, wxTextFileType_Dos);
+
+   //Caption generation
+   wxszCaption.Clear();
+   wxszCaption << wxT("Filename") << m_awxchSeparator[nFileType];
+   wxszCaption << wxT("Frq.band [Hz]");
+   
+   int nPar, nBd;
+   for(nBd = 0; nBd < int(m_pAp->GetBandsCount()); nBd++)
+   {
+      wxszCaption << m_awxchSeparator[nFileType] << g_awxpchBandLabels[nBd];
+   }
+
+   for(int nCh = 0; nCh < m_pAp->GetChannelsCount(); nCh++)
+   {
+      wxszLine.Clear();
+      wxszLine << wxT("Channel ") << (nCh+1) << wxT(" Parameters\n");
+      fo.AddLine(wxszLine,    wxTextFileType_Dos);  
+      fo.AddLine(wxszCaption, wxTextFileType_Dos);  
+
+      for(nPar=0; nPar < AcParameters::N_PARAMETERS; nPar++)
+      {
+         wxszLine = m_paAudioData->Item(nCh).GetName();
+         wxszLine << m_awxchSeparator[nFileType];
+
+         wxszLine << m_awxpchParamLabels[nPar];
+         if( (m_pAp->GetMode() == AcParameters::APM_BINAURAL) && (nPar == AcParameters::AP_IACC) )
+         {
+        	 switch(m_pAp->GetIACCSpan())
+        	 {
+        	     case AcParameters::IS_EARLY: wxszLine << wxT(" (Early)"); break;
+        	     case AcParameters::IS_LATE:  wxszLine << wxT(" (Late)"); break;
+        	     case AcParameters::IS_ALL:   wxszLine << wxT(" (All)"); break;
+        	 }
+         }
+         
+          for(nBd=0; nBd < int(m_pAp->GetBandsCount()); nBd++)
+          {
+        	  if(m_paResults[nCh].IsParameterValid(nPar, nBd))
+        		  wxszValue.Printf(wxT("%.3f"), m_paResults[nCh].GetParameter(nPar, nBd));
+        	  else
+        		  wxszValue = wxT("--");
+
+               wxszLine << m_awxchSeparator[nFileType] << wxszValue;
+ 
+         }
+         fo.AddLine(wxszLine,wxTextFileType_Dos); 
+      }
+      wxszLine.Printf(wxT("\nRTU = RT User (%4.1f dB, %4.1f dB)\n"), m_pAp->GetUserMinLevel(),
+                                                                     m_pAp->GetUserMaxLevel());
+      fo.AddLine(wxszLine,wxTextFileType_Dos);
+
+   }
+}
+
+void AcParametersExports::StoreEchogram(wxTextFile& fo)
+{
+   wxString wxszStr, wxszLine, wxszCaption;
+
+   AFSampleCount nBd, i, j;
+
+   // Create 1 ms RMS Impulse Response
+   AFSample *psmpData;
+
+   AFSampleCount smpcDecimationStep = AFSampleCount(m_paAudioData->Item(CH_LEFT).GetRate() / 1000.0), // 1 ms rate
+                 smpcRmsDataLength  = (m_paAudioData->Item(CH_LEFT).GetLength() / smpcDecimationStep) + 1;
+
+   double dbScaleFactor = pow( 10.0, m_pAp->GetFullScale()/10.0) / m_pAp->GetRate();
+
+   int bandsCount = (int)m_pAp->GetBandsCount();
+   double* aadbRmsIr [bandsCount];
+   for(nBd = 0; nBd < bandsCount; nBd++)
+	   aadbRmsIr[nBd] = new double [smpcRmsDataLength];
+
+   //Header generation
+   wxszStr.Clear();
+   wxszStr << wxT("Aurora ") << wxAURORA_VERSION << wxT(" - Energetic Impulse Response File");
+   fo.AddLine(wxszStr, wxTextFileType_Dos); 
+   wxszStr.Printf(wxT("N. Impulse Responses = %d"), m_pAp->GetChannelsCount());
+   fo.AddLine(wxszStr,wxTextFileType_Dos);
+   wxszStr.Printf(wxT("Time resolution = 1 ms"));
+   fo.AddLine(wxszStr,wxTextFileType_Dos);
+
+   int nCh = 0; 
+   while(nCh < m_pAp->GetChannelsCount())
+   {
+	   for(nBd = 0; nBd < bandsCount; nBd++)
+	   {
+		   memset(aadbRmsIr[nBd], 0, smpcRmsDataLength*sizeof(double));
+
+		   m_paAudioData->Item(nCh).ApplyFilter(nBd);
+
+		   psmpData = m_paAudioData->Item(nCh).GetFilteredData();
+
+		   for(i = m_paAudioData->Item(nCh).GetFirstArrivalTime(); i < m_paAudioData->Item(nCh).GetLength(); i++)
+		   {
+			   j = AFSampleCount( i / smpcDecimationStep );
+			   aadbRmsIr[nBd][j] += psmpData[i] * psmpData[i];
+		   }
+
+		   // Rescale buffer values to obtain correct dB levels
+		   for(i = 0; i < smpcRmsDataLength; i++)
+			   aadbRmsIr[nBd][i] *= dbScaleFactor;
+	   }
+
+      wxszStr.Printf(wxT("Impulse Response n. = %d"), nCh + 1);
+      fo.AddLine(wxszStr, wxTextFileType_Dos); 
+      wxszStr.Printf(wxT("N. of points=  %d"), int(smpcRmsDataLength));
+      fo.AddLine(wxszStr, wxTextFileType_Dos); 
+      
+      for(i = 0; i < smpcRmsDataLength; i++)
+      {
+         wxszLine.Clear();
+         for(nBd = 0; nBd < bandsCount; nBd++)
+         {
+            wxszStr.Printf(wxT("%e "), aadbRmsIr[nBd][i]);
+            wxszLine.Append(wxszStr);
+         }
+         fo.AddLine(wxszLine, wxTextFileType_Dos); 
+      }
+      nCh++;
+   }
+
+   // clear memory
+   for(nBd = 0; nBd < bandsCount; nBd++)
+	   delete [] aadbRmsIr[nBd];
+
+}
+
+bool AcParametersExports::BuildParametersTable(wxString &wxszDataBuffer, const int nDest, const int nFileType)
+{
+   wxString wxszStr, wxszLine, wxszCaption;
+
+   wxszDataBuffer.Clear();
+   
+   //Title generation
+   wxszDataBuffer << wxT("Aurora ") << wxAURORA_VERSION << wxT(" - ISO3382 Acoustical Parameter Table\n");
+   wxszDataBuffer << wxT("ISO 3382 OCTAVE BAND ACOUSTICAL PARAMETERS\n\n");
+
+   //Caption generation
+   wxszCaption << wxT("Filename")      << m_awxchSeparator[nFileType];
+   wxszCaption << wxT("Frq.band [Hz]") << m_awxchSeparator[nFileType];
+   
+   int nBd, nPar;
+   int bandsCount = int(m_pAp->GetBandsCount());
+   for(nBd=0; nBd < bandsCount; nBd++)
+      wxszCaption << g_awxpchBandLabels[nBd] << m_awxchSeparator[nFileType];
+   
+   for(int nCh = 0; nCh < m_pAp->GetChannelsCount(); nCh++)
+   {
+      wxszLine.Clear();   
+      wxszLine << wxT("Channel ") << (nCh+1) << wxT(" Parameters\n\n");
+      wxszDataBuffer << wxszLine;
+      wxszDataBuffer << (wxszCaption + LINE_BREAK);
+      
+      for(nPar = 0; nPar < AcParameters::N_PARAMETERS; nPar++)
+      {
+         wxszLine = m_paAudioData->Item(nCh).GetName();
+		 wxszLine << m_awxchSeparator[nFileType] << m_awxpchParamLabels[nPar];
+         
+         for(nBd = 0; nBd < bandsCount; nBd++)
+         {
+        	 if(m_paResults[nCh].IsParameterValid(nPar, nBd))
+        		 wxszStr.Printf(wxT("%.3f"), m_paResults[nCh].GetParameter(nPar, nBd));
+        	 else
+        		 wxszStr = wxT("--");
+
+            wxszLine << m_awxchSeparator[nFileType] << wxszStr;
+         }
+         wxszDataBuffer << (wxszLine + LINE_BREAK);
+      }
+      wxszLine.Printf(wxT("\nRTU = RT User (%.1f dB, %.1f dB)\n\n"),
+                      m_pAp->GetUserMinLevel(),
+                      m_pAp->GetUserMaxLevel());
+                  
+      wxszDataBuffer << wxszLine;
+   }
+   return true;
+}
+
+
+bool AcParametersExports::SaveToFile()
+{
+   bool bRetVal = true;
+   int  nType = FT_PARAMETER_TXT;
+   
+   wxString wxszName(wxT("AP_"));
+   wxszName << m_paAudioData->Item(CH_LEFT).GetName();
+   wxFileName wxfnName(wxszName);
+   wxfnName.ClearExt();
+
+   wxFileDialog* pFileDlg = new wxFileDialog(0,
+		                                     wxT("Save results to file"),
+		                                     wxT(""),
+		                                     wxfnName.GetFullName(),
+                                             wxT("Parameter File (*.txt)|*.txt|Parameter File (*.csv)|*.csv|Ramsete Echogram (*.prn)|*.prn"),
+                                             wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+#ifdef __AUDEBUG__                        
+   printf("done\n"); fflush(stdout);
+#endif
+   
+	if(pFileDlg->ShowModal() != wxID_OK)
+	{
+	   pFileDlg->Destroy();
+	   return false;
+	}
+
+	wxfnName = pFileDlg->GetPath();
+	nType = pFileDlg->GetFilterIndex();
+
+	wxfnName.SetExt(wxString(m_awxchExtension[nType]));
+
+	//pFileDlg->SetPath(m_wxszFileName);
+
+	wxTextFile resultsFile;
+
+	if(wxfnName.FileExists())
+	{
+		if(!resultsFile.Open(wxfnName.GetFullPath()))
+		{
+			::wxMessageBox(wxT("Cannot open file for writing"),
+						   wxT("Error"),
+						   wxOK | wxICON_ERROR);
+			pFileDlg->Destroy();
+			return false;
+		}
+		resultsFile.Clear();
+	}
+	else
+	{
+		if(!resultsFile.Create(wxfnName.GetFullPath()))
+		{
+			::wxMessageBox(wxT("Cannot create file. Check permissions."),
+						   wxT("Error"),
+						   wxOK | wxICON_ERROR);
+			pFileDlg->Destroy();
+			return false;
+		}
+	}
+
+	//file writing
+	switch(nType)
+	{
+		case FT_PARAMETER_TXT:
+			StoreParametersTable(resultsFile, FF_TXT);
+			break;
+		case FT_PARAMETER_CSV:
+			StoreParametersTable(resultsFile, FF_CSV);
+			break;
+		case FT_RAMSETE_ECHOGRAM_PRN:
+			StoreEchogram(resultsFile);
+			break;
+	}
+
+	 //flush data to file.
+	if( !resultsFile.Write(wxTextFileType_Dos) )
+	{
+		::wxMessageBox(wxT("Write error."),
+					   wxT("Error"),
+					   wxOK | wxICON_ERROR);
+		bRetVal =  false;
+	}
+	else
+	{
+		::wxMessageBox(wxT("Datas successifully saved."),
+					   wxT("Info"),
+					   wxOK | wxICON_INFORMATION);
+    }
+	//Close file.
+	resultsFile.Close();
+
+    pFileDlg->Destroy();
+
+    return bRetVal;
+}
+
+void AcParametersExports::AppendResultsToFile()
+{
+
+   wxString wxszLine, wxszStr;
+   wxString wxszCaption = wxT("Filename\t\
+Lsg_31.5\tLsg_63\tLsg_125\tLsg_250\tLsg_500\tLsg_1000\tLsg_2000\tLsg_4000\tLsg_8000\tLsg_16000\tLsg_A\tLsg_Lin\t\
+Lno_31.5\tLno_63\tLno_125\tLno_250\tLno_500\tLno_1000\tLno_2000\tLno_4000\tLno_8000\tLno_16000\tLno_A\tLno_Lin\t\
+StG_31.5\tStG_63\tStG_125\tStG_250\tStG_500\tStG_1000\tStG_2000\tStG_4000\tStG_8000\tStG_16000\tStG_A\tStG_Lin\t\
+C50_31.5\tC50_63\tC50_125\tC50_250\tC50_500\tC50_1000\tC50_2000\tC50_4000\tC50_8000\tC50_16000\tC50_A\tC50_Lin\t\
+C80_31.5\tC80_63\tC80_125\tC80_250\tC80_500\tC80_1000\tC80_2000\tC80_4000\tC80_8000\tC80_16000\tC80_A\tC80_Lin\t\
+D50_31.5\tD50_63\tD50_125\tD50_250\tD50_500\tD50_1000\tD50_2000\tD50_4000\tD50_8000\tD50_16000\tD50_A\tD50_Lin\t\
+t_s_31.5\tt_s_63\tt_s_125\tt_s_250\tt_s_500\tt_s_1000\tt_s_2000\tt_s_4000\tt_s_8000\tt_s_16000\tt_s_A\tt_s_Lin\t\
+EDT_31.5\tEDT_63\tEDT_125\tEDT_250\tEDT_500\tEDT_1000\tEDT_2000\tEDT_4000\tEDT_8000\tEDT_16000\tEDT_A\tEDT_Lin\t\
+Tus_31.5\tTus_63\tTus_125\tTus_250\tTus_500\tTus_1000\tTus_2000\tTus_4000\tTus_8000\tTus_16000\tTus_A\tTus_Lin\t\
+T20_31.5\tT20_63\tT20_125\tT20_250\tT20_500\tT20_1000\tT20_2000\tT20_4000\tT20_8000\tT20_16000\tT20_A\tT20_Lin\t\
+T30_31.5\tT30_63\tT30_125\tT30_250\tT30_500\tT30_1000\tT30_2000\tT30_4000\tT30_8000\tT30_16000\tT30_A\tT30_Lin\t\
+Pkn_31.5\tPkn_63\tPkn_125\tPkn_250\tPkn_500\tPkn_1000\tPkn_2000\tPkn_4000\tPkn_8000\tPkn_16000\tPkn_A\tPkn_Lin\t\
+Mls_31.5\tMls_63\tMls_125\tMls_250\tMls_500\tMls_1000\tMls_2000\tMls_4000\tMls_8000\tMls_16000\tMls_A\tMls_Lin\t\
+Imp_31.5\tImp_63\tImp_125\tImp_250\tImp_500\tImp_1000\tImp_2000\tImp_4000\tImp_8000\tImp_16000\tImp_A\tImp_Lin\t\
+St1_31.5\tSt1_63\tSt1_125\tSt1_250\tSt1_500\tSt1_1000\tSt1_2000\tSt1_4000\tSt1_8000\tSt1_16000\tSt1_A\tSt1_Lin\t\
+St2_31.5\tSt2_63\tSt2_125\tSt2_250\tSt2_500\tSt2_1000\tSt2_2000\tSt2_4000\tSt2_8000\tSt2_16000\tSt2_A\tSt2_Lin\t\
+StL_31.5\tStL_63\tStL_125\tStL_250\tStL_500\tStL_1000\tStL_2000\tStL_4000\tStL_8000\tStL_16000\tStL_A\tStL_Lin\t\
+IACC_31.5\tIACC_63\tIACC_125\tIACC_250\tIACC_500\tIACC_1000\tIACC_2000\tIACC_4000\tIACC_8000\tIACC_16000\tIACC_A\tIACC_Lin\t\
+tIACC_31.5\ttIACC_63\ttIACC_125\ttIACC_250\ttIACC_500\ttIACC_1000\ttIACC_2000\ttIACC_4000\ttIACC_8000\ttIACC_16000\ttIACC_A\ttIACC_Lin\t\
+wIACC_31.5\twIACC_63\twIACC_125\twIACC_250\twIACC_500\twIACC_1000\twIACC_2000\twIACC_4000\twIACC_8000\twIACC_16000\twIACC_A\twIACC_Lin\t\
+JLF_31.5\tJLF_63\tJLF_125\tJLF_250\tJLF_500\tJLF_1000\tJLF_2000\tJLF_4000\tJLF_8000\tJLF_16000\tJLF_A\tJLF_Lin\t\
+JLFC_31.5\tJLFC_63\tJLFC_125\tJLFC_250\tJLFC_500\tJLFC_1000\tJLFC_2000\tJLFC_4000\tJLFC_8000\tJLFC_16000\tJLFC_A\tJLFC_Lin\t\
+LJ_31.5\tLJ_63\tLJ_125\tLJ_250\tLJ_500\tLJ_1000\tLJ_2000\tLJ_4000\tLJ_8000\tLJ_16000\tLJ_A\tLJ_Lin");
+
+   wxTextFile* pAppendFile = new wxTextFile();
+   if( !pAppendFile->Open(m_wxszAppendToFileFn) )
+   {
+       if( !pAppendFile->Create(m_wxszAppendToFileFn))
+       {
+           ::wxMessageBox(wxT("Error on file creation."),
+                          wxT("Error"),
+           		          wxOK | wxICON_ERROR);
+
+           delete pAppendFile;
+           return;
+       }
+   }
+
+   int nCh, nPar, nBd;
+
+   wxszLine = wxT("Aurora ");
+   wxszLine << wxAURORA_VERSION << wxT(" - ISO3382 Acoustical Parameter File\n");
+   pAppendFile->AddLine(wxszLine, wxTextFileType_Dos);
+   pAppendFile->AddLine(wxszCaption, wxTextFileType_Dos);
+
+   for(nCh = 0; nCh < int(m_paAudioData->GetCount()); nCh++)
+   {
+		wxszLine = m_paAudioData->Item(nCh).GetName();
+		wxszLine << wxT(" Ch ") << (nCh+1);
+		for(nPar = 0; nPar < AcParameters::N_PARAMETERS; nPar++)
+		{
+			for(nBd = 0; nBd < N_BANDS; nBd++)
+			{
+				if(m_paResults[nCh].IsParameterValid(nPar, nBd))
+					wxszStr.Printf(wxT("\t%7.3f"), m_paResults[nCh].GetParameter(nPar, nBd));
+				else
+					wxszStr = wxT("\t--");
+
+				wxszLine << wxszStr;
+			}
+		}
+		pAppendFile->AddLine(wxszLine, wxTextFileType_Dos);
+
+		if(!pAppendFile->Write(wxTextFileType_Dos))
+		{
+			::wxMessageBox(wxT("Write error."),
+						   wxT("Error"),
+						   wxOK | wxICON_ERROR);
+		    //Close file.
+			pAppendFile->Close();
+			delete pAppendFile;
+            return;
+		}
+    }
+
+    ::wxMessageBox(wxT("Data appended to file."),
+                   wxT("Info"),
+   		           wxOK | wxICON_INFORMATION);
+	//Close file.
+	pAppendFile->Close();
+	delete pAppendFile;
+}
+
+AcParametersExports::AcParametersExports(wxWindow *pParent, TArrayOfAPAudioTracks* paAudioData, AcParameters *pAp)
+  : AFExports(pParent),
+    m_pAp(pAp),
+    m_paAudioData(paAudioData),
+    m_wxszAppendToFileFn(wxT("AcousticParameters.txt"))
+{
+//    m_pAp->GetIrFileName(m_pAp->GetActiveChannel(), &m_wxszIrName);
+//    m_wxszFileName = wxT("AP_") + m_wxszIrName;
+
+	m_paDecay   = m_pAp->GetDecaysArray();
+	m_paResults = m_pAp->GetResultsArray();
+
+	m_wxszFileName = wxT("AP_ir");
+   
+}
+
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283

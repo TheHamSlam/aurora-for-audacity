@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/repos/aurora/!svn/ver/1/src/PeakVue/src
+END
+data.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/aurora/!svn/ver/1/src/PeakVue/src/data.h
+END
+plot.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/PeakVue/src/plot.cpp
+END
+peakvue.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/PeakVue/src/peakvue.cpp
+END
+dialogs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/PeakVue/src/dialogs.cpp
+END
+plot.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/aurora/!svn/ver/1/src/PeakVue/src/plot.h
+END
+gui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/PeakVue/src/gui.cpp
+END
+module.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/PeakVue/src/module.cpp
+END
+peakvue.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/PeakVue/src/peakvue.h
+END
+SConscript
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/PeakVue/src/SConscript
+END
+dialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/PeakVue/src/dialogs.h
+END
+data.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/PeakVue/src/data.cpp
+END
+gui.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/aurora/!svn/ver/1/src/PeakVue/src/gui.h
+END
+module.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/PeakVue/src/module.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/PeakVue/src/version.h
+END

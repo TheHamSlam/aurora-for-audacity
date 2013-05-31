@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="InstallModule"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="CopyToAudacityDebugModulesPath"
+			DisplayName="CopyToAudacityDebugModulesPath"
+			CommandLine="copy &quot;$(TargetPath)&quot; &quot;C:/audacity-src-svn/win/Unicode Debug/Modules&quot;"
+			Outputs="$(TargetPath)"
+			FileExtensions="*.dll"
+			ExecutionDescription="Copy module to Audacity Modules path"
+			ShowOnlyRuleProperties="false"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+		<CustomBuildRule
+			Name="CopyToAudacityReleaseModulesPath"
+			DisplayName="CopyToAudacityReleaseModulesPath"
+			CommandLine="copy &quot;$(TargetPath)&quot; &quot;C:/audacity-src-svn/win/Unicode Release/Modules&quot;"
+			Outputs="$(TargetPath)"
+			FileExtensions="*.dll"
+			ExecutionDescription="Copy modules to Audacity modules path."
+			ShowOnlyRuleProperties="false"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

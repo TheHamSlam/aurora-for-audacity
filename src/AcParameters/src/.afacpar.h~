@@ -1,0 +1,320 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Acoustical Parameters
+  
+  afacpar.h
+
+  Angelo Farina - Simone Campanini
+
+**********************************************************************/
+
+#ifndef __AURORA_AFACPAR_H__
+#define __AURORA_AFACPAR_H__
+
+#include "track.h"
+
+#define FIND_VECTOR_MAX(x, max, bd) \
+   for(unsigned long k = 0; k < bd; k++) \
+       if(x > max) max = x; \
+
+//----------------------------------------------------------------------------
+// AFAcousticalParameters
+//
+/// \brief The Acoustical Parameters calculation class.
+//
+/// The code of this class belongs directly from the original
+/// Angelo Farina's Cool Edit/Audition plug-in code. In this
+/// version many features has been added, like the multichannel
+/// analysis.
+//----------------------------------------------------------------------------
+class AFAcousticalParameters
+{
+ public:   
+ 
+   enum Mode {  APM_MONO = 0,
+
+	            // 2 channels modes
+	            APM_TWO_OMNI_MICS,    APM_SOUNDFIELD_WY,
+                APM_PU_PROBE,         APM_INTENSITY_PROBE,
+                APM_BINAURAL,
+                      
+                // 4 channels modes
+                APM_FOUR_OMNI_MICS,
+                APM_SOUNDFIELD_WXYZ, APM_SOUNDFIELD_WYXZ };
+                      
+   enum IACCSpan { IS_NONE, IS_EARLY, IS_LATE, IS_ALL };
+
+   enum OctaveBand {  BD_31_5, BD_63, BD_125, BD_250, BD_500,
+                      BD_1k,   BD_2k, BD_4k,  BD_8k,  BD_16k,
+                      BD_A,    BD_Lin, N_BANDS  };
+
+   enum Parameters {  AP_SIGNAL,    AP_NOISE,      AP_G,        AP_C50,   AP_C80,
+                      AP_D50,       AP_Ts,         AP_EDT,      AP_Tuser, AP_T20,
+                      AP_T30,
+
+                      AP_PEAKINESS,  AP_MILLISECS,  AP_IMPULSIVS,
+
+                      AP_ST1,  AP_ST2,    AP_STL,     //StageParameters (14..)
+                      AP_IACC, AP_T_IACC, AP_W_IACC,  // BinauralParameters (17..)
+                      AP_JLF,  AP_JLFC,   AP_LJ,      // SpatialParameters  (20..)
+
+                      N_PARAMETERS  }; // 23
+
+   enum Errors { ERR_NO_FAT = 5000, ERR_SPATIAL_IR_TOO_SHORT, ERR_NO_CONFIG_SOURCE, ERR_UNKNOWN };
+
+   // -------------------------- Data structures ----------------------------
+   struct TSchroederDecay
+   {
+	   AFSample*  m_asmpData;              // Decay calculated by Schroeder integration
+
+	   AFSampleCount m_smpcLength;    // Decay length
+
+	   AFSample  GetItem(const int nIdx) { return m_asmpData[nIdx]; }
+	   AFSample* GetVector()             { return m_asmpData; }
+	   AFSample& operator[](const AFSampleCount unIdx) { return m_asmpData[unIdx]; }
+
+	   AFSampleCount GetLength() const { return m_smpcLength; }
+
+	   void SetData(AFSample* psmpSrc, const AFSampleCount smpcSrcLength);
+
+	   void Init(const AFSampleCount smpcLength);
+
+	   TSchroederDecay();
+	   TSchroederDecay(const AFSampleCount smpcLength);
+	   ~TSchroederDecay();
+   };
+
+   struct TResults
+   {
+	   struct TParameter { double dbValue; bool bIsValid; };
+	   TParameter  m_aaParametersTable [N_BANDS][N_PARAMETERS];
+
+	   double& GetParameter(const int nParameter, const int nBand) { return m_aaParametersTable[nBand][nParameter].dbValue; }
+	   void    SetParameter(const double dbValue, const int nParameter, const int nBand) { m_aaParametersTable[nBand][nParameter].dbValue = dbValue; }
+
+	   bool IsParameterValid(const int nParameter, const int nBand)    { return m_aaParametersTable[nBand][nParameter].bIsValid; }
+	   void ValidateParameter(const int nParameter, const int nBand)   { m_aaParametersTable[nBand][nParameter].bIsValid = true; }
+	   void InvalidateParameter(const int nParameter, const int nBand) { m_aaParametersTable[nBand][nParameter].bIsValid = false; }
+	   void SetParameterValidity(const bool bValue, const int nParameter, const int nBand) { m_aaParametersTable[nBand][nParameter].bIsValid = bValue; }
+
+	   double& GetSignalLevel  (const int nBand) { return m_aaParametersTable[nBand][AP_SIGNAL].dbValue; }
+	   double& GetNoiseLevel   (const int nBand) { return m_aaParametersTable[nBand][AP_NOISE].dbValue; }
+	   double& GetStrength     (const int nBand) { return m_aaParametersTable[nBand][AP_G].dbValue; }
+	   double& GetC50          (const int nBand) { return m_aaParametersTable[nBand][AP_C50].dbValue; }
+	   double& GetC80          (const int nBand) { return m_aaParametersTable[nBand][AP_C80].dbValue; }
+	   double& GetD50          (const int nBand) { return m_aaParametersTable[nBand][AP_D50].dbValue; }
+	   double& GetTs           (const int nBand) { return m_aaParametersTable[nBand][AP_Ts].dbValue; }
+	   double& GetEDT          (const int nBand) { return m_aaParametersTable[nBand][AP_EDT].dbValue; }
+	   double& GetTuser        (const int nBand) { return m_aaParametersTable[nBand][AP_Tuser].dbValue; }
+	   double& GetT20          (const int nBand) { return m_aaParametersTable[nBand][AP_T20].dbValue; }
+	   double& GetT30          (const int nBand) { return m_aaParametersTable[nBand][AP_T30].dbValue; }
+	   double& GetPeakiness    (const int nBand) { return m_aaParametersTable[nBand][AP_PEAKINESS].dbValue; }
+	   double& GetMillisecs    (const int nBand) { return m_aaParametersTable[nBand][AP_MILLISECS].dbValue; }
+	   double& GetImpulsiveness(const int nBand) { return m_aaParametersTable[nBand][AP_IMPULSIVS].dbValue; }
+
+	   double& GetSt1          (const int nBand) { return m_aaParametersTable[nBand][AP_ST1].dbValue; }
+	   double& GetSt2          (const int nBand) { return m_aaParametersTable[nBand][AP_ST2].dbValue; }
+	   double& GetStL          (const int nBand) { return m_aaParametersTable[nBand][AP_STL].dbValue; }
+	   double& GetIACC         (const int nBand) { return m_aaParametersTable[nBand][AP_IACC].dbValue; }
+	   double& GetIACC_time    (const int nBand) { return m_aaParametersTable[nBand][AP_T_IACC].dbValue; }
+	   double& GetIACC_width   (const int nBand) { return m_aaParametersTable[nBand][AP_W_IACC].dbValue; }
+	   double& GetJlf          (const int nBand) { return m_aaParametersTable[nBand][AP_JLF].dbValue; }
+	   double& GetJlfc         (const int nBand) { return m_aaParametersTable[nBand][AP_JLFC].dbValue; }
+	   double& GetLj           (const int nBand) { return m_aaParametersTable[nBand][AP_LJ].dbValue; }
+
+	   void SetSignalLevel  (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_SIGNAL].dbValue = dbValue; }
+       void SetNoiseLevel   (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_NOISE].dbValue  = dbValue; }
+       void SetStrength     (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_G].dbValue      = dbValue; }
+       void SetC50          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_C50].dbValue    = dbValue; }
+       void SetC80          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_C80].dbValue    = dbValue; }
+       void SetD50          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_D50].dbValue    = dbValue; }
+       void SetTs           (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_Ts].dbValue     = dbValue; }
+       void SetEDT          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_EDT].dbValue    = dbValue; }
+       void SetTuser        (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_Tuser].dbValue  = dbValue; }
+       void SetT20          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_T20].dbValue    = dbValue; }
+       void SetT30          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_T30].dbValue    = dbValue; }
+       void SetPeakiness    (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_PEAKINESS].dbValue = dbValue; }
+       void SetMillisecs    (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_MILLISECS].dbValue = dbValue; }
+       void SetImpulsiveness(const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_IMPULSIVS].dbValue = dbValue; }
+
+	   void SetSt1          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_ST1].dbValue    = dbValue; }
+       void SetSt2          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_ST2].dbValue    = dbValue; }
+       void SetStL          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_STL].dbValue    = dbValue; }
+       void SetIACC         (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_IACC].dbValue   = dbValue; }
+       void SetIACC_time    (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_T_IACC].dbValue = dbValue; }
+       void SetIACC_width   (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_W_IACC].dbValue = dbValue; }
+       void SetJlf          (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_JLF].dbValue    = dbValue; }
+       void SetJlfc         (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_JLFC].dbValue   = dbValue; }
+       void SetLj           (const double dbValue, const int nBand){  m_aaParametersTable[nBand][AP_LJ].dbValue     = dbValue; }
+
+       void Init();
+
+	   TResults();
+   };
+    
+   // -------------------------- Input parameters ----------------------------
+ private:
+   int    m_nChnlsCount;
+
+   double m_dbRate,
+          m_dbFullScale,
+          m_dbUserMinLevel,
+          m_dbUserMaxLevel,
+          m_dbDirectSoundTrig,
+          m_dbProbeMicsDistance,
+          m_dbSoundSpeed,
+          m_dbTP2;
+
+ protected:
+   bool m_bNoiseCorrection,
+        m_bEDT,
+        m_bStageMode,
+        m_bAvgMode;
+   
+   int m_nMode,
+       m_nIaccSpan;
+
+   double m_dbSoundSourceDistance;
+
+   //------------------------- Tracks data --------------------------------
+
+   TArrayOfAPAudioTracks* m_paAudioTracks;
+
+   //------------------------- Parameters attributes -------------------------
+ private:
+
+   double m_adbReferenceLevels [N_BANDS]; // strength reference levels vector;
+
+   TSchroederDecay* m_aDecay;
+   TResults*        m_aResults;
+
+ private:
+   double ReverberationTime(const int nCh, const double dbStart, const double dbDelta);
+   void  CalculateSchroederIntegral(const int nCh);
+
+   bool   GetFirstArrivalTime(); // deprecated
+   AFSampleCount GetShorterFAT();
+
+   double Clarity(const int nCh, const double dbWidth, const double dbDelay);
+   double Definition(const int nCh, const double dbWidth, const double dbDelay);
+   double EarlyLateralFraction(const double dbDelay);
+   double EarlyLateralFractionCosine(const double dbDelay);
+   double LateLateralSoundLevel(const int nBand, const double dbDelay);
+   double InterAuralCrossCorrelation(const double dbDelay, double* pdbTauIACC, double* pdbWidthIACC);
+   double Peakiness(const int nCh);
+   double Millisecondness(const int nCh, const int nBand, double* pdbImpulsivs);
+   double Stage(const int nPar, const int nCh, const double dbDelay);
+   double Strength(const int nCh, const int nBand);
+   
+ protected:   
+   virtual void ShowErrorMessage(const int nErrNo) = 0;
+   
+   virtual void InitProgressMeter(const int nTotal) = 0;
+   virtual bool UpdateProgressMeter(const int nStep) = 0;
+   virtual void DestroyProgressMeter() = 0;
+     
+   virtual void PreProcess() = 0;
+   virtual void PostProcess() = 0;
+   
+ public: 
+   bool CalculateAcousticParameters();
+   void CalculateBandMonoParameters(const int nCh, const int nBand, const double dbDelay);
+   void CalculateSpatialParameters(int nBand, double dbDelay);
+   void CalculateBandAParametersAvg(int nCh);
+
+   //------------------------- Class user interface -------------------------   
+   // --- 1st part: user parameters status & setup (pre processing)
+
+   // --- checkers
+   bool IsNoiseCorrectionMode() const { return m_bNoiseCorrection; }
+   bool IsEDTMode()             const { return m_bEDT; }
+   bool IsStageMode()           const { return m_bStageMode; }
+   bool IsAvgMode()             const { return m_bAvgMode; }
+
+   bool IsMono()   const { return (m_nMode == APM_MONO); }
+   bool IsStereo() const { return ( (m_nMode > int(APM_MONO)) && (m_nMode < int(APM_FOUR_OMNI_MICS)) ); }
+   bool IsTetra()  const { return (m_nMode > int(APM_BINAURAL)); }
+
+   bool IsTwoOmniMics()         const { return (m_nMode == APM_TWO_OMNI_MICS); }
+   bool IsASoundField()         const { return (m_nMode == APM_SOUNDFIELD_WY); }
+   bool IsSoundfieldWY()        const { return (m_nMode == APM_SOUNDFIELD_WY); }
+   bool IsAPUProbe()            const { return (m_nMode == APM_PU_PROBE); }
+   bool IsAnIntensityProbe()    const { return (m_nMode == APM_INTENSITY_PROBE); }
+   bool IsABinauralPair()       const { return (m_nMode == APM_BINAURAL); }
+   bool IsFourOmniMics()        const { return (m_nMode == APM_FOUR_OMNI_MICS); }
+   bool IsSoundfieldWXYZ()      const { return (m_nMode == APM_SOUNDFIELD_WXYZ); }
+   bool IsSoundfieldWYXZ()      const { return (m_nMode == APM_SOUNDFIELD_WYXZ); }
+   
+   // --- togglers
+   void ToggleNoiseCorrection() { m_bNoiseCorrection = (m_bNoiseCorrection) ? false :true; }
+   void ToggleEDT()             { m_bEDT = (m_bEDT) ? false :true; }
+   void ToggleStageMode()       { m_bStageMode = (m_bStageMode) ? false :true; }
+   void ToggleAverageMode()     { m_bAvgMode   = (m_bAvgMode)   ? false :true; }
+   
+   // --- getters
+   TSchroederDecay* GetDecaysArray()          { return m_aDecay; }
+   TResults*        GetResultsArray()         { return m_aResults; }
+
+   int    GetChannelsCount()         const { return m_nChnlsCount; }
+
+   double& GetRate()                   { return m_dbRate; }
+   double& GetFullScale()              { return m_dbFullScale; }
+   double& GetUserMinLevel()           { return m_dbUserMinLevel; }
+   double& GetUserMaxLevel()           { return m_dbUserMaxLevel; }
+   double& GetProbeMicsDistance()      { return m_dbProbeMicsDistance; } // m
+   double& GetSoundSpeedValue()        { return m_dbSoundSpeed; }
+   double& GetDirectSoundTrigValue()   { return m_dbDirectSoundTrig; }
+
+   int&    GetMode()                   { return m_nMode; }
+   int&    GetIACCSpan()               { return m_nIaccSpan; }
+
+   double& GetGSoundSourceDistance()           { return m_dbSoundSourceDistance; }
+   double& GetGReferenceLevel(const int nBand) { return m_adbReferenceLevels[nBand]; }
+   
+   // --- setters
+   void SetRate(const double dbValue)      { m_dbRate = dbValue; }
+   void SetFullScale(const double dbValue) { m_dbFullScale = dbValue; }
+
+   void SetUserMinLevel(const double dbValue) { m_dbUserMinLevel = dbValue; }
+   void SetUserMaxLevel(const double dbValue) { m_dbUserMaxLevel = dbValue; }
+   void SetNoiseCorrection(const bool bValue) { m_bNoiseCorrection = bValue; }
+   void SetEDT(const bool bValue)             { m_bEDT = bValue; }
+   void SetStageMode(const bool bValue)       { m_bStageMode = bValue; }
+   void SetAverageMode(const bool bValue)     { m_bAvgMode = bValue; }
+   
+   void SetProbeMicsDistance(const double dist)    { m_dbProbeMicsDistance = dist; } // m
+   void SetSoundSpeedValue(const double c)         { m_dbSoundSpeed = c; }
+   void SetDirectSoundTrigValue(const double trig) {  if      (trig > -1.0)  m_dbDirectSoundTrig = -1.0;
+                                                      else if (trig < -60.0) m_dbDirectSoundTrig = -60.0;
+                                                      else                   m_dbDirectSoundTrig = trig; }
+
+   void SetMode(const int nValue)       { m_nMode = nValue; }
+   void SetIACCSpan(const int nValue)   { m_nIaccSpan = nValue; }
+   
+   void SetGSoundSourceDistance(const double dbDist) { m_dbSoundSourceDistance = dbDist; }
+   void SetGReferenceLevel(const double dbRefLevel, const int nBand)  { m_adbReferenceLevels[nBand] = dbRefLevel; }
+   
+   void ReplaceGReferenceValues();
+
+
+   //------------------------- Class user interface -------------------------   
+   // --- 2nd part: get acustic parameters values (post processing)
+
+   void UpdateFilteredTrack(const int nChnl, const int nBand);
+
+   void RestoreDefaultReferenceLevels();
+
+   // Init/Deinitialization method
+   bool Init();
+   void Destroy();
+
+   // --- Ctors
+   AFAcousticalParameters();
+   AFAcousticalParameters(TArrayOfAPAudioTracks* paAudioTracks);
+   virtual ~AFAcousticalParameters();
+};
+
+#endif // __AURORA_AFACPAR_H__

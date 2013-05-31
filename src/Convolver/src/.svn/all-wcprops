@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/repos/aurora/!svn/ver/1/src/Convolver/src
+END
+auconv.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Convolver/src/auconv.h
+END
+kirk.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Convolver/src/kirk.h
+END
+SConscript
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/Convolver/src/SConscript
+END
+convolver.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/aurora/!svn/ver/1/src/Convolver/src/convolver.cpp
+END
+plot.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Convolver/src/plot.cpp
+END
+dialogs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/Convolver/src/dialogs.cpp
+END
+convolver.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/aurora/!svn/ver/1/src/Convolver/src/convolver.h
+END
+plot.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/aurora/!svn/ver/1/src/Convolver/src/plot.h
+END
+gui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/Convolver/src/gui.cpp
+END
+module.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/Convolver/src/module.cpp
+END
+trprop.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/Convolver/src/trprop.cpp
+END
+dialogs.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/Convolver/src/dialogs.h
+END
+multivolver.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/aurora/!svn/ver/1/src/Convolver/src/multivolver.cpp
+END
+gui.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/Convolver/src/gui.h
+END
+module.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Convolver/src/module.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/aurora/!svn/ver/1/src/Convolver/src/version.h
+END
+auconv.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/aurora/!svn/ver/1/src/Convolver/src/auconv.cpp
+END
+trprop.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/aurora/!svn/ver/1/src/Convolver/src/trprop.h
+END
+multivolver.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/aurora/!svn/ver/1/src/Convolver/src/multivolver.h
+END

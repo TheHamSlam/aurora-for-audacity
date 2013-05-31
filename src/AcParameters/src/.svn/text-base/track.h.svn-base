@@ -1,0 +1,72 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations
+                       plugin collection
+
+  Acoustical Parameters
+
+  track.h
+
+  Angelo Farina - Simone Campanini
+
+************************************************************************/
+
+#ifndef __AURORA_ACPAR_TRACK_H__
+#define __AURORA_ACPAR_TRACK_H__
+
+#include <afaudio.h>
+
+//-------------------------------------------------------------------------------------
+// APAudioTrack
+//-------------------------------------------------------------------------------------
+class APAudioTrack : public AFAudioTrack
+{
+  private:
+	wxString m_wxszName;
+
+	AFSampleCount m_smpcFAT;
+
+  public:
+	wxString& GetName() { return m_wxszName; }
+	void SetName(const wxChar* pwxchName)  { m_wxszName = pwxchName; }
+	void SetName(const wxString& wxszName) { m_wxszName = wxszName; }
+
+	bool FindFirstArrivalTime(const double dbDirectSoundTrigdB);
+	AFSampleCount GetLengthFromFAT()    { return m_smpcLen - m_smpcFAT; }
+	AFSampleCount GetSamplesFromFAT()   { return m_smpcLen - m_smpcFAT; }
+	AFSampleCount GetFirstArrivalTime() { return m_smpcFAT; }
+
+	void ApplyFilter(const int nBandId);
+
+	APAudioTrack(const double dbRate = 48000.0,
+			     const int nCh = 1)
+	: AFAudioTrack(dbRate, nCh),
+	  m_wxszName(wxT("Trackname")),
+	  m_smpcFAT(0)
+	{ }
+
+	APAudioTrack(const double dbRate,
+			     const AFSampleCount smpcLength,
+			     const int nCh = 1)
+	: AFAudioTrack(dbRate, nCh),
+	  m_wxszName(wxT("Trackname")),
+	  m_smpcFAT(0)
+	{ SetLength(smpcLength, true); }
+
+};
+WX_DECLARE_OBJARRAY(APAudioTrack, TArrayOfAPAudioTracks);
+
+
+#endif // __AURORA_ACPAR_TRACK_H__
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283
+

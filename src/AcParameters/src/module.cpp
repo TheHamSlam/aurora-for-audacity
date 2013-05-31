@@ -1,0 +1,334 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Acoustical Parameters
+
+  module.cpp
+
+  Angelo Farina - Simone Campanini
+
+*******************************************************************//**
+
+\class EffectAcParameters
+\brief The Audacity module front-end for Aurora's AcParameter class.
+
+  This class is an Audacity module (plug-in) that loads on run time.
+  Its core is the instantiation of a AcParameter singleton that does
+  all calculations.
+
+*//*******************************************************************/
+
+// From Audacity source tree
+#include <Audacity.h>
+
+#include <LoadModules.h>
+#include <Prefs.h>
+
+#include <WaveTrack.h>
+
+#include <effects/Effect.h>
+#include <effects/EffectManager.h>
+#include <widgets/ProgressDialog.h>
+
+#include <wx/progdlg.h>
+
+#include <vector>
+
+#include <commdefs.h>
+#include <afart.h>
+#include <afconfig.h>
+#include <afexports.h>
+
+#include "afacpar.h"
+#include "acpar.h"
+
+#include "dialogs.h"
+#include "exports.h"
+#include "plot.h"
+
+#include "module.h"
+
+#include "gui.h"
+
+//----------------------------------------------------------------------------
+// EffectAcParameters implementation
+//----------------------------------------------------------------------------
+void EffectAcParameters::AddProcessedTracks()
+{
+    // This code appends processed tracks to workspace.
+    // I don't want to modify the existing ones.
+    wxString wxszName;
+    for(int nCh = 0; nCh < int(m_aAudioData.GetCount()); nCh++)
+    {
+    	wxszName = m_aAudioData[nCh].GetName();
+
+        WaveTrack* pWt = mFactory->NewWaveTrack(floatSample, mProjectRate);
+        pWt->Append( (samplePtr)m_aAudioData[nCh].GetFilteredData(),
+                      floatSample,
+                      m_aAudioData[nCh].GetLength() );
+        pWt->Flush();
+        
+        pWt->SetName(wxszName);
+        
+        mTracks->Add(pWt);
+    }
+}
+
+
+void EffectAcParameters::LoadTracks()
+{
+	sampleCount smpcStart, smpcEnd;
+
+	double  dbCurT0, dbCurT1;
+
+	TrackListIterator* pIter = new TrackListIterator(mOutputTracks);
+	WaveTrack*         pWt   = (WaveTrack*)(pIter->First());
+
+	APAudioTrack* pTrack;
+
+	while (pWt != NULL)
+	{
+        //Get current channel (unuseful..)
+        //nCurChannel = pWt->GetChannel();
+
+		//Get smpcStart and smpcEnd times from track
+		double dbTrackStart = pWt->GetStartTime();
+		double dbTrackEnd   = pWt->GetEndTime();
+
+		//Set the current bounds to whichever left marker is
+		//greater and whichever right marker is less:
+		dbCurT0 = mT0 < dbTrackStart ? dbTrackStart : mT0;
+		dbCurT1 = mT1 > dbTrackEnd   ? dbTrackEnd   : mT1;
+
+
+		// Process only if the right marker is to the right of the left marker
+		if (dbCurT1 > dbCurT0)
+		{
+			//Transform the marker timepoints to samples
+			smpcStart = pWt->TimeToLongSamples(dbCurT0);
+			smpcEnd   = pWt->TimeToLongSamples(dbCurT1);
+
+			pTrack = new APAudioTrack(pWt->GetRate(), smpcEnd - smpcStart);
+
+			float flMin, flMax;
+			pWt->GetMinMax(&flMin, &flMax, dbCurT0, dbCurT1);
+			//What we need are absolute values.
+			pTrack->SetMin(fabs(flMin));
+			pTrack->SetMax(fabs(flMax));
+
+			pTrack->SetName(pWt->GetName());
+            //printf("Loading track %s (%d samples)\n", (const char*)pTrack->GetName().ToAscii(), int(pTrack->GetLength())); fflush(stdout);
+			pWt->Get( (samplePtr) pTrack->GetData(), floatSample, smpcStart,  pTrack->GetLength() );
+
+			m_aAudioData.Add(pTrack);
+		}
+
+		//Iterate to the next track
+		pWt = (WaveTrack*)(pIter->Next());
+	}
+}
+
+bool EffectAcParameters::Init()
+{
+   printf("I'M cool!\n");
+   m_bAppendDataToFile = false;
+
+   this->CopyInputTracks(); // Set up mOutputTracks.
+
+   LoadTracks();
+
+   if(m_aAudioData.GetCount() == 0)
+   {
+	   ::wxMessageBox(wxT("Error loading tracks from workspace."),
+                      wxT("Error"),
+                      wxOK | wxICON_ERROR);
+	   return false;
+   }
+
+   m_pCfg        = new AFConfig();
+   m_pAp         = new AcParameters(&m_aAudioData, m_pCfg);
+   m_pDataExport = new AcParametersExports(mParent, &m_aAudioData, m_pAp);
+
+   // read values from configuration file/registry
+   m_pAp->ReadConfigurationValues();
+
+   // ------------- Detect stereo mode
+   int nTracks = m_aAudioData.GetCount();
+
+   if(nTracks == 2)
+	   m_pAp->SetMode(AcParameters::APM_TWO_OMNI_MICS); // Default stereo choice.
+   else if(nTracks == 4)
+   	   m_pAp->SetMode(AcParameters::APM_FOUR_OMNI_MICS); // Default tetra/soundfield choice.
+   
+   return true;
+}
+
+bool EffectAcParameters::PromptUser()
+{
+    // Gui stuffs
+    InitArtProvider();
+
+   AcParametersDialog* pDlg = new AcParametersDialog(mParent, this, m_pAp, m_pDataExport);
+   pDlg->CenterOnParent();
+
+   if(!pDlg->ShowModal())
+   {
+       delete m_pDataExport; m_pDataExport = 0;
+       delete m_pAp;         m_pAp = 0;
+       delete m_pCfg;        m_pCfg = 0;
+
+       pDlg->Destroy();
+
+       m_aAudioData.Clear();
+
+       return false;
+   }
+   
+   m_pAp->StoreConfigurationValues();
+
+#ifdef __AUDEBUG__   
+   printf("acpar: PromptUser terminated\n");
+#endif
+   pDlg->Destroy();
+
+   m_bProcess = m_pAp->CalculateAcousticParameters();  // Tries to skip the ProgressDialog curse...
+
+   return true;
+}
+
+//------------------------- Processing methods -------------------------
+bool EffectAcParameters::Process()
+{
+#ifndef __WXGTK__
+//    m_pAp->SetProgressDialog(mProgress);
+#endif
+
+//    return (m_bProcess = m_pAp->CalculateAcousticParameters());
+
+      // From Effect class: replaces current tracks
+      // with mOutputTracks
+      //ReplaceProcessedTracks(true);
+	return true;
+}
+
+void EffectAcParameters::End()
+{
+    if( m_bProcess )
+    {
+        // Show parameters dialogs
+        AcParametersShowDialog*  pDlg = new AcParametersShowDialog(mParent, this, m_pAp, m_pDataExport, m_pCfg);
+        
+        pDlg->CenterOnParent();
+        if(pDlg->ShowModal())
+        {
+        	printf("[eap] exiting...\n"); fflush(stdout);
+            AddProcessedTracks();
+        }
+        printf("[eap] exiting too...\n");fflush(stdout);
+
+        if(m_bAppendDataToFile)
+        		m_pDataExport->AppendResultsToFile();
+
+        pDlg->Destroy();
+    }
+    else
+    {
+        ::wxMessageBox(wxT("Processing interrupted by user or supernatural beings."),
+                       wxT("Info"),
+                       wxOK | wxICON_INFORMATION);
+    }
+
+    delete m_pDataExport; m_pDataExport = 0;
+    delete m_pAp;         m_pAp = 0;
+    delete m_pCfg;        m_pCfg = 0;
+
+    m_aAudioData.Clear();
+}
+
+// ------ Ctors
+EffectAcParameters::EffectAcParameters():
+  m_pAp(0),
+  m_pCfg(0),
+  m_pDataExport(0),
+  m_bProcess(false),
+  m_bAppendDataToFile(false)
+{}
+
+
+//----------------------------------------------------------------------------
+// Module callback
+//----------------------------------------------------------------------------
+extern "C"
+{
+   #ifdef _MSC_VER
+      #define DLL_API _declspec(dllexport)
+   #else
+      #define DLL_API __attribute__ ((visibility("default")))
+   #endif
+
+   wxString g_wxszVersion;
+
+   extern DLL_API const wxChar* GetVersionString();	
+   extern DLL_API int ModuleDispatch(ModuleDispatchTypes type);
+
+   const wxChar* GetVersionString()
+   {
+       if(gPrefs != 0)
+           gPrefs->Read(wxT("/Version"), &g_wxszVersion);
+
+       return g_wxszVersion.c_str();
+   }
+	
+   int ModuleDispatch(ModuleDispatchTypes type)
+   {
+       if(type == ModuleInitialize) 
+       {
+#ifdef __AUDEBUG__
+           fprintf(stderr, "[AcParameters]: dispatch %d received.\n", int(type));
+#endif
+           EffectManager & em = EffectManager::Get();
+           em.RegisterEffect(new EffectAcParameters(), BUILTIN_EFFECT | ANALYZE_EFFECT );
+       }
+       else
+       {
+           switch(type)
+           {
+               case ModuleTerminate:
+               case AppInitialized:
+               case AppQuiting:
+               case ProjectInitialized:
+               case ProjectClosing:
+               case MenusRebuilt:
+#ifdef __AUDEBUG__
+                   fprintf(stderr, "[AcParameters]: dispatch %d received.\n", int(type));
+#endif
+                   break;
+                   
+               default:
+#ifdef __AUDEBUG__
+                   fprintf(stderr, "[AcParameters]: unknown dispatch received.\n");
+#endif
+                   break;
+           }       
+       }
+       
+      return 1;
+   }
+	
+};
+
+
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283
+

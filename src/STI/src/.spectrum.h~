@@ -1,0 +1,65 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Speech Transmission Index evaluator
+
+  spectrum.h
+
+  Simone Campanini
+
+**********************************************************************/
+
+#ifndef __AURORA_STI_SPECTRUM_H__
+#define __AURORA_STI_SPECTRUM_H__
+
+#include "sti.h"
+#include "spframe.h"
+
+#define ID_RIGHT_PLOT  10002
+
+
+//----------------------------------------------------------------------------
+// STISpectrumGridCellColoredRectRenderer
+//----------------------------------------------------------------------------
+class STISpectrumGridCellColoredRectRenderer : public wxGridCellStringRenderer
+{
+private:
+   void ChooseBrush(wxBrush &brush, const int nCh);
+
+public:
+   virtual void Draw(wxGrid &grid, wxGridCellAttr& attr, wxDC &dc,
+	                 const wxRect& rect, int nRow, int nCol, bool bIsSelected);
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class STISpectrumFrame
+///////////////////////////////////////////////////////////////////////////////
+class STISpectrumFrame : public STISpectrumFrm
+{
+  private:
+        AuroraSTI*  m_pAs;
+        bool        m_bIsStereo;
+        int         m_nCurrentChnl;
+
+        wxPanel* m_pwxpnlRightPage;
+        
+// private methods
+        void FillTable();
+        void UpdatePlot(const int nChnl);
+        
+        void OnFrameClose( wxCommandEvent& event );
+        void OnPageChange( wxNotebookEvent& event );
+		void OnLevelTableLabelClick( wxGridEvent& event );
+		
+	public:
+        void UpdateChart();
+        
+		STISpectrumFrame( wxWindow* parent, 
+                          AuroraSTI* pAs,
+                          const bool bIsStereo = false);
+		~STISpectrumFrame();
+};
+
+#endif //__AURORA_STI_SPECTRUM_H__

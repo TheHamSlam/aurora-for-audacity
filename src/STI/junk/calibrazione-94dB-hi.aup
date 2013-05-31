@@ -1,0 +1,132 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="calibrazione-94dB-hi_data" version="1.3.0" audacityversion="1.3.13-beta" sel0="0.0000000000" sel1="0.0000000000" vpos="464" h="0.0000000000" zoom="39.0240745535" rate="48000.0">
+	<tags/>
+	<wavetrack name="calibrazione-94dB-hi" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="960000">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e0000581.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/calibrazione-94dB-hi.wav" aliasstart="0" aliaslen="262144" aliaschannel="0" min="-0.012997" max="0.012289" rms="0.006662"/>
+				</waveblock>
+				<waveblock start="262144">
+					<pcmaliasblockfile summaryfile="e00004a3.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/calibrazione-94dB-hi.wav" aliasstart="262144" aliaslen="262144" aliaschannel="0" min="-0.01309" max="0.012612" rms="0.00664"/>
+				</waveblock>
+				<waveblock start="524288">
+					<pcmaliasblockfile summaryfile="e00009f3.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/calibrazione-94dB-hi.wav" aliasstart="524288" aliaslen="262144" aliaschannel="0" min="-0.013442" max="0.012335" rms="0.006618"/>
+				</waveblock>
+				<waveblock start="786432">
+					<pcmaliasblockfile summaryfile="e00005dd.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/calibrazione-94dB-hi.wav" aliasstart="786432" aliaslen="173568" aliaschannel="0" min="-0.011765" max="0.010991" rms="0.006199"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="pt1_env_noise" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="1236160">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e000010f.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="0" aliaslen="262144" aliaschannel="0" min="-0.072619" max="0.080119" rms="0.022171"/>
+				</waveblock>
+				<waveblock start="262144">
+					<pcmaliasblockfile summaryfile="e0000f42.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="262144" aliaslen="262144" aliaschannel="0" min="-0.124992" max="0.094423" rms="0.025157"/>
+				</waveblock>
+				<waveblock start="524288">
+					<pcmaliasblockfile summaryfile="e0000efa.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="524288" aliaslen="262144" aliaschannel="0" min="-0.068394" max="0.076811" rms="0.021504"/>
+				</waveblock>
+				<waveblock start="786432">
+					<pcmaliasblockfile summaryfile="e0000cb5.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="786432" aliaslen="262144" aliaschannel="0" min="-0.072724" max="0.092947" rms="0.02083"/>
+				</waveblock>
+				<waveblock start="1048576">
+					<pcmaliasblockfile summaryfile="e00009b7.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="1048576" aliaslen="187584" aliaschannel="0" min="-0.087942" max="0.088294" rms="0.023025"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="pt1_env_noise" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="1236160">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e0000dc2.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="0" aliaslen="262144" aliaschannel="1" min="-0.069726" max="0.070719" rms="0.021717"/>
+				</waveblock>
+				<waveblock start="262144">
+					<pcmaliasblockfile summaryfile="e0000348.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="262144" aliaslen="262144" aliaschannel="1" min="-0.133831" max="0.097617" rms="0.025021"/>
+				</waveblock>
+				<waveblock start="524288">
+					<pcmaliasblockfile summaryfile="e0000760.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="524288" aliaslen="262144" aliaschannel="1" min="-0.069963" max="0.077481" rms="0.021021"/>
+				</waveblock>
+				<waveblock start="786432">
+					<pcmaliasblockfile summaryfile="e0000f4e.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="786432" aliaslen="262144" aliaschannel="1" min="-0.07023" max="0.086377" rms="0.020352"/>
+				</waveblock>
+				<waveblock start="1048576">
+					<pcmaliasblockfile summaryfile="e0000e68.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_env_noise.wav" aliasstart="1048576" aliaslen="187584" aliaschannel="1" min="-0.085879" max="0.077513" rms="0.022438"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="pt1_ir_ampli_head" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="120401">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e0000ba6.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_ir_ampli_head.wav" aliasstart="0" aliaslen="120401" aliaschannel="0" min="-0.5" max="0.464522" rms="0.017322"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="pt1_ir_ampli_head" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="120401">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e0000e76.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_ir_ampli_head.wav" aliasstart="0" aliaslen="120401" aliaschannel="1" min="-0.451984" max="0.309161" rms="0.005837"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="pt1_pink_noise" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="1200000">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e0000922.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="0" aliaslen="262144" aliaschannel="0" min="-0.09683" max="0.081819" rms="0.023876"/>
+				</waveblock>
+				<waveblock start="262144">
+					<pcmaliasblockfile summaryfile="e0000742.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="262144" aliaslen="262144" aliaschannel="0" min="-0.10945" max="0.093971" rms="0.025259"/>
+				</waveblock>
+				<waveblock start="524288">
+					<pcmaliasblockfile summaryfile="e0000cf3.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="524288" aliaslen="262144" aliaschannel="0" min="-0.112652" max="0.131203" rms="0.027445"/>
+				</waveblock>
+				<waveblock start="786432">
+					<pcmaliasblockfile summaryfile="e0000044.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="786432" aliaslen="262144" aliaschannel="0" min="-0.103056" max="0.096758" rms="0.02688"/>
+				</waveblock>
+				<waveblock start="1048576">
+					<pcmaliasblockfile summaryfile="e0000552.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="1048576" aliaslen="151424" aliaschannel="0" min="-0.096053" max="0.095655" rms="0.024286"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="pt1_pink_noise" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="1200000">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e0000a89.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="0" aliaslen="262144" aliaschannel="1" min="-0.089632" max="0.087905" rms="0.023403"/>
+				</waveblock>
+				<waveblock start="262144">
+					<pcmaliasblockfile summaryfile="e0000984.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="262144" aliaslen="262144" aliaschannel="1" min="-0.108209" max="0.090874" rms="0.024577"/>
+				</waveblock>
+				<waveblock start="524288">
+					<pcmaliasblockfile summaryfile="e000045f.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="524288" aliaslen="262144" aliaschannel="1" min="-0.101578" max="0.112144" rms="0.026949"/>
+				</waveblock>
+				<waveblock start="786432">
+					<pcmaliasblockfile summaryfile="e00001c4.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="786432" aliaslen="262144" aliaschannel="1" min="-0.094701" max="0.110338" rms="0.02622"/>
+				</waveblock>
+				<waveblock start="1048576">
+					<pcmaliasblockfile summaryfile="e0000b76.auf" aliasfile="/home/simone/documents/lavoro/2011/bolzano_glassaal/misure/sti/pt1_pink_noise.wav" aliasstart="1048576" aliaslen="151424" aliaschannel="1" min="-0.093295" max="0.100265" rms="0.02372"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>

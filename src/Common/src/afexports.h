@@ -1,0 +1,72 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Common Libraries
+
+  afexports.h
+
+  Angelo Farina - Simone Campanini
+
+************************************************************************/
+#ifndef __AURORA_AFEXPORTS_H__
+#define __AURORA_AFEXPORTS_H__
+
+#include <wxcmn.h>
+#include <commdefs.h>
+
+#include <wx/filedlg.h>
+#include <wx/grid.h>
+
+#define MAX_CLIPBOARD_COLS 32767
+#define MAX_CLIPBOARD_ROWS 32767
+
+class AFExports 
+{
+    public:
+       enum DataDestination { DD_FILE, DD_CLIPBOARD };
+       enum FileFormat { FF_TXT = 0, FF_CSV };
+       enum FileSeparator { FS_TAB = 0, FS_COMMA };
+    
+    protected:
+       wxWindow     *m_pParent;
+       wxFileDialog* m_pwxFileDlg;    // update all existing istances!
+
+       wxString      m_wxszFileName;
+
+       int     m_nSeparatorType;
+
+       static const wxChar* const  m_awxchExtension [];
+       static const wxChar  m_awxchSeparator [];
+
+       bool IsExtensionPresent(wxString& wxszFn);
+       virtual bool BuildParametersTable(wxString& wxszDataBuffer, 
+                                         const int nDest = DD_FILE, 
+                                         const int nFileType = FF_TXT) = 0;
+       
+    public:
+      virtual void CopyEntireTableToClipboard();
+      virtual void CopyGridSelectionToClipboard(wxGrid* grd);
+
+      void GetFileName(wxString* pwxszFn) { *pwxszFn = m_wxszFileName; }
+      void SetFileName(wxString* pwxszFn) { m_wxszFileName = *pwxszFn; }
+
+      AFExports(wxWindow *parent);
+      virtual ~AFExports() {}
+};
+       
+       
+
+#endif // __AURORA_AFEXPORTS_H__
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283

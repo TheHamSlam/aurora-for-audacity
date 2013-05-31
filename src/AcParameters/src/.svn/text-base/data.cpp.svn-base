@@ -1,0 +1,124 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Acoustical Parameters
+
+  data.cpp
+
+  Simone Campanini
+
+*******************************************************************//**
+
+\class DecayPlot
+\brief The decay graphic
+
+*//*******************************************************************/
+
+#include "data.h"
+
+//----------------------------------------------------------------------------
+// AFTimeDataSerie implementation
+//----------------------------------------------------------------------------
+
+void AFTimeDataSerie::Rms(const size_t unWindowLength, double& dbTLo, double& dbTHi)
+{
+    //Samples that come in a single pixel
+    AFSampleCount iMax = (AFSampleCount) floor( ((dbTHi - dbTLo) * m_dbRate)/unWindowLength );
+
+    double dbRms;
+    AFSampleCount k, i,
+                  smpcT0, smpcT1;
+//    printf("\nLo : %f, Hi: %f\n", dbTLo, dbTHi);
+    for(k = 0; k < unWindowLength; k++)
+    {
+        // RMS on 1 ms calculation
+        dbRms = 0.0;
+        smpcT0 = k*iMax + dbTLo * m_dbRate;
+        smpcT1 = smpcT0 + iMax;
+
+        for(i = smpcT0; i < smpcT1; i++)
+        {
+          if(i < m_unVectorLength)
+              dbRms += m_pTVector[i] * m_pTVector[i];
+        }
+        dbRms /= (smpcT1 - smpcT0);
+
+        m_aTData[k] = dB(dbRms); // + m_dbFullScale; // this must be done when plotting!
+//        printf("(%d, %d, %f)", int(smpcT0), int(smpcT1), m_aTData[k]);
+    }
+//    printf("\n"); fflush(stdout);
+}
+
+void AFTimeDataSerie::Decimate(const size_t unWindowLength, double& dbTLo, double& dbTHi)
+{
+    //Samples that come in a single pixel
+    AFSampleCount iMax = (AFSampleCount) floor( ((dbTHi - dbTLo) * m_dbRate)/unWindowLength );
+
+    double dbCorrection = 10*log10(m_dbRate/100.0);
+
+    AFSampleCount k, i;
+
+    for(k = 0; k < unWindowLength; k++)
+    {
+        if((i = k*iMax) > m_unVectorLength)
+            m_aTData[k] = -200.0; // -infty
+        else
+            m_aTData[k] = dB(m_pTVector[i])- dbCorrection; // + m_dbFullScale
+    }
+}
+
+
+void AFTimeDataSerie::CalculateDataSerie(const size_t unWindowLength, double& dbTLo, double& dbTHi)
+{
+    // No calculation is needed: use existing datas.
+    if(m_unLength != unWindowLength)
+    {
+        Destroy();
+        m_unLength = unWindowLength;
+        Init();
+    }
+
+    switch(m_nHandlerType)
+    {
+        case HT_RMS:       Rms(unWindowLength, dbTLo, dbTHi);      break;
+        case HT_DECIMATE : Decimate(unWindowLength, dbTLo, dbTHi); break;
+        default:           Decimate(unWindowLength, dbTLo, dbTHi); break;
+    }
+
+}
+
+bool AFTimeDataSerie::IsOk(const double dbTLo, const double dbTHi)
+{
+    if((dbTLo < 0) || (dbTHi < 0))    // Time cannot be negative
+        return false;
+
+    if(dbTLo >= dbTHi)                // We cannot reverse time!
+        return false;
+
+    if((dbTHi-dbTLo) < 1.0/m_dbRate)  // Time interval smaller than
+        return false;                 // sampling time are not accepted
+
+    return true;
+}
+
+#include <wx/arrimpl.cpp> // This is a magic incantation which must be done!
+WX_DEFINE_OBJARRAY(TArrayOfAFTimeDataSerie);
+
+//----------------------------------------------------------------------------
+// AFDataSerie implementation
+//----------------------------------------------------------------------------
+#include <wx/arrimpl.cpp> // This is a magic incantation which must be done!
+WX_DEFINE_OBJARRAY(TArrayOfAFDataSerie);
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283

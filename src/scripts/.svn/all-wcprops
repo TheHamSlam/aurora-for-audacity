@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/repos/aurora/!svn/ver/1/src/scripts
+END
+wx_SConstruct
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repos/aurora/!svn/ver/1/src/scripts/wx_SConstruct
+END
+wxconfig.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/aurora/!svn/ver/1/src/scripts/wxconfig.py
+END

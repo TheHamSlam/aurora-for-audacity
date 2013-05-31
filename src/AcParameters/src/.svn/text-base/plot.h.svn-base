@@ -1,0 +1,76 @@
+/**********************************************************************
+
+  Aurora for Audacity: A Powerful multiplatform Acoustic calculations 
+                       plugin collection
+                       
+  Acoustical Parameters
+  
+  plot.h
+
+  Simone Campanini
+
+**********************************************************************/
+
+#ifndef __AURORA_ACPARAM_PLOT__
+#define __AURORA_ACPARAM_PLOT__
+
+#include <afcharts.h>
+#include <afscope.h>
+
+#include "data.h"
+
+//----------------------------------------------------------------------------
+// APDecayPlot declaration
+//----------------------------------------------------------------------------
+class APDecayPlot: public AFScope <TArrayOfAFTimeDataSerie, AFTimeDataSerie>
+{
+  public:
+	void AddSerie(AFTimeDataSerie* pData); // Not exactly what I want: this is already defined in AFDataPlot!
+    void AddSerie(AFSample* psmpData, const size_t unLength, const double dbRate, const int nHandlerType,
+	              wxColour& wxcolLine = wxNullColour, wxColour& wxcolBrush = wxNullColour);
+    void ReplaceSerie(const size_t nIdx, AFSample* psmpData, const size_t unLength);
+
+    // --- 'ctor
+    APDecayPlot(wxWindow *parent, wxWindowID id,
+	            const wxPoint& pos = wxDefaultPosition,
+                const wxSize& size = wxSize(DECAY_PLOT_X_SIZE, DECAY_PLOT_Y_SIZE))
+    : AFScope<TArrayOfAFTimeDataSerie, AFTimeDataSerie>(parent, id, pos, size)
+    {}
+};
+
+//----------------------------------------------------------------------------
+// APBarPlot declaration
+//----------------------------------------------------------------------------
+class APBarPlot: public AFBarPlot<TArrayOfAFDataSerie, AFDataSerie>
+{
+  public:
+   void AddSerie(const double* adbData, const size_t unLength,
+                 wxColour& wxcolLine = wxNullColour, wxColour& wxcolBrush = wxNullColour);
+   void ReplaceSerie(const size_t nIdx, const double* adbData, const size_t unLength);
+
+   // Just an alias to make things more friendly...
+   AFCategoriesAxis* GetBandsAxis() { return GetCategoriesAxis(); }
+
+   // --- 'ctor
+   APBarPlot(wxWindow *parent, wxWindowID id,
+		     const wxPoint& pos = wxDefaultPosition,
+             const wxSize& size = wxDefaultSize)
+   : AFBarPlot<TArrayOfAFDataSerie, AFDataSerie>(parent, id, pos, size)
+   {}
+
+};
+
+#endif  // __AURORA_ACPARAM_PLOT__
+
+// Indentation settings for Vim and Emacs and unique identifier for Arch, a
+// version control system. Please do not modify past this point.
+//
+// Local Variables:
+// c-basic-offset: 3
+// indent-tabs-mode: nil
+// End:
+//
+// vim: et sts=3 sw=3
+// arch-tag: c05d7383-e7cd-410e-b7b8-f45f47c9e283
+
+
