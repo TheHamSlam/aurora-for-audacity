@@ -1,0 +1,1 @@
+Aurora is a multiplatform (OSX/win/Linux) set of Audacity plugins for acoustical measurement/signal processing developed by prof.Angelo Farina.
